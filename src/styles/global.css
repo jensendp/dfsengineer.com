@@ -130,6 +130,38 @@ a:hover {
   color: var(--color-fog);
 }
 
+/* Article hero — the dark schematic band replaces a photographic heroImage
+   (see DESIGN.md). It sits outside the .paper canvas the article body uses,
+   so colors are set explicitly rather than inherited from .paper. */
+.hero-post {
+  padding: var(--space-16) 0 var(--space-12);
+  border-bottom: 1px solid var(--color-hairline);
+  background:
+    var(--color-void)
+    repeating-linear-gradient(90deg, var(--color-hairline) 0 1px, transparent 1px 40px);
+  background-position: center top;
+  color: var(--color-chalk);
+}
+.hero-post .eyebrow { color: var(--color-fog); }
+.hero-post h1 { color: var(--color-chalk); margin-bottom: var(--space-4); }
+.hero-post .meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-fog);
+  margin: 0;
+}
+
+/* "More in this series" — rendered from real content-collection data at
+   build time, deliberately on the dark canvas even though it follows a
+   .paper article. The dark/light split the site already uses to separate
+   chrome from reading does the work here too: this reads as navigation,
+   not as more of the essay. */
+.series-section {
+  background: var(--color-void);
+  color: var(--color-chalk);
+}
+.series-section .section-label { color: var(--color-fog); }
+
 .btn {
   display: inline-flex;
   align-items: center;

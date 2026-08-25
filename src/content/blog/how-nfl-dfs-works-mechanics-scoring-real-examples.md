@@ -5,7 +5,8 @@ pubDate: '2026-08-25T14:36:17'
 tags: ["NFL DFS basics","DFS scoring explained","DFS contest types","NFL DFS beginner guide"]
 author: "DFS Engineer Playbook"
 draft: false
-heroImage: "https://images.unsplash.com/photo-1508863702330-2eece3ea08cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHNlYXJjaHwxfHxIb3clMjBORkwlMjBERlMlMjBXb3JrcyUzQSUyME1lY2hhbmljcyUyQyUyMFNjb3JpbmclMjAlMjYlMjBSZWFsJTIwRXhhbXBsZXN8ZW58MHwwfHx8MTc4NzY2ODU3N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+pillar: "NFL DFS Beginner's Guide"
+contentType: "Spoke"
 ---
 
 

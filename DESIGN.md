@@ -83,6 +83,18 @@ Scale (px): 14, 16, 18, 20, 24, 32, 40, 56, 72, 96.
   bottom border, active link underlined in Signal Green.
 - **Section divider:** thin hairline with a centered small mono coordinate
   label (e.g. `§ 02 — PROJECTIONS`), evoking schematic call-outs.
+- **Article hero (`.hero-post`):** the dark Void band + hairline grid from
+  the homepage `.hero`, reused for every blog post instead of a photo.
+  Eyebrow shows the pillar name (`§ NFL DFS Beginner's Guide`), then H1 in
+  Chalk, then a mono meta line. The article body still drops into the Paper
+  reading canvas immediately below it.
+- **"More in this series" (`.series-section` + `.post-grid`):** the same
+  `.post-card` pattern the homepage uses for "Latest from the playbook,"
+  rendered after the article body on the dark canvas. Deliberately breaks
+  back to Void/Carbon even though it follows Paper prose — the dark/light
+  split itself signals "this is site navigation, not more of the essay."
+  Queried live from the content collection (same pillar, published only),
+  never generated text baked into the markdown.
 
 ## Motion
 
@@ -97,9 +109,12 @@ text/border only.
 - Do put every computed number in mono type, everything a human wrote in
   the grotesk/body pair.
 - Don't use football clip-art, gradients, or stock photography of stadiums
-  — the schematic/hairline grid *is* the football motif. The blog post
-  `heroImage` field stays in the schema (the n8n pipeline still writes it)
-  but is intentionally not rendered until there's a real asset pipeline
-  (generated schematic/data-viz art) to fill it with instead.
+  — the schematic/hairline grid *is* the football motif. Resolved: article
+  hero images and "more in this series" thumbnails are the `.hero-post` /
+  `.post-card` schematic treatments (dark Void band, hairline grid,
+  typographic only) — not photos. The `heroImage` field and the n8n
+  pipeline's Unsplash fetch have been removed entirely rather than left
+  unrendered; `pillar`/`contentType` frontmatter fields replace it as what
+  the layout actually needs (the eyebrow label, and the series query).
 - Don't mix Signal Green and Alert Amber in the same component decoratively
   — they're semantic (good/bad), not a duotone palette.

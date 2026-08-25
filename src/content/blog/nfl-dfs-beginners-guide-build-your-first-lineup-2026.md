@@ -5,7 +5,8 @@ pubDate: '2026-08-25T14:11:02'
 tags: ["NFL DFS beginner's guide","daily fantasy football","DFS lineup building","DFS contest types"]
 author: "DFS Engineer Playbook"
 draft: false
-heroImage: "https://images.unsplash.com/photo-1603722566983-5e8fb2d26227?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHNlYXJjaHwxfHxORkwlMjBERlMlMjBCZWdpbm5lciUyN3MlMjBHdWlkZSUzQSUyMEJ1aWxkJTIwWW91ciUyMEZpcnN0JTIwTGluZXVwJTIwJTI4MjAyNiUyOXxlbnwwfDB8fHwxNzg3NjY3MDYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
+pillar: "NFL DFS Beginner's Guide"
+contentType: "Pillar"
 ---
 
 Most NFL DFS guides tell you to "find value." None of them show you what that actually looks like with real salaries and real scoring.
@@ -172,23 +173,6 @@ Sort by Column E descending to see your best values.
 Filter by Column F to flag high-ownership plays you may
 want to fade in GPPs.
 ```
-
-## In This Series
-
-This guide is part of a complete series on NFL DFS Beginner's Guide. Here's what we cover:
-
-- [What Is NFL DFS?](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026)
-- [How NFL DFS Works](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples)
-
-- How to Play NFL DFS
-- NFL DFS Terminology
-- NFL DFS Scoring Explained
-- NFL DFS Roster Rules
-- NFL DFS Salary Cap Explained
-- NFL DFS Contest Types
-- NFL DFS Beginner Mistakes
-- NFL DFS Beginner FAQ
-
 
 ## Conclusion
 

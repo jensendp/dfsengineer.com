@@ -15,7 +15,8 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     author: z.string().default('DFS Engineer Playbook'),
     draft: z.boolean().default(false),
-    heroImage: z.string().optional(),
+    pillar: z.string().optional(),
+    contentType: z.enum(['Pillar', 'Spoke']).optional(),
   }),
 });
 

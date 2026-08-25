@@ -5,7 +5,8 @@ pubDate: '2026-08-25T14:18:47'
 tags: ["NFL DFS","daily fantasy sports","DFS beginners","NFL DFS explained"]
 author: "DFS Engineer Playbook"
 draft: false
-heroImage: "https://images.unsplash.com/photo-1485827031228-b1736cb1fd06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MjQ4MjF8MHwxfHNlYXJjaHwxfHxXaGF0JTIwSXMlMjBORkwlMjBERlMlM0YlMjBBJTIwQ29tcGxldGUlMjBCZWdpbm5lciUyN3MlMjBCcmVha2Rvd24lMjAlMjgyMDI2JTI5fGVufDB8MHx8fDE3ODc2Njc1Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080"
+pillar: "NFL DFS Beginner's Guide"
+contentType: "Spoke"
 ---
 
 NFL DFS gives you a fresh roster every week. No season-long commitments, no waiver wire drama — just a salary cap, a player pool, and one slate of games.

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getCollection } from 'astro:content';
 
 interface Props {
   title: string;
@@ -7,9 +8,22 @@ interface Props {
   pubDate: Date;
   tags: string[];
   author: string;
-  heroImage?: string;
+  pillar?: string;
+  contentType?: string;
+  slug: string;
 }
-const { title, description, pubDate, tags, author } = Astro.props;
+const { title, description, pubDate, tags, author, pillar, slug } = Astro.props;
+
+// "More in this series" — queried from real published content, not
+// generated/patched text. See DESIGN.md and n8n-pipeline-review.md for why.
+const seriesPosts = pillar
+  ? (
+      await getCollection(
+        'blog',
+        (entry) => !entry.data.draft && entry.data.pillar === pillar && entry.slug !== slug
+      )
+    ).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  : [];
 ---
 <html lang="en">
   <head>
@@ -19,26 +33,48 @@ const { title, description, pubDate, tags, author } = Astro.props;
     <meta name="description" content={description} />
     <link rel="canonical" href={Astro.url.href} />
   </head>
-  <body class="paper">
+  <body>
     <header class="site-header">
       <div class="wrap">
-        <a class="wordmark" href="/" style="color: var(--color-ink);">DFS<span>·</span>Engineer</a>
+        <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
       </div>
     </header>
-    <main>
-      <article>
-        {/* heroImage intentionally not rendered — stock photos from the n8n
-            pipeline don't fit the schematic-on-black design system. Revisit
-            once there's a real asset pipeline (generated schematic/data-viz
-            art). Field stays in the schema/props for when that lands. */}
+
+    <section class="hero-post">
+      <div class="wrap">
+        {pillar && <p class="eyebrow">§ {pillar}</p>}
         <h1>{title}</h1>
         <p class="meta">
           {author} · {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           {tags.length > 0 && <> · {tags.join(', ')}</>}
         </p>
+      </div>
+    </section>
+
+    <main class="paper">
+      <article>
         <slot />
       </article>
     </main>
+
+    {seriesPosts.length > 0 && (
+      <section class="section series-section">
+        <div class="wrap">
+          <p class="section-label">More in this series</p>
+          <ul class="post-grid">
+            {seriesPosts.map((post) => (
+              <li>
+                <a class="post-card" href={`/blog/${post.slug}/`}>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
+
     <footer class="site-footer">
       <div class="wrap">
         <a href="https://www.skool.com/brew-loyalty-6636">Join the DFS Engineer Playbook community →</a>
