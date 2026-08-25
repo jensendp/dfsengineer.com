@@ -96,7 +96,10 @@ text/border only.
   Signal Green and Alert Amber do all the talking.
 - Do put every computed number in mono type, everything a human wrote in
   the grotesk/body pair.
-- Don't use football clip-art, gradients, or stock photography of stadiums
-  — the schematic/hairline grid *is* the football motif.
+- Don't use football clip-art or gradients — the schematic/hairline grid
+  *is* the football motif. Exception: blog post `heroImage` stock photos
+  from the n8n content pipeline are accepted as-is (article surface only,
+  not the dashboard/marketing chrome) — revisit if a real asset pipeline
+  (generated schematic/data-viz art) replaces them later.
 - Don't mix Signal Green and Alert Amber in the same component decoratively
   — they're semantic (good/bad), not a duotone palette.

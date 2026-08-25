@@ -259,3 +259,89 @@ a:hover {
   border-radius: var(--radius);
   margin-bottom: var(--space-6);
 }
+
+/* Prose elements inside a blog post body */
+.paper article h2,
+.paper article h3,
+.paper article h4 {
+  color: var(--color-ink);
+  margin-top: var(--space-12);
+}
+.paper article h2 { font-size: 30px; }
+.paper article h3 { font-size: 22px; }
+
+.paper article a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-slate);
+  text-underline-offset: 2px;
+}
+.paper article a:hover {
+  color: var(--color-field);
+  text-decoration-color: var(--color-signal);
+}
+
+.paper article strong { color: var(--color-ink); }
+
+.paper article ul,
+.paper article ol {
+  color: var(--color-slate);
+  padding-left: var(--space-6);
+  margin: 0 0 var(--space-4);
+}
+.paper article li { margin-bottom: var(--space-2); }
+.paper article li::marker { color: var(--color-signal); }
+
+.paper article blockquote {
+  margin: var(--space-6) 0;
+  padding: var(--space-2) var(--space-6);
+  border-left: 2px solid var(--color-signal);
+  color: var(--color-slate);
+  font-style: italic;
+}
+.paper article blockquote p:last-child { margin-bottom: 0; }
+
+.paper article code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: #ece9df;
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius);
+}
+.paper article pre {
+  background: var(--color-void);
+  color: var(--color-chalk);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-6);
+  overflow-x: auto;
+  margin: var(--space-6) 0;
+}
+.paper article pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.paper article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-6) 0;
+  font-size: 14px;
+}
+.paper article th,
+.paper article td {
+  text-align: left;
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid #ddd9cf;
+}
+.paper article th {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--color-slate);
+  border-bottom: 1px solid var(--color-ink);
+}
+.paper article table code { background: none; padding: 0; }
