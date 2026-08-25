@@ -47,7 +47,7 @@ The contest you enter determines what kind of lineup you should build. Get this 
 
 Learn to read payout structures before entering. Take a 10,000-entry GPP at $5 on DraftKings. If it pays the top 20% (2,000 spots), min-cash might return $8 — barely above entry. But if it pays only the top 10%, min-cash might hit $10, and the real money concentrates in the top 1%. Your expected value shifts dramatically depending on which structure you're playing.
 
-Rake matters more than most beginners realize. Platforms typically take 10–15% off the prize pool. In a $5 contest with 15% rake, you're effectively paying $5 to compete for $4.25 in equity per entry. That means you need to win at roughly a 54% rate in a 50/50 just to break even — not 50%.
+Rake matters more than most beginners realize. Platforms typically take 10–15% off the prize pool. Work it through a 100-entry $5 double-up at 15% rake: $500 collected, $75 taken as rake, $425 paid out to the top 50 finishers — $8.50 each. $5 ÷ $8.50 means you need to win more than 58.8% of your 50/50s just to break even — not 50%.
 
 > **Tip:** If you're learning NFL DFS for the first time, start with single-entry contests. Multi-entry fields are dominated by players running 150 optimized lineups. Single-entry levels the construction advantage and lets you focus on process, not volume.
 
