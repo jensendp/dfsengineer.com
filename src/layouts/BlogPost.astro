@@ -9,7 +9,7 @@ interface Props {
   author: string;
   heroImage?: string;
 }
-const { title, description, pubDate, tags, author, heroImage } = Astro.props;
+const { title, description, pubDate, tags, author } = Astro.props;
 ---
 <html lang="en">
   <head>
@@ -27,7 +27,10 @@ const { title, description, pubDate, tags, author, heroImage } = Astro.props;
     </header>
     <main>
       <article>
-        {heroImage && <img src={heroImage} alt="" />}
+        {/* heroImage intentionally not rendered — stock photos from the n8n
+            pipeline don't fit the schematic-on-black design system. Revisit
+            once there's a real asset pipeline (generated schematic/data-viz
+            art). Field stays in the schema/props for when that lands. */}
         <h1>{title}</h1>
         <p class="meta">
           {author} · {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
