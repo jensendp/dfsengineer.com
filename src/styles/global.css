@@ -1,0 +1,261 @@
+/* DFS Engineer — design tokens. See DESIGN.md for the full rationale. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Color */
+  --color-void: #0a0a0d;
+  --color-carbon: #15161a;
+  --color-hairline: #2a2c33;
+  --color-paper: #f7f6f2;
+  --color-chalk: #ffffff;
+  --color-ink: #12121a;
+  --color-fog: #9a9ca6;
+  --color-slate: #5b5d68;
+  --color-signal: #8bff5a;
+  --color-alert: #ff9d3d;
+  --color-field: #0f2e1c;
+
+  /* Type */
+  --font-display: 'Inter Tight', 'Neue Haas Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  --radius: 2px;
+  --content-max: 1200px;
+  --prose-max: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-void);
+  color: var(--color-chalk);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 var(--space-4);
+}
+
+h1 { font-size: clamp(40px, 6vw, 72px); }
+h2 { font-size: clamp(28px, 3.5vw, 40px); }
+h3 { font-size: 24px; }
+
+p { margin: 0 0 var(--space-4); color: var(--color-fog); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-signal);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  color: var(--color-fog);
+}
+
+.mono, .stat-value, table {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.site-header {
+  border-bottom: 1px solid var(--color-hairline);
+  padding: var(--space-6) 0;
+}
+.site-header .wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.wordmark span {
+  color: var(--color-signal);
+}
+
+.hero {
+  padding: var(--space-24) 0 var(--space-16);
+  border-bottom: 1px solid var(--color-hairline);
+  background:
+    repeating-linear-gradient(90deg, var(--color-hairline) 0 1px, transparent 1px 40px);
+  background-position: center top;
+}
+.hero p.lede {
+  max-width: 620px;
+  font-size: 18px;
+  color: var(--color-fog);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--color-signal);
+}
+.btn-primary {
+  background: var(--color-signal);
+  color: var(--color-void);
+  font-weight: 600;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--color-chalk);
+  border-color: var(--color-hairline);
+}
+.btn-secondary:hover {
+  border-color: var(--color-signal);
+  color: var(--color-signal);
+}
+
+.section {
+  padding: var(--space-16) 0;
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-fog);
+  border-top: 1px solid var(--color-hairline);
+  padding-top: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.post-grid {
+  display: grid;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.post-card {
+  display: block;
+  background: var(--color-carbon);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+  transition: border-color 120ms ease-out;
+}
+.post-card:hover {
+  border-color: var(--color-signal);
+}
+.post-card h3 {
+  font-size: 22px;
+  color: var(--color-chalk);
+  margin-bottom: var(--space-2);
+}
+.post-card:hover h3 {
+  color: var(--color-signal);
+}
+.post-card p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.stat-card {
+  background: var(--color-carbon);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-fog);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.stat-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--color-chalk);
+}
+.stat-value.up { color: var(--color-signal); }
+.stat-value.down { color: var(--color-alert); }
+
+.site-footer {
+  border-top: 1px solid var(--color-hairline);
+  padding: var(--space-8) 0;
+  color: var(--color-fog);
+  font-size: 14px;
+}
+
+/* Article / blog surface flips to the light "paper" canvas for long-form reading */
+.paper {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+.paper p { color: var(--color-slate); }
+.paper .site-header,
+.paper .site-footer {
+  border-color: #ddd9cf;
+}
+.paper article {
+  max-width: var(--prose-max);
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6);
+}
+.paper article h1 { color: var(--color-ink); }
+.paper .meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-slate);
+  margin-bottom: var(--space-8);
+}
+.paper article img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-6);
+}
