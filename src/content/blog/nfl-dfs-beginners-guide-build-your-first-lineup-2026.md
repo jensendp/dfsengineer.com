@@ -44,7 +44,7 @@ The table below shows how the same stat lines play across both platforms at key 
 |----------|-----------|-----------------|---------------|------------|
 | QB | 280 yds, 2 TD, 1 INT | 22.2 | 18.2 | +4.0 DK |
 | QB | 320 yds, 3 TD, 0 INT | 30.8 | 24.8 | +6.0 DK |
-| RB | 85 rush yds, 1 TD, 5 rec, 30 rec yds | 20.5 | 18.0 | +2.5 DK |
+| RB | 85 rush yds, 1 TD, 5 rec, 30 rec yds | 22.5 | 20.0 | +2.5 DK |
 | WR | 6 rec, 95 yds, 1 TD | 21.5 | 18.5 | +3.0 DK |
 | TE | 4 rec, 55 yds, 0 TD | 9.5 | 7.5 | +2.0 DK |
 
