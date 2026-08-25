@@ -178,8 +178,8 @@ want to fade in GPPs.
 This guide is part of a complete series on NFL DFS Beginner's Guide. Here's what we cover:
 
 - [What Is NFL DFS?](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026)
+- [How NFL DFS Works](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples)
 
-- How NFL DFS Works
 - How to Play NFL DFS
 - NFL DFS Terminology
 - NFL DFS Scoring Explained
