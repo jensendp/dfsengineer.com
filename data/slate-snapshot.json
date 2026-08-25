@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-08-25T15:41:02.774512+00:00",
+  "scope_note": "Game-level market facts only (matchups, Vegas lines) \u2014 never player-level data. Safe to show for the current/upcoming slate, unlike the retrospective-only content-grounding export.",
+  "slate": {
+    "season": 2026,
+    "week": 1,
+    "slate_name": "Week 1 Main Slate",
+    "num_games": 20
+  },
+  "highlights": {
+    "highest_total": null,
+    "biggest_spread": null
+  }
+}
