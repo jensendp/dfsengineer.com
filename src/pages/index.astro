@@ -10,10 +10,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 // "Model accuracy" stat cards — real numbers from the dfs-local backtest
 // export (see dfs-local/src/dfs_local/export/content_grounding.py), read
 // at build time from the file the pipeline already commits to this repo.
+// A snapshot, not a live trend — refreshed by manually re-running
+// `dfs-local push-content-export`, so it's labeled with the date it was
+// actually generated rather than implying it's continuously live.
 // No fabricated placeholders: if the export is missing or empty, the
 // section renders nothing rather than a fake number.
 type AccuracyRow = { profile: string; position: string; n: number; mae: number; corr: number | null };
 let accuracyCards: { label: string; value: string }[] = [];
+let accuracyGeneratedAt: string | null = null;
 try {
   const raw = readFileSync(new URL('../../data/dfs-local-export.json', import.meta.url), 'utf-8');
   const exportData = JSON.parse(raw);
@@ -28,10 +32,35 @@ try {
       label: `${r.position} Model Corr`,
       value: r.corr!.toFixed(3),
     }));
+    accuracyGeneratedAt = exportData?.generated_at ?? null;
   }
 } catch {
   accuracyCards = [];
 }
+
+// "This week's slate" — game-level market facts only (matchups, Vegas
+// lines), never player-level data. See
+// dfs-local/src/dfs_local/export/slate_snapshot.py for the scope rule.
+// Highlight fields come back null until real odds data exists for the
+// slate; the section renders only the fields that are actually present.
+type SlateHighlight = { matchup: string; over_under?: number; spread?: number } | null;
+let slateInfo: { name: string | null; numGames: number } | null = null;
+let highestTotal: SlateHighlight = null;
+let biggestSpread: SlateHighlight = null;
+try {
+  const raw = readFileSync(new URL('../../data/slate-snapshot.json', import.meta.url), 'utf-8');
+  const snapshot = JSON.parse(raw);
+  if (snapshot?.slate?.num_games > 0) {
+    slateInfo = { name: snapshot.slate.slate_name, numGames: snapshot.slate.num_games };
+    highestTotal = snapshot?.highlights?.highest_total ?? null;
+    biggestSpread = snapshot?.highlights?.biggest_spread ?? null;
+  }
+} catch {
+  slateInfo = null;
+}
+
+const dateFmt = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 <html lang="en">
   <head>
@@ -60,10 +89,46 @@ try {
       </div>
     </section>
 
+    {slateInfo && (
+      <section class="section">
+        <div class="wrap">
+          <p class="section-label">§ 02 — This week's slate</p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
+            <div class="stat-card">
+              <span class="stat-label">Slate</span>
+              <span class="stat-value">{slateInfo.name}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Games</span>
+              <span class="stat-value">{slateInfo.numGames}</span>
+            </div>
+            {highestTotal && (
+              <div class="stat-card">
+                <span class="stat-label">Highest Total</span>
+                <span class="stat-value up">{highestTotal.over_under}</span>
+                <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{highestTotal.matchup}</span>
+              </div>
+            )}
+            {biggestSpread && (
+              <div class="stat-card">
+                <span class="stat-label">Biggest Spread</span>
+                <span class="stat-value">{biggestSpread.spread}</span>
+                <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{biggestSpread.matchup}</span>
+              </div>
+            )}
+          </div>
+          <p style="margin-top:16px; font-size:13px;">
+            Game-level market facts only — matchups and Vegas lines, the same information any sportsbook already publishes. Never a pick, never player-level data.
+            {!highestTotal && ' Odds data isn’t in yet for this slate — check back closer to kickoff.'}
+          </p>
+        </div>
+      </section>
+    )}
+
     {accuracyCards.length > 0 && (
       <section class="section">
         <div class="wrap">
-          <p class="section-label">§ 02 — Model accuracy, backtested</p>
+          <p class="section-label">§ 03 — Model accuracy, backtested</p>
           <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
             {accuracyCards.map((card) => (
               <div class="stat-card">
@@ -73,7 +138,9 @@ try {
             ))}
           </div>
           <p style="margin-top:16px; font-size:13px;">
-            Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim. See the methodology behind these numbers in the playbook below.
+            Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim.
+            {accuracyGeneratedAt && ` As of ${dateFmt(accuracyGeneratedAt)}.`}
+            {' '}See the methodology behind these numbers in the playbook below.
           </p>
         </div>
       </section>
@@ -81,7 +148,7 @@ try {
 
     <section class="section" id="latest">
       <div class="wrap">
-        <p class="section-label">§ 03 — Latest from the playbook</p>
+        <p class="section-label">§ 04 — Latest from the playbook</p>
         {posts.length === 0 && <p>First posts coming soon.</p>}
         <ul class="post-grid">
           {posts.map((post) => (
