@@ -144,7 +144,7 @@ That's correlation. It's the single biggest structural edge most beginners miss.
 
 > **Tip:** A quick way to evaluate stack strength: multiply the game's over/under by 0.60 to estimate the favorite's implied team total. If a team's implied total is 28+, their passing game becomes a premium stacking environment. Below 21, look elsewhere.
 
-**When stacking matters — and when it doesn't.** In cash games, stacks are optional. You're targeting a safe floor, and correlation adds variance you don't need. GPPs are different. Data from 2026 DraftKings Millionaire contests shows that roughly 85% of first-place finishers used at least a QB-WR pair from the same team. Tournament lineups without a stack are fighting at a structural disadvantage before the games even kick off.
+**When stacking matters — and when it doesn't.** In cash games, stacks are optional. You're targeting a safe floor, and correlation adds variance you don't need. GPPs are different. Winning tournament lineups are disproportionately stacked — when a team's offense goes off, the QB and his pass-catchers score together, and lineups that captured that correlation separate from the ones that didn't. Tournament lineups without a stack are fighting at a structural disadvantage before the games even kick off.
 
 ## Where to Find the Numbers: Free Tools and Data Sources for NFL DFS Beginners
 
