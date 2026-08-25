@@ -25,14 +25,14 @@ If you're coming from season-long fantasy or just getting started, this is where
 
 DraftKings and FanDuel run on the same core mechanic — you draft a roster under a salary cap and score points based on real NFL stats — but the specifics diverge enough to change how you build lineups. For a deeper look at the mechanics and scoring systems, see the full breakdown in [How NFL DFS Works: Mechanics, Scoring & Real Examples](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples).
 
-DraftKings gives you $50,000 in salary and nine roster spots: QB, RB, RB, WR, WR, WR, TE, FLEX, DST. FanDuel uses $60,000 and eight spots: QB, RB, RB, WR, WR, WR, TE, FLEX. That extra roster slot on DraftKings means more decisions and slightly more room for differentiation. The FLEX spot accepts RB, WR, or TE, so your choice there defines whether you're going RB-heavy or loading up on pass-catchers.
+DraftKings gives you $50,000 in salary and nine roster spots: QB, RB, RB, WR, WR, WR, TE, FLEX, DST. FanDuel uses $60,000 across the same nine-slot structure: QB, RB, RB, WR, WR, WR, TE, FLEX, DEF. The slot count matches — the real differentiation comes from the scoring-rate gaps below, not roster size. The FLEX spot accepts RB, WR, or TE, so your choice there defines whether you're going RB-heavy or loading up on pass-catchers.
 
 Scoring diverges in ways that directly shape roster construction. DraftKings uses full PPR (1 point per reception) and awards 6 points per passing touchdown. FanDuel uses half PPR (0.5 per reception) and awards only 4 points per passing touchdown. A running back who catches 5 passes scores 5 receiving points on DraftKings but only 2.5 on FanDuel. That gap makes high-volume pass-catching backs significantly more valuable on DraftKings relative to their salary. The passing TD difference also matters: a three-touchdown passing day is worth 18 points on DraftKings but only 12 on FanDuel, which compresses the gap between elite and mid-tier quarterbacks on FanDuel slates.
 
 | | DraftKings | FanDuel |
 |---|---|---|
 | **Salary Cap** | $50,000 | $60,000 |
-| **Roster Spots** | 9 (QB, 2RB, 3WR, TE, FLEX, DST) | 8 (QB, 2RB, 3WR, TE, FLEX) |
+| **Roster Spots** | 9 (QB, 2RB, 3WR, TE, FLEX, DST) | 9 (QB, 2RB, 3WR, TE, FLEX, DEF) |
 | **PPR Scoring** | Full (1.0 per reception) | Half (0.5 per reception) |
 | **Passing TD** | 6 points | 4 points |
 | **Key Implication** | Pass-catching RBs and QBs gain extra value | Gap between elite and mid-tier QBs compresses |

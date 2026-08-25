@@ -17,7 +17,7 @@ This is the plain version of how it all works — the mechanics, the money, and 
 
 ## How NFL DFS Works: The Core Mechanics
 
-Every NFL DFS lineup starts with two constraints: a fixed salary cap and a set of roster slots you have to fill. On DraftKings, you get $50,000 to fill nine positions — QB, RB, RB, WR, WR, WR, TE, FLEX, DST. FanDuel gives you $60,000 for nine slots but drops the defense and uses a slightly different configuration. The higher cap on FanDuel doesn't mean more room; player salaries are scaled proportionally.
+Every NFL DFS lineup starts with two constraints: a fixed salary cap and a set of roster slots you have to fill. On DraftKings, you get $50,000 to fill nine positions — QB, RB, RB, WR, WR, WR, TE, FLEX, DST. FanDuel gives you $60,000 for the same nine slots (QB, RB, RB, WR, WR, WR, TE, FLEX, DEF). The higher cap on FanDuel doesn't mean more room; player salaries are scaled proportionally.
 
 Here's what building a DraftKings Week 1 lineup actually looks like. Say you want Jalen Hurts at QB ($8,200) and lock in two top-tier receivers at $7,400 and $7,100. You've spent $22,700 on three players, leaving $27,300 across six remaining slots — an average of $4,550 each. That math forces real tradeoffs. You can't pay up everywhere.
 
@@ -88,7 +88,7 @@ One more distinction worth tracking early: **single-entry vs. multi-entry tourna
 
 DraftKings and FanDuel score the same game differently, and those differences change which players you should target.
 
-DraftKings uses full PPR — one point per reception. FanDuel uses half-PPR, awarding 0.5 points per catch. DraftKings also awards a three-point bonus when a QB hits 300 passing yards. FanDuel has no such bonus. Roster construction differs too: FanDuel drops the DST slot entirely, which concentrates value into skill positions.
+DraftKings uses full PPR — one point per reception. FanDuel uses half-PPR, awarding 0.5 points per catch. DraftKings also awards a three-point bonus when a QB hits 300 passing yards. FanDuel has no such bonus. Roster construction is otherwise identical in structure — both platforms use a DEF/DST slot — so the scoring-rate gaps above are what actually drive different roster decisions.
 
 These aren't minor details. Take a QB stat line of 22/28, 275 passing yards, 2 TDs. On DraftKings, that scores 23.0 fantasy points — six points per passing TD, 0.04 points per passing yard (275 × 0.04 = 11.0), no 300-yard bonus triggered. On FanDuel, the same line scores 19.0 — four points per passing TD (2 × 4 = 8.0), plus 11.0 from yardage. Now push that line to 310 yards. DraftKings jumps to 24.4 before you even add the three-point bonus, landing at 27.4. FanDuel moves to just 20.4. That 7.0-point gap on the same stat line makes DraftKings QBs with high-volume passing attacks disproportionately valuable.
 

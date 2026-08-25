@@ -196,7 +196,7 @@ Most platforms let you enter contests for $0.25, so the technical barrier is alm
 
 ### What's the difference between DraftKings and FanDuel for NFL DFS?
 
-The differences sound small but compound fast. DraftKings runs a $50,000 salary cap with full PPR and 6-point passing TDs across a roster that includes QB, RB, RB, WR, WR, WR, TE, FLEX, and DST. FanDuel uses a $60,000 cap with half PPR and 4-point passing TDs across nine slots including a dedicated kicker spot instead of a third WR. That 2-point-per-TD swing means QBs on DraftKings have significantly higher ceilings — a 3-TD game is worth 6 more points than on FanDuel. Full PPR vs. half PPR also shifts target-heavy receivers and pass-catching backs up the value board on DraftKings. Both platforms remain the dominant options in 2026, and many serious players build lineups on both.
+The differences sound small but compound fast. DraftKings runs a $50,000 salary cap with full PPR and 6-point passing TDs across a roster that includes QB, RB, RB, WR, WR, WR, TE, FLEX, and DST. FanDuel uses a $60,000 cap with half PPR and 4-point passing TDs across the same 9-slot structure as DraftKings (QB, RB, RB, WR, WR, WR, TE, FLEX, DEF). That 2-point-per-TD swing means QBs on DraftKings have significantly higher ceilings — a 3-TD game is worth 6 more points than on FanDuel. Full PPR vs. half PPR also shifts target-heavy receivers and pass-catching backs up the value board on DraftKings. Both platforms remain the dominant options in 2026, and many serious players build lineups on both.
 
 ### Should beginners play cash games or tournaments first?
 
