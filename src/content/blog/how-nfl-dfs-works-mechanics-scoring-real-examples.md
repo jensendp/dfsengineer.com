@@ -10,9 +10,6 @@ contentType: "Spoke"
 ---
 
 
-
-# How NFL DFS Works: The Complete Mechanical Breakdown for New Players
-
 Most explanations of how NFL DFS works stay surface-level — pick players, stay under the cap, hope for points. That's not enough to actually understand what you're doing.
 
 This guide breaks down the real mechanics. Salary caps, scoring systems, contest structures, and the math that connects them.
@@ -222,14 +219,14 @@ None of it guarantees you'll win. But it guarantees you'll know what you're doin
 
 ## FAQ
 
-**What percentage of DFS players are profitable?**
+### What percentage of DFS players are profitable?
 
 A small minority of consistent DFS players turn a long-term profit. The rake — 10–15% taken by the platform on every contest — means you need to be meaningfully better than average just to break even. In a $10 contest with 100 entries, only $850–$900 gets paid back out. Profitable players tend to rely on systematic processes like projections, correlation modeling, and ownership leverage rather than gut picks. The edge is small and compounds slowly.
 
-**Is DFS considered skill or luck?**
+### Is DFS considered skill or luck?
 
 Legally, DFS is classified as a game of skill under the Unlawful Internet Gambling Enforcement Act of 2006. In practice, any single week has enormous variance — a backup RB scores 3 TDs, a star gets injured on the first drive. But over hundreds of contests, the same players consistently appear in the top profit percentiles. That's the statistical signature of skill. One week proves nothing. Five hundred weeks reveal a pattern.
 
-**How do you actually play NFL DFS?**
+### How do you actually play NFL DFS?
 
 You create an account on DraftKings or FanDuel, deposit funds, and select a contest — cash game or tournament — for an upcoming NFL slate. You draft a roster of players within the salary cap ($50,000 on DraftKings, $60,000 on FanDuel), your players earn fantasy points based on real-game stats, and if your total score beats enough of the field, you win a cash payout. The full breakdown of scoring rules, salary tradeoffs, and contest structures is covered in the sections above. If you want the broader picture of what DFS is and how it fits together, start with [What Is NFL DFS: A Complete Beginner's Breakdown](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026).

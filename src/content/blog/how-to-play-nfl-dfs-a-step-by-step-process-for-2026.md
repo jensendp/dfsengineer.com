@@ -10,9 +10,6 @@ draft: false
 ---
 
 
-
-# How to Play NFL DFS: The Complete Process From Account Setup to Lineup Lock
-
 Most "how to play NFL DFS" guides stop at explaining salary caps and roster slots. That's the equivalent of teaching someone chess by describing how the pieces move.
 
 This guide covers the actual process — the decisions that separate a random lineup from a structured one.

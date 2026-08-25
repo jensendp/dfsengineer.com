@@ -15,7 +15,39 @@ interface Props {
 }
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+// Extract FAQ Q&A pairs from the raw markdown for FAQPage structured data
+// (see BlogPost.astro). Requires each question to be its own H3
+// (### Question?) — enforced in the n8n pipeline's outline prompt
+// specifically so this extraction stays reliable; a bold-text question
+// format slipped into one earlier post and was converted for this reason.
+function extractFAQ(rawBody: string): { question: string; answer: string }[] {
+  // Normalize CRLF -> LF first — files on disk have Windows line endings
+  // (git autocrlf), and every regex below assumes bare \n.
+  const body = rawBody.replace(/\r\n/g, '\n');
+  const parts = body.split(/\n## FAQ\n/);
+  if (parts.length < 2) return [];
+  const blocks = parts[1].split(/\n(?=### )/).filter((b) => b.trim().startsWith('###'));
+  return blocks
+    .map((block) => {
+      const lines = block.trim().split('\n');
+      const question = lines[0].replace(/^###\s+/, '').trim();
+      const answer = lines
+        .slice(1)
+        .join('\n')
+        .trim()
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links -> plain text
+        .replace(/\*\*([^*]+)\*\*/g, '$1') // bold
+        .replace(/\*([^*]+)\*/g, '$1') // italic
+        .replace(/`([^`]+)`/g, '$1') // inline code
+        .replace(/\n+/g, ' ')
+        .trim();
+      return { question, answer };
+    })
+    .filter((f) => f.question && f.answer);
+}
+const faqs = extractFAQ(post.body);
 ---
-<BlogPost {...post.data} slug={post.slug}>
+<BlogPost {...post.data} slug={post.slug} faqs={faqs}>
   <Content />
 </BlogPost>
