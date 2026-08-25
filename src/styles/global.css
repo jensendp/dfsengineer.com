@@ -1,6 +1,7 @@
-/* DFS Engineer — design tokens. See DESIGN.md for the full rationale. */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* DFS Engineer — design tokens. See DESIGN.md for the full rationale.
+   Font loading lives in each page's <head> (preconnect + <link>, not a
+   CSS @import here) — @import blocks rendering until it resolves and
+   gives the browser no early signal to start the font fetch. */
 
 :root {
   /* Color */

@@ -72,6 +72,9 @@ const dateFmt = (iso: string) =>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" />
     <title>DFS Engineer — NFL DFS, run like a lab notebook</title>
     <meta name="description" content="An engineer's real NFL DFS process — projections, lineup building, and results, built in the open. Not a picks-selling service." />
     <link rel="canonical" href="https://dfsengineer.com/" />
@@ -84,6 +87,24 @@ const dateFmt = (iso: string) =>
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="DFS Engineer — NFL DFS, run like a lab notebook" />
     <meta name="twitter:description" content="An engineer's real NFL DFS process — projections, lineup building, and results, built in the open. Not a picks-selling service." />
+
+    <!-- Site-wide entity schema — set once here, not repeated per page.
+         No `logo` field: there's no real logo image asset yet (the
+         wordmark is text, not an image) — omitted rather than pointing
+         at a placeholder that doesn't exist. -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'DFS Engineer Playbook',
+      url: 'https://dfsengineer.com',
+      sameAs: ['https://www.skool.com/brew-loyalty-6636'],
+    })} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'DFS Engineer',
+      url: 'https://dfsengineer.com',
+    })} />
   </head>
   <body>
     <header class="site-header">
