@@ -5,6 +5,12 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+// Pillar cards — one per published topic cluster, linking to that
+// pillar's own post (which already lists its spokes via the "More in
+// this series" widget in BlogPost.astro). No separate pillar-page type
+// needed; a pillar IS a post, just one that aggregates its own cluster.
+const pillars = posts.filter((post) => post.data.contentType === 'Pillar');
 ---
 <html lang="en">
   <head>
@@ -29,14 +35,34 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
         <p class="eyebrow">§ Blog</p>
         <h1>The full playbook.</h1>
         <p class="lede">
-          Every post published so far, newest first — fundamentals, scoring
-          mechanics, and process, all with the math shown.
+          Browse by topic, or scan every post published so far, newest
+          first — fundamentals, scoring mechanics, and process, all with
+          the math shown.
         </p>
       </div>
     </section>
 
+    {pillars.length > 0 && (
+      <section class="section">
+        <div class="wrap">
+          <p class="section-label">Explore by topic</p>
+          <ul class="post-grid">
+            {pillars.map((post) => (
+              <li>
+                <a class="post-card" href={`/blog/${post.slug}/`}>
+                  <h3>{post.data.pillar}</h3>
+                  <p>{post.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
+
     <section class="section">
       <div class="wrap">
+        <p class="section-label">All posts</p>
         {posts.length === 0 && <p>First posts coming soon.</p>}
         <ul class="post-grid">
           {posts.map((post) => (
