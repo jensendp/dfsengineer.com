@@ -1,10 +1,37 @@
 ---
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
+import { readFileSync } from 'node:fs';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+// "Model accuracy" stat cards — real numbers from the dfs-local backtest
+// export (see dfs-local/src/dfs_local/export/content_grounding.py), read
+// at build time from the file the pipeline already commits to this repo.
+// No fabricated placeholders: if the export is missing or empty, the
+// section renders nothing rather than a fake number.
+type AccuracyRow = { profile: string; position: string; n: number; mae: number; corr: number | null };
+let accuracyCards: { label: string; value: string }[] = [];
+try {
+  const raw = readFileSync(new URL('../../data/dfs-local-export.json', import.meta.url), 'utf-8');
+  const exportData = JSON.parse(raw);
+  const rows: AccuracyRow[] = exportData?.model_accuracy?.by_profile_position ?? [];
+  const defaultRows = rows.filter((r) => r.profile === 'default' && r.corr !== null);
+  const order = ['QB', 'RB', 'WR', 'TE'];
+  const byPosition = order
+    .map((pos) => defaultRows.find((r) => r.position === pos))
+    .filter((r): r is AccuracyRow => Boolean(r));
+  if (byPosition.length > 0) {
+    accuracyCards = byPosition.map((r) => ({
+      label: `${r.position} Model Corr`,
+      value: r.corr!.toFixed(3),
+    }));
+  }
+} catch {
+  accuracyCards = [];
+}
 ---
 <html lang="en">
   <head>
@@ -33,29 +60,24 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <p class="section-label">§ 02 — This week's signal</p>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
-          <div class="stat-card">
-            <span class="stat-label">Slate</span>
-            <span class="stat-value">Sun Main</span>
+    {accuracyCards.length > 0 && (
+      <section class="section">
+        <div class="wrap">
+          <p class="section-label">§ 02 — Model accuracy, backtested</p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
+            {accuracyCards.map((card) => (
+              <div class="stat-card">
+                <span class="stat-label">{card.label}</span>
+                <span class="stat-value up">{card.value}</span>
+              </div>
+            ))}
           </div>
-          <div class="stat-card">
-            <span class="stat-label">Top Ceiling</span>
-            <span class="stat-value up">32.4</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Fade Risk</span>
-            <span class="stat-value down">−18%</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Models Run</span>
-            <span class="stat-value">10,000</span>
-          </div>
+          <p style="margin-top:16px; font-size:13px;">
+            Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim. See the methodology behind these numbers in the playbook below.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
+    )}
 
     <section class="section" id="latest">
       <div class="wrap">
