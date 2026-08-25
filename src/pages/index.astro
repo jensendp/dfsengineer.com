@@ -3,9 +3,15 @@ import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { readFileSync } from 'node:fs';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+// Homepage shows only the most recent — the full, unbounded list lives at
+// /blog/. Without this cap the homepage would grow a new card forever as
+// content publishes, eventually becoming an unusable single-page wall.
+const LATEST_COUNT = 6;
+const posts = allPosts.slice(0, LATEST_COUNT);
+const hasMore = allPosts.length > LATEST_COUNT;
 
 // "Model accuracy" stat cards — real numbers from the dfs-local backtest
 // export (see dfs-local/src/dfs_local/export/content_grounding.py), read
@@ -73,7 +79,10 @@ const dateFmt = (iso: string) =>
     <header class="site-header">
       <div class="wrap">
         <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
-        <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
+        <nav class="site-nav">
+          <a href="/blog/">Blog</a>
+          <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
+        </nav>
       </div>
     </header>
 
@@ -160,6 +169,11 @@ const dateFmt = (iso: string) =>
             </li>
           ))}
         </ul>
+        {hasMore && (
+          <p style="margin-top:24px;">
+            <a class="btn btn-secondary" href="/blog/">View all posts →</a>
+          </p>
+        )}
       </div>
     </section>
 

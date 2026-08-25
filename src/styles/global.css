@@ -116,6 +116,21 @@ a:hover {
 .wordmark span {
   color: var(--color-signal);
 }
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.site-nav > a:not(.btn) {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-fog);
+}
+.site-nav > a:not(.btn):hover {
+  color: var(--color-signal);
+}
 
 .hero {
   padding: var(--space-24) 0 var(--space-16);
