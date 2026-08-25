@@ -26,7 +26,7 @@ Daily fantasy sports (DFS) is simple at the surface: pick players who fit under 
 | **Salary Cap** | $50,000 | $60,000 |
 | **Roster Slots** | 9 (QB, RB, RB, WR, WR, WR, TE, FLEX, DST) | 9 (QB, RB, RB, WR, WR, WR, TE, FLEX, DEF) |
 | **PPR Format** | Full PPR (1.0 per reception) | Half PPR (0.5 per reception) |
-| **Passing TD Points** | 4 | 4 |
+| **Passing TD Points** | 6 | 4 |
 | **Rushing/Receiving TD** | 6 | 6 |
 | **300-Yard Passing Bonus** | 3 | None |
 
@@ -40,17 +40,17 @@ Here's a quick scored example: say your DraftKings QB throws for 280 yards and 3
 Worked Example: Scoring a DraftKings QB
 
 Passing yards:   280 × 0.04        = 11.2 pts
-Passing TDs:       3 × 4           = 12.0 pts
+Passing TDs:       3 × 6           = 18.0 pts
 Completions:      22 × 0 (no pts)  =  0.0 pts
 Interceptions:     1 × (-1)        = -1.0 pts
                                     --------
-Total:                               22.2 pts
+Total:                               28.2 pts
 
 Now add a 40-yard rushing TD:
 Rushing yards:    40 × 0.1          =  4.0 pts
 Rushing TD:        1 × 6            =  6.0 pts
                                     --------
-Grand Total:                         32.2 pts
+Grand Total:                         38.2 pts
 ```
 
 ## Contest Type Terminology Every NFL DFS Player Must Know
