@@ -62,7 +62,7 @@ Scale (px): 14, 16, 18, 20, 24, 32, 40, 56, 72, 96.
 ## Tokens — Spacing & Grid
 
 - Base unit 4px; common steps 8, 12, 16, 24, 32, 48, 64, 96.
-- Content max-width 1200px on dashboard surfaces, 720px on article body copy.
+- Content max-width 1320px on dashboard surfaces, 860px on article body copy.
 - Hairline "yard-line" ticks: a repeating 1px `--color-hairline` mark every
   40px along section dividers, echoing field markings without literal
   stripe art.
