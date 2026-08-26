@@ -86,6 +86,26 @@ a:hover {
   color: var(--color-fog);
 }
 
+.breadcrumbs {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-fog);
+  margin-bottom: var(--space-4);
+}
+.breadcrumbs a {
+  color: var(--color-fog);
+}
+.breadcrumbs a:hover {
+  color: var(--color-signal);
+}
+.breadcrumbs span:not([aria-current]) {
+  margin: 0 var(--space-2);
+  opacity: 0.5;
+}
+.breadcrumbs [aria-current] {
+  color: var(--color-chalk);
+}
+
 .mono, .stat-value, table {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;

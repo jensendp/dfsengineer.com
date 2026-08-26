@@ -11,6 +11,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 // this series" widget in BlogPost.astro). No separate pillar-page type
 // needed; a pillar IS a post, just one that aggregates its own cluster.
 const pillars = posts.filter((post) => post.data.contentType === 'Pillar');
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.dfsengineer.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.dfsengineer.com/blog/' },
+  ],
+};
 ---
 <html lang="en">
   <head>
@@ -31,6 +40,8 @@ const pillars = posts.filter((post) => post.data.contentType === 'Pillar');
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Blog — DFS Engineer" />
     <meta name="twitter:description" content="Every post from DFS Engineer Playbook — fundamentals, scoring, strategy, and process, newest first." />
+
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} is:inline />
   </head>
   <body>
     <header class="site-header">
@@ -46,6 +57,9 @@ const pillars = posts.filter((post) => post.data.contentType === 'Pillar');
 
     <section class="hero">
       <div class="wrap">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><span aria-current="page">Blog</span>
+        </nav>
         <p class="eyebrow">§ Blog</p>
         <h1>The full playbook.</h1>
         <p class="lede">
