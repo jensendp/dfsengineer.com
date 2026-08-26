@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://dfsengineer.com',
+  site: 'https://www.dfsengineer.com',
   output: 'static',
   integrations: [sitemap()],
 });
