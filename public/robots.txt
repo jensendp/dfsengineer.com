@@ -1,4 +1,10 @@
+# AI crawlers (training and answer-engine/citation bots alike) are
+# deliberately allowed, not an oversight. Site is pre-traffic and
+# content is a discovery/marketing funnel, not a paywalled product,
+# so maximizing AI-answer-engine visibility outweighs the (diffuse,
+# reversible-later) downside of uncompensated training use. Revisit
+# once there's real traffic/backlink history worth protecting.
 User-agent: *
 Allow: /
 
-Sitemap: https://dfsengineer.com/sitemap-index.xml
+Sitemap: https://www.dfsengineer.com/sitemap-index.xml
