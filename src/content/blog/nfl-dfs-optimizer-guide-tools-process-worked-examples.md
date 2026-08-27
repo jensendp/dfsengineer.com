@@ -27,16 +27,7 @@ Serious NFL DFS optimizer usage starts after the first solve. You generate not o
 
 ## Projections: The Input That Matters More Than the Optimizer Itself
 
-Your optimizer solves a math problem. The quality of the answer depends entirely on the quality of the inputs. Swap in projections that are off by even 2 points per player and your "optimal" lineup becomes noise.
-
-Start by evaluating projection sources on calibration — not who had the best week once, but whose projections track actual scoring over a full season at each position. A source that nails QB projections but consistently overrates tight ends will warp your builds in ways you won't notice until you look at results by position. Check whether the source models opportunity share (targets, rush attempts, snap rate) or leans on efficiency metrics like yards per attempt. Opportunity is stickier week to week. Efficiency is not.
-
-| Evaluation Criteria | What to Look For | Red Flag |
-|---|---|---|
-| Calibration | Mean absolute error by position over 10+ weeks | Source only shows "best week" highlights |
-| Opportunity vs. Efficiency | Projected targets, carries, snap share as inputs | Heavy reliance on yards-per-attempt or TD rate |
-| Injury Responsiveness | Projections update after practice reports | Static numbers that don't move Wed→Sun |
-| DST Methodology | Matchup-driven (opponent offensive quality) | DST projections that mirror season-long rankings |
+Your optimizer solves a math problem. The quality of the answer depends entirely on the quality of the inputs. Swap in projections that are off by even 2 points per player and your "optimal" lineup becomes noise. Evaluating and building a good projection — calibration, opportunity vs. efficiency, injury responsiveness, DST methodology — is its own skill, and the [NFL DFS projections guide](https://www.dfsengineer.com/blog/nfl-dfs-projections-guide) covers it in full. What follows here is how those projections get applied once they reach the solver.
 
 DFS Engineer's pipeline data makes this concrete. The default weighting profile uses `weather_weight: 1.0` and `injury_weight: 1.0` with opportunity toggled off. Switch to the "opportunity" profile and `opportunity_weight` turns on — the optimizer now factors in projected volume. Say on a given Week 8 slate, that single toggle shifted a running back's adjusted projection by 1.8 points, enough to swap him into 40% of generated lineups where he'd appeared in zero under the default profile.
 
