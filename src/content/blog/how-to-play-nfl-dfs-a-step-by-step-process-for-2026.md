@@ -20,7 +20,7 @@ If you're coming from season-long fantasy or just getting started, this is where
 
 ## How NFL DFS Works: Platform Basics and Roster Rules
 
-DraftKings and FanDuel run on the same core mechanic — you draft a roster under a salary cap and score points based on real NFL stats — but the specifics diverge enough to change how you build lineups. For a deeper look at the mechanics and scoring systems, see the full breakdown in [How NFL DFS Works: Mechanics, Scoring & Real Examples](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples).
+DraftKings and FanDuel run on the same core mechanic — you draft a roster under a salary cap and score points based on real NFL stats — but the specifics diverge enough to change how you build lineups. For a deeper look at the mechanics and scoring systems, see the full breakdown in [How NFL DFS Works: Mechanics, Scoring & Real Examples](https://www.dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples).
 
 DraftKings gives you $50,000 in salary and nine roster spots: QB, RB, RB, WR, WR, WR, TE, FLEX, DST. FanDuel uses $60,000 across the same nine-slot structure: QB, RB, RB, WR, WR, WR, TE, FLEX, DEF. The slot count matches — the real differentiation comes from the scoring-rate gaps below, not roster size. The FLEX spot accepts RB, WR, or TE, so your choice there defines whether you're going RB-heavy or loading up on pass-catchers.
 
@@ -38,7 +38,7 @@ Setting up an account takes minutes — deposit via bank transfer, PayPal, or ca
 
 ## Picking the Right Contest Before You Pick a Single Player
 
-The contest you enter determines what kind of lineup you should build. Get this wrong and even a good lineup becomes a losing one. If terms like "GPP," "chalk," or "min-cash" are unfamiliar, the [NFL DFS Glossary](https://dfsengineer.com/blog/nfl-dfs-glossary) covers all of them.
+The contest you enter determines what kind of lineup you should build. Get this wrong and even a good lineup becomes a losing one. If terms like "GPP," "chalk," or "min-cash" are unfamiliar, the [NFL DFS Glossary](https://www.dfsengineer.com/blog/nfl-dfs-glossary) covers all of them.
 
 **Cash games** (50/50s, double-ups) pay roughly half the field. You need consistency — a lineup built around safe floors and high-probability outcomes. **Tournaments (GPPs)** pay a small percentage of entries with top-heavy payouts. Here, you need upside and differentiation. A cash-game lineup that finishes in the 60th percentile profits in a double-up but wins nothing meaningful in a GPP. These are different games requiring different builds.
 
@@ -158,13 +158,13 @@ That last step feeds the next week's first step. Maybe you discover your project
 
 A player who follows this loop with average projections will outperform someone with elite projections who ignores bankroll sizing and never reviews outcomes. The edge compounds. Over a 17-week regular season plus playoffs, even a 3–4% ROI advantage — sustained through disciplined repetition — turns into meaningful profit on hundreds of entries.
 
-If any of the steps above felt unfamiliar, the [NFL DFS Beginner's Guide](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) breaks down the foundational concepts in more detail. Start there, then come back when you're ready to build the full workflow.
+If any of the steps above felt unfamiliar, the [NFL DFS Beginner's Guide](https://www.dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) breaks down the foundational concepts in more detail. Start there, then come back when you're ready to build the full workflow.
 
 ## FAQ
 
 ### What is NFL DFS and how is it different from season-long fantasy football?
 
-In season-long fantasy, you draft a roster once and manage it across 17 weeks through trades and waiver moves. NFL DFS resets every slate. You get a salary cap — $50,000 on DraftKings, $60,000 on FanDuel — and build a brand-new lineup from scratch each week. Prizes pay out based on that single slate's results, not cumulative standings. A bad Week 3 has zero impact on your Week 4. It also means roster construction decisions happen under entirely different constraints: you're optimizing for one set of games, not long-term asset value. Learning NFL DFS is really about learning a weekly decision process — projections, salary allocation, contest selection — that repeats fresh every slate. For a broader overview, see [What Is NFL DFS? A Complete Beginner's Breakdown](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026).
+In season-long fantasy, you draft a roster once and manage it across 17 weeks through trades and waiver moves. NFL DFS resets every slate. You get a salary cap — $50,000 on DraftKings, $60,000 on FanDuel — and build a brand-new lineup from scratch each week. Prizes pay out based on that single slate's results, not cumulative standings. A bad Week 3 has zero impact on your Week 4. It also means roster construction decisions happen under entirely different constraints: you're optimizing for one set of games, not long-term asset value. Learning NFL DFS is really about learning a weekly decision process — projections, salary allocation, contest selection — that repeats fresh every slate. For a broader overview, see [What Is NFL DFS? A Complete Beginner's Breakdown](https://www.dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026).
 
 ### Do I need expensive tools or software to play NFL DFS?
 
