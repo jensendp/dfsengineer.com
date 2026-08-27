@@ -66,7 +66,7 @@ The financial structure differs too. Season-long locks you into one buy-in for m
 
 ## Contest Types: Tournaments, Cash Games, and Why It Matters
 
-The contest you enter changes which lineup is correct. This matters more than most beginners realize. (If terms like GPP, [ownership](https://dfsengineer.com/blog/nfl-dfs-glossary), or FLEX are unfamiliar, the [NFL DFS Glossary](https://dfsengineer.com/blog/nfl-dfs-glossary) covers them all.)
+The contest you enter changes which lineup is correct. This matters more than most beginners realize. (If terms like GPP, [ownership](https://www.dfsengineer.com/blog/nfl-dfs-glossary), or FLEX are unfamiliar, the [NFL DFS Glossary](https://www.dfsengineer.com/blog/nfl-dfs-glossary) covers them all.)
 
 **Cash games** — 50/50s, double-ups, head-to-heads — pay out roughly half the field. In a 50/50, you need to finish in the top 50% to double your entry. The goal is floor: consistent, safe production. You want the players most likely to hit their median projection.
 
@@ -122,7 +122,7 @@ Every week, DraftKings and FanDuel assign each player a salary based on projecte
 
 Salary is the constraint that creates every meaningful decision. You're not just asking "who will score the most points?" You're asking "who will score the most points *relative to their price*?"
 
-That's [salary leverage](https://dfsengineer.com/blog/nfl-dfs-glossary). Say a $4,800 WR puts up 18 DraftKings points — that's 3.75 points per thousand dollars of salary. A $7,200 WR scores 22 points in the same slate: 3.06 points per thousand. The cheaper player generated more value per dollar, freeing $2,400 in cap space you can spend upgrading another roster spot.
+That's [salary leverage](https://www.dfsengineer.com/blog/nfl-dfs-glossary). Say a $4,800 WR puts up 18 DraftKings points — that's 3.75 points per thousand dollars of salary. A $7,200 WR scores 22 points in the same slate: 3.06 points per thousand. The cheaper player generated more value per dollar, freeing $2,400 in cap space you can spend upgrading another roster spot.
 
 ```
 Salary Leverage Comparison
@@ -169,7 +169,7 @@ Spend that first week on one thing: salary allocation. Build your roster under t
 
 Don't enter a big GPP tournament yet. Tournaments reward differentiated thinking, and you don't have enough reps to know what "different" even looks like in a 10,000-entry field.
 
-Once you're comfortable building lineups and understanding where your salary creates tradeoffs, the [NFL DFS Beginner's Guide](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) walks through the next layer — stacking logic, ownership leverage, and how to turn this into a repeatable weekly process rather than a guessing game.
+Once you're comfortable building lineups and understanding where your salary creates tradeoffs, the [NFL DFS Beginner's Guide](https://www.dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) walks through the next layer — stacking logic, ownership leverage, and how to turn this into a repeatable weekly process rather than a guessing game.
 
 ## Conclusion
 
@@ -177,7 +177,7 @@ That's NFL DFS at its core: a salary-capped roster puzzle that resets every week
 
 None of that means much if you don't understand the machinery underneath. Trying to build winning lineups without grasping salary mechanics, contest selection, and scoring differences is like optimizing a route without knowing where the road goes.
 
-This post covers the foundation. The next step is learning how to build on it — roster construction, correlation-based stacking, ownership analysis, and bankroll management across a full NFL season. The [NFL DFS Beginner's Guide](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) walks through each of those layers in sequence, designed to move you from understanding the format to running a real, repeatable weekly process.
+This post covers the foundation. The next step is learning how to build on it — roster construction, correlation-based stacking, ownership analysis, and bankroll management across a full NFL season. The [NFL DFS Beginner's Guide](https://www.dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) walks through each of those layers in sequence, designed to move you from understanding the format to running a real, repeatable weekly process.
 
 ## FAQ
 
