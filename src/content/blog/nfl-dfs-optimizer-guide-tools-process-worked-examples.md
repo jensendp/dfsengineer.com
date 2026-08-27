@@ -13,13 +13,13 @@ Most NFL DFS optimizer tools do the same thing: take projections, apply salary c
 
 This guide covers the full workflow, from raw projections through final lineup export. No "top picks this week" lists. No magic buttons.
 
-If you want a repeatable, data-driven process for NFL DFS lineup building in 2026, this is the starting point. If you're brand new to daily fantasy football, start with our [complete beginner's breakdown](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026) before diving into optimizer mechanics.
+If you want a repeatable, data-driven process for NFL DFS lineup building in 2026, this is the starting point. If you're brand new to daily fantasy football, start with our [complete beginner's breakdown](https://www.dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026) before diving into optimizer mechanics.
 
 ## What an NFL DFS Optimizer Actually Does (and What It Doesn't)
 
 At its core, an NFL DFS optimizer solves a linear programming problem. You give it a set of players with projected points and salaries, define constraints (roster size, position requirements, salary cap), and it returns the combination that maximizes total projected points. The math is straightforward and well-understood — most tools use the same class of solver algorithms.
 
-Here's the problem: that single "optimal" lineup is almost never what you should enter in a tournament. It's built entirely on point projections treated as certainties, which they aren't. A projection of 18.2 points for a wide receiver doesn't mean he'll score 18.2. It means his range of outcomes centers roughly there. The raw optimal solution ignores variance, [ownership](https://dfsengineer.com/blog/nfl-dfs-glossary), and correlation — three things that actually determine tournament equity.
+Here's the problem: that single "optimal" lineup is almost never what you should enter in a tournament. It's built entirely on point projections treated as certainties, which they aren't. A projection of 18.2 points for a wide receiver doesn't mean he'll score 18.2. It means his range of outcomes centers roughly there. The raw optimal solution ignores variance, [ownership](https://www.dfsengineer.com/blog/nfl-dfs-glossary), and correlation — three things that actually determine tournament equity.
 
 Serious NFL DFS optimizer usage starts after the first solve. You generate not one lineup but dozens or hundreds, layering in exposure limits, stacking rules, and ownership-adjusted objectives. The optimizer handles the constraint math so you don't have to. But it has no opinion on whether your Patrick Mahomes projection should be 19.5 or 22.1. That decision — what you feed the solver — is where the vast majority of your edge lives or dies.
 
@@ -44,7 +44,7 @@ DST projections deserve separate treatment. Skill-position projections key off u
 
 ## Ownership Projections and How They Change Your NFL DFS Optimizer Settings
 
-A lineup's [tournament equity](https://dfsengineer.com/blog/nfl-dfs-terminology-40-terms-with-real-examples) isn't just about points scored — it's about points scored *relative to how many other entries share those same players*. Two lineups can project identically at 165 points, but the one rostering a 5%-owned receiver instead of a 40%-owned one carries far more equity when it hits. Your payout share in a GPP is inversely related to how many entries duplicate your roster construction.
+A lineup's [tournament equity](https://www.dfsengineer.com/blog/nfl-dfs-terminology-40-terms-with-real-examples) isn't just about points scored — it's about points scored *relative to how many other entries share those same players*. Two lineups can project identically at 165 points, but the one rostering a 5%-owned receiver instead of a 40%-owned one carries far more equity when it hits. Your payout share in a GPP is inversely related to how many entries duplicate your roster construction.
 
 This is where ownership projections directly alter how you configure your optimizer. Start with max exposure caps. Say a running back projects as the clear top play and ownership projections peg him at 60%. Setting your exposure to 25% across a 150-lineup set means roughly 38 lineups include him. That makes sense if you believe his projection edge is real but want most of your portfolio differentiated. If his projection lead is slim — say 1.2 points over the next option — dropping exposure to 10–15% is better because you're not being compensated enough for the duplication.
 
@@ -54,7 +54,7 @@ The trap is being contrarian without a reason. Fading a player projected at 22 p
 
 ## Correlation Rules: Stacking, Game Stacks, and Bring-Backs
 
-A QB projected for 19.5 points and a WR projected for 14.2 points might look fine as independent selections. But in tournaments, you don't need both to hit their median — you need both to explode in the same game. That's the entire argument for [stacking](https://dfsengineer.com/blog/nfl-dfs-glossary): when a quarterback throws four touchdowns, at least two go to specific pass catchers. A QB-WR1 stack converts one great game script into multiple ceiling outcomes on your roster simultaneously. Raw projection points treat each player as independent. Your optimizer should not.
+A QB projected for 19.5 points and a WR projected for 14.2 points might look fine as independent selections. But in tournaments, you don't need both to hit their median — you need both to explode in the same game. That's the entire argument for [stacking](https://www.dfsengineer.com/blog/nfl-dfs-glossary): when a quarterback throws four touchdowns, at least two go to specific pass catchers. A QB-WR1 stack converts one great game script into multiple ceiling outcomes on your roster simultaneously. Raw projection points treat each player as independent. Your optimizer should not.
 
 The standard QB + 1 WR stack is the minimum. The real question is the bring-back — slotting in a pass catcher from the opposing team. A 1-1 bring-back makes sense when both passing attacks are viable. If the implied total on one side sits at 18.5, that opposing receiver is dragging your ceiling down to protect against a game script that doesn't help you anyway. Skip it. Route your correlation toward a second receiver from the primary stack instead.
 
@@ -71,7 +71,7 @@ Game environment filtering matters here more than people treat it. Sort by impli
 
 ## Configuring Your NFL DFS Optimizer for DraftKings vs. FanDuel
 
-DraftKings and FanDuel share the same NFL Classic roster structure — nine slots: QB, RB, RB, WR, WR, WR, TE, FLEX, and a defense (labeled DST on DraftKings, DEF on FanDuel). No kicker on either platform. The differences that matter for optimizer configuration are [scoring rules](https://dfsengineer.com/blog/nfl-dfs-scoring-explained-draftkings-fanduel-more) and salary cap.
+DraftKings and FanDuel share the same NFL Classic roster structure — nine slots: QB, RB, RB, WR, WR, WR, TE, FLEX, and a defense (labeled DST on DraftKings, DEF on FanDuel). No kicker on either platform. The differences that matter for optimizer configuration are [scoring rules](https://www.dfsengineer.com/blog/nfl-dfs-scoring-explained-draftkings-fanduel-more) and salary cap.
 
 Scoring is where lineup construction diverges. DraftKings uses full PPR (1 point per reception) and awards 6 points per passing touchdown. FanDuel uses half PPR (0.5 points per reception) and awards 4 points per passing touchdown. That 2-point TD gap and the halved reception value compound across a full slate. On DraftKings, a slot receiver who catches 8 balls for 74 yards and a touchdown scores 21.4 DK points (8 receptions × 1 + 74 yards × 0.1 + 6 TD = 21.4). The same line on FanDuel scores 17.4 (8 × 0.5 + 74 × 0.1 + 6 = 17.4). That 4-point gap makes high-volume pass catchers relatively more valuable on DraftKings, while FanDuel's scoring tilts value toward rushing production, where the per-yard and TD rates are identical across platforms.
 
@@ -131,7 +131,7 @@ Here's the honest filter. If you're entering one or two lineups in a single-entr
 
 ## Building a Weekly NFL DFS Optimizer Workflow From Scratch
 
-A repeatable process beats inspiration every time. Here's a concrete weekly timeline. If you're still getting comfortable with the [basic mechanics of NFL DFS](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples), work through that first — the workflow below assumes you understand roster construction, contest types, and scoring.
+A repeatable process beats inspiration every time. Here's a concrete weekly timeline. If you're still getting comfortable with the [basic mechanics of NFL DFS](https://www.dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples), work through that first — the workflow below assumes you understand roster construction, contest types, and scoring.
 
 **Tuesday–Wednesday: Projection Foundation.** Pull your base projections and start identifying where you disagree with consensus. This is your highest-leverage window — not Sunday morning. Compare at least two projection sources at each position and flag players where the gap exceeds 3+ points. Those gaps are where your edge lives or where someone has bad data.
 
@@ -162,7 +162,7 @@ SUNDAY MORNING CHECKLIST (11:00–11:25 AM ET)
 
 For backtesting, run your current optimizer settings against three or four completed slates from earlier in the season. Feed in only the projections and ownership data you had *before* those slates locked — never actuals — and check whether your configured lineups would have hit cash lines or tournament thresholds. If your settings consistently miss, the problem is upstream in your projections or correlation logic, not in the solver itself.
 
-For a broader walkthrough of the entire DFS process — from bankroll management through contest selection — see our [step-by-step guide for 2026](https://dfsengineer.com/blog/how-to-play-nfl-dfs-a-step-by-step-process-for-2026).
+For a broader walkthrough of the entire DFS process — from bankroll management through contest selection — see our [step-by-step guide for 2026](https://www.dfsengineer.com/blog/how-to-play-nfl-dfs-a-step-by-step-process-for-2026).
 
 ## Conclusion
 
@@ -172,13 +172,13 @@ The edge is upstream. It's in how you build and weight your projections. It's in
 
 If you took one thing from this guide: treat your optimizer as infrastructure. The strategy lives in the inputs and configuration you layer on top. Track your projection accuracy across positions week over week. Log which weighting profile you used and why. Review whether your ownership leverage actually produced differentiated lineups or just noise. That feedback loop, compounded over a full season, is what separates grinders from casual users clicking "optimize."
 
-For deeper dives into specific pieces of this workflow, check out our [NFL DFS Tools & Optimizers](https://dfsengineer.com) hub, including standalone guides on projection building, stacking logic, and platform-specific configuration.
+For deeper dives into specific pieces of this workflow, check out our [NFL DFS Tools & Optimizers](https://www.dfsengineer.com) hub, including standalone guides on projection building, stacking logic, and platform-specific configuration.
 
 ## FAQ
 
 ### Is there a good free NFL DFS optimizer worth using in 2026?
 
-Several free optimizers handle basic salary-constrained lineup generation just fine. The gap shows up in correlation settings, ownership integration, and the ability to generate large lineup sets with true diversity — not just the same core of players reshuffled around the margins. If you're building 100+ lineups for a large-field GPP, you'll hit hard limits on stacking logic, exposure controls, and generation speed. For a single-entry contest or learning how lineup construction works mechanically, free is a perfectly reasonable starting point. Our [beginner's guide to building your first lineup](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) walks through how to use basic tools effectively before moving to advanced setups.
+Several free optimizers handle basic salary-constrained lineup generation just fine. The gap shows up in correlation settings, ownership integration, and the ability to generate large lineup sets with true diversity — not just the same core of players reshuffled around the margins. If you're building 100+ lineups for a large-field GPP, you'll hit hard limits on stacking logic, exposure controls, and generation speed. For a single-entry contest or learning how lineup construction works mechanically, free is a perfectly reasonable starting point. Our [beginner's guide to building your first lineup](https://www.dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) walks through how to use basic tools effectively before moving to advanced setups.
 
 ### What makes one NFL DFS optimizer better than another?
 
