@@ -13,7 +13,7 @@ Most DFS glossaries give you a one-line definition and move on. That's not enoug
 
 This is a working reference — 40+ terms organized by how you'll encounter them, with concrete numbers attached.
 
-If you're building a real NFL DFS process from scratch, bookmark this page. You'll come back to it. And if you're just getting started, our [complete beginner's breakdown](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026) walks through the fundamentals before you dive into terminology.
+If you're building a real NFL DFS process from scratch, bookmark this page. You'll come back to it. And if you're just getting started, our [complete beginner's breakdown](https://www.dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026) walks through the fundamentals before you dive into terminology.
 
 ## Core NFL DFS Terminology: The Foundations
 
@@ -30,7 +30,7 @@ Daily fantasy sports (DFS) is simple at the surface: pick players who fit under 
 | **Rushing/Receiving TD** | 6 | 6 |
 | **300-Yard Passing Bonus** | 3 | None |
 
-**Scoring formats** matter enormously. DraftKings uses full PPR (1 point per reception). FanDuel uses half-PPR (0.5 per reception). That single difference shifts player values — a slot receiver who catches 8 passes for 60 yards scores 14.0 on DraftKings (6.0 receiving yards + 8.0 receptions) but 10.0 on FanDuel (6.0 + 4.0). For a deeper walkthrough of how scoring systems work across platforms, see our [guide to NFL DFS mechanics, scoring, and real examples](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples).
+**Scoring formats** matter enormously. DraftKings uses full PPR (1 point per reception). FanDuel uses half-PPR (0.5 per reception). That single difference shifts player values — a slot receiver who catches 8 passes for 60 yards scores 14.0 on DraftKings (6.0 receiving yards + 8.0 receptions) but 10.0 on FanDuel (6.0 + 4.0). For a deeper walkthrough of how scoring systems work across platforms, see our [guide to NFL DFS mechanics, scoring, and real examples](https://www.dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples).
 
 Every contest charges an **entry fee** (the buy-in). The platform keeps a cut called the **rake**, typically 10–15%. A $20 entry on a $20,000 GPP means roughly $2–$3 of your buy-in never reaches the prize pool. Your expected value starts negative by that percentage, so your edge must overcome the rake before you profit.
 
@@ -84,7 +84,7 @@ Why does contest type reshape roster construction? In a 50/50 you want the safes
 
 ## Ownership and Leverage: The NFL DFS Terms That Separate Winners from Losers
 
-**Chalk** is any player with high expected ownership. **Ownership percentage** is the share of lineups in a contest that roster a given player. **Fading** means leaving that player out. **Leverage** is the edge you gain when a high-owned player underperforms and your lineup doesn't carry the damage. For more on these terms and others, our [NFL DFS glossary](https://dfsengineer.com/blog/nfl-dfs-glossary) has quick-reference definitions.
+**Chalk** is any player with high expected ownership. **Ownership percentage** is the share of lineups in a contest that roster a given player. **Fading** means leaving that player out. **Leverage** is the edge you gain when a high-owned player underperforms and your lineup doesn't carry the damage. For more on these terms and others, our [NFL DFS glossary](https://www.dfsengineer.com/blog/nfl-dfs-glossary) has quick-reference definitions.
 
 Here's how this works. Say it's a Week 6 GPP with 10,000 entries, and Jalen Hurts is 45% owned. If Hurts scores 28 fantasy points, he helps nearly half the field equally — no separation. But if Hurts throws two picks and finishes at 8 points, 4,500 lineups just cratered. Your lineup, which faded Hurts for a 9%-owned Jayden Daniels who scores 24 points, now sits above almost half the field before you even look at the rest of your roster. That's leverage.
 
@@ -176,7 +176,7 @@ If bankroll drops to $1,500 mid-season:
 
 **Mass multi-entry (MME)** describes entering a GPP with many lineups — sometimes up to a 150-max cap. **Portfolio construction** is the discipline behind it. Twenty lineups in the same GPP shouldn't be twenty random builds. Some should share a core stack; others should diverge into different game environments. You're balancing **correlation** within your portfolio (lineups that win together in the right game script) against **diversification** (coverage across multiple potential slate outcomes). Building 20 lineups that all need the same QB to smash defeats the purpose entirely.
 
-This slice of NFL DFS terminology turns bankroll management from a vague concept into a system with rules you can follow week to week. If you want a full step-by-step process for putting this all together, our [how to play NFL DFS guide](https://dfsengineer.com/blog/how-to-play-nfl-dfs-a-step-by-step-process-for-2026) walks through each stage.
+This slice of NFL DFS terminology turns bankroll management from a vague concept into a system with rules you can follow week to week. If you want a full step-by-step process for putting this all together, our [how to play NFL DFS guide](https://www.dfsengineer.com/blog/how-to-play-nfl-dfs-a-step-by-step-process-for-2026) walks through each stage.
 
 ## Advanced NFL DFS Terminology: Sim, Optimizer, and Correlation Concepts
 
@@ -201,7 +201,7 @@ Game-environment terms round out the advanced terminology you'll encounter. **Pa
 
 ## How NFL DFS Terminology Maps to Your Weekly Process
 
-Every term defined above corresponds to a specific moment in your week. Here's how they chain together when you sit down to build lineups for a Week 8 main slate. If you want a structured walkthrough of this entire process from start to finish, our [beginner's guide to building your first lineup](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) covers each step.
+Every term defined above corresponds to a specific moment in your week. Here's how they chain together when you sit down to build lineups for a Week 8 main slate. If you want a structured walkthrough of this entire process from start to finish, our [beginner's guide to building your first lineup](https://www.dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) covers each step.
 
 **Start with game environment.** You pull Vegas totals and spreads. Kansas City–Miami shows a 51.5 total and a 3-point spread. That's a pace-up spot for both offenses — high total, tight game, projected pass rates above 60%. You flag it as a ceiling environment.
 
