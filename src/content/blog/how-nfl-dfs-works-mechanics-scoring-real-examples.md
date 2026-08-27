@@ -20,13 +20,13 @@ If you're placing money on lineups without understanding these pieces, you're gu
 
 NFL daily fantasy sports is a single-slate contest. You draft a fresh roster of NFL players before a set of games, stay within a salary cap, and compete against other entrants based on the fantasy points your players accumulate in those games. When the games end, so does the contest. Your roster doesn't carry over. There's no next week for that lineup.
 
-> **New to DFS entirely?** If terms like "slate," "GPP," or "chalk" are unfamiliar, the [NFL DFS Glossary](https://dfsengineer.com/blog/nfl-dfs-glossary) defines every key term you'll encounter in this guide and beyond.
+> **New to DFS entirely?** If terms like "slate," "GPP," or "chalk" are unfamiliar, the [NFL DFS Glossary](https://www.dfsengineer.com/blog/nfl-dfs-glossary) defines every key term you'll encounter in this guide and beyond.
 
 That's the core mechanical difference from season-long fantasy. In a season-long league, you draft once, then manage a roster for 17+ weeks — working the waiver wire, negotiating trades, navigating bye weeks, dealing with the guy in your league who won't answer trade texts. In DFS, none of that exists. Every slate is independent. You lost by 3 points last Sunday? Irrelevant. You build a new roster from scratch for the Week 6 main slate and the field resets.
 
 This independence is also what makes understanding the mechanics so important early on. Each decision — every dollar allocated, every player selected — lives and dies in a single contest window.
 
-One more thing worth knowing upfront: DFS operates legally in most U.S. states because the Unlawful Internet Gambling Enforcement Act of 2006 (UIGEA) carved out an exemption for fantasy contests classified as games of skill. That's a different legal category than sports betting, which is regulated under separate state-by-state frameworks. The distinction matters because it shapes how platforms like DraftKings and FanDuel structure contests, handle payouts, and operate across state lines. For a broader overview of how DFS fits into the fantasy sports landscape, see [What Is NFL DFS: A Complete Beginner's Breakdown](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026).
+One more thing worth knowing upfront: DFS operates legally in most U.S. states because the Unlawful Internet Gambling Enforcement Act of 2006 (UIGEA) carved out an exemption for fantasy contests classified as games of skill. That's a different legal category than sports betting, which is regulated under separate state-by-state frameworks. The distinction matters because it shapes how platforms like DraftKings and FanDuel structure contests, handle payouts, and operate across state lines. For a broader overview of how DFS fits into the fantasy sports landscape, see [What Is NFL DFS: A Complete Beginner's Breakdown](https://www.dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026).
 
 ## How NFL DFS Salary Caps and Roster Construction Work
 
@@ -129,7 +129,7 @@ Build for the contest type first. Everything else follows from that decision.
 
 ## How Ownership and Leverage Work in NFL DFS
 
-Every player in a [GPP](https://dfsengineer.com/blog/nfl-dfs-glossary) slate has an ownership percentage — the share of lineups that roster him. This number reshapes your tournament equity in ways that pure point projections never capture.
+Every player in a [GPP](https://www.dfsengineer.com/blog/nfl-dfs-glossary) slate has an ownership percentage — the share of lineups that roster him. This number reshapes your tournament equity in ways that pure point projections never capture.
 
 Say two quarterbacks are both priced at $7,400 on the Week 6 main slate. Your projections have them within half a point of each other: 18.5 and 18.2. But one is 25% owned and the other sits at 6%. These are not equivalent plays.
 
@@ -205,7 +205,7 @@ That mechanical difference changes strategy. On DraftKings, you can roster a 4:2
 
 **Sunday evening:** Scores finalize. Contests pay out, usually within minutes of the last game ending. You review what hit, what missed, and whether your process was sound regardless of outcome. That review step is where long-term edges compound.
 
-For a step-by-step walkthrough of actually building a lineup from scratch — player pool, stacking, and final construction — see [Build Your First NFL DFS Lineup](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026).
+For a step-by-step walkthrough of actually building a lineup from scratch — player pool, stacking, and final construction — see [Build Your First NFL DFS Lineup](https://www.dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026).
 
 ## Conclusion
 
@@ -229,4 +229,4 @@ Legally, DFS is classified as a game of skill under the Unlawful Internet Gambli
 
 ### How do you actually play NFL DFS?
 
-You create an account on DraftKings or FanDuel, deposit funds, and select a contest — cash game or tournament — for an upcoming NFL slate. You draft a roster of players within the salary cap ($50,000 on DraftKings, $60,000 on FanDuel), your players earn fantasy points based on real-game stats, and if your total score beats enough of the field, you win a cash payout. The full breakdown of scoring rules, salary tradeoffs, and contest structures is covered in the sections above. If you want the broader picture of what DFS is and how it fits together, start with [What Is NFL DFS: A Complete Beginner's Breakdown](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026).
+You create an account on DraftKings or FanDuel, deposit funds, and select a contest — cash game or tournament — for an upcoming NFL slate. You draft a roster of players within the salary cap ($50,000 on DraftKings, $60,000 on FanDuel), your players earn fantasy points based on real-game stats, and if your total score beats enough of the field, you win a cash payout. The full breakdown of scoring rules, salary tradeoffs, and contest structures is covered in the sections above. If you want the broader picture of what DFS is and how it fits together, start with [What Is NFL DFS: A Complete Beginner's Breakdown](https://www.dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026).
