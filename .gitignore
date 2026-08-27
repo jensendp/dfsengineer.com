@@ -4,3 +4,7 @@ dist/
 .vercel/
 .env
 .DS_Store
+
+# OpenSEO skill tooling — local only, not part of this repo
+.claude/
+skills-lock.json
