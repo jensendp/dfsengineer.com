@@ -19,7 +19,7 @@ Whether you're placing your first $1 entry or trying to understand why your line
 
 ## What NFL DFS Actually Is — And How It Differs from Season-Long Fantasy
 
-Daily fantasy football is a single-week contest. You draft a roster under a fixed salary cap — $50,000 on DraftKings, $60,000 on FanDuel — and your players score points based on their real NFL stats that week. Finish high enough in the standings, you win money. The slate resets, and you start fresh next week. If you're brand new and want a plain-English explanation of the format before diving into strategy, the [NFL DFS Glossary](https://dfsengineer.com/blog/nfl-dfs-glossary) covers every term you'll encounter on the platforms.
+Daily fantasy football is a single-week contest. You draft a roster under a fixed salary cap — $50,000 on DraftKings, $60,000 on FanDuel — and your players score points based on their real NFL stats that week. Finish high enough in the standings, you win money. The slate resets, and you start fresh next week. If you're brand new and want a plain-English explanation of the format before diving into strategy, the [NFL DFS Glossary](https://www.dfsengineer.com/blog/nfl-dfs-glossary) covers every term you'll encounter on the platforms.
 
 That "start fresh" part is the fundamental break from season-long fantasy. There are no trades, no waiver wire claims, no roster spots wasted on a running back who got hurt in Week 3. Every decision exists in isolation. You drafted a bust last Sunday? Irrelevant. There's no sunk cost dragging your roster down for 14 more weeks.
 
@@ -186,7 +186,7 @@ Here's the process distilled into a checklist you can run every Sunday morning b
 
 Your first 50 lineups will be rough. That's expected. But running this process each week keeps you from bleeding money on the mistakes that knock most beginners out before they develop real skill.
 
-This guide is a starting point, not a ceiling. For deeper work on ownership leverage, advanced stacking structures, and long-term bankroll strategy, explore the rest of the DFS Engineer Playbook. And if any term in this guide tripped you up, the [NFL DFS Glossary](https://dfsengineer.com/blog/nfl-dfs-glossary) has plain-language definitions for everything from "chalk" to "bring-back."
+This guide is a starting point, not a ceiling. For deeper work on ownership leverage, advanced stacking structures, and long-term bankroll strategy, explore the rest of the DFS Engineer Playbook. And if any term in this guide tripped you up, the [NFL DFS Glossary](https://www.dfsengineer.com/blog/nfl-dfs-glossary) has plain-language definitions for everything from "chalk" to "bring-back."
 
 ## FAQ
 
