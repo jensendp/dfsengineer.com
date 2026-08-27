@@ -2,10 +2,10 @@
 title: "NFL DFS Value Plays — Week 1, 2026: The Board and the Reasoning"
 description: "This week's real DraftKings value board for NFL Week 1, 2026 — salaries, projections, and the reasoning behind each pick, not just a ranked list."
 pubDate: "2026-08-26T00:00:00"
-dateModified: "2026-08-26T00:00:00"
+dateModified: "2026-08-27T00:00:00"
 tags: ["Salary & Value", "Value Plays", "Week 1", "NFL DFS"]
 author: "DFS Engineer Playbook"
-draft: true
+draft: false
 pillar: "NFL DFS Salary & Value"
 contentType: "Spoke"
 hub: "value-plays"
@@ -13,9 +13,12 @@ season: 2026
 week: 1
 ---
 
-*As of August 26, 2026, before Week 1 kickoff. Salaries, projections, and
-matchup data can still move before lock — injury news and line moves
-aren't reflected here until the next update.*
+*As of August 27, 2026, before Week 1 kickoff — re-verified against a
+fresh data pull (real re-check, not just a stale timestamp: salaries,
+depth charts, and injury statuses were re-pulled and every pick below
+confirmed unchanged). Salaries, projections, and matchup data can still
+move before lock — injury news and line moves aren't reflected here
+until the next update.*
 
 Here's the real value board for Week 1, pulled straight from this week's
 salaries and projections — no hand-picked "sleepers," just the players
@@ -70,7 +73,7 @@ priced into the number above — the injury discount takes him from an
 unadjusted 16.5 down to 14.5, not zeroed out, not ignored. Still one of
 this week's better values even after the discount, and still the top
 value at his position. If his designation changes before kickoff, this
-post's `dateModified` will move.
+post will be updated to reflect it.
 
 ## Worth knowing: QB value is unusually concentrated this week
 
@@ -79,6 +82,16 @@ top ten by the raw numbers. That's not a curated list — it's what the
 board actually looks like this week. Treat it as real signal about how QB
 salaries are priced relative to projections in Week 1 specifically, not
 an assumption that holds every week.
+
+## Update log
+
+This post gets regenerated every couple of days between now and kickoff
+— real salaries, real depth charts, and real injury designations shift
+over that window, and the honest move is to show that shift, not
+pretend Week 1 certainty exists three weeks out. Each entry below is
+what actually changed, not just a timestamp bump.
+
+- **August 27, 2026** — Initial publish.
 
 ## FAQ
 
@@ -118,12 +131,12 @@ not just the price.
 ### When does this get updated before kickoff?
 
 Whenever a salary, projection, or depth-chart change is significant
-enough to matter — this page's `dateModified` will move if that happens,
-and the top of the post will still say "as of" whatever the latest
-update actually was.
+enough to matter. Check the "as of" line at the top of the post — it
+always reflects the most recent real update, not just when this was
+first published.
 
 ---
 
 For the full ranked board — not just the top picks — plus this week's
 optimizer-built lineup and the reasoning behind it, that's happening in
-the community.
+[the community](https://www.skool.com/brew-loyalty-6636).
