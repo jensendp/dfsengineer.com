@@ -3,7 +3,10 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  // Drafts are visible in `npm run dev` so they can be previewed locally,
+  // but stay excluded from every real build (`npm run build` / Vercel) —
+  // import.meta.env.DEV is only true under the dev server.
+  const posts = await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV);
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },

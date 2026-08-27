@@ -6,24 +6,55 @@ interface Props {
   title: string;
   description: string;
   pubDate: Date;
+  dateModified?: Date;
   tags: string[];
   author: string;
   pillar?: string;
   contentType?: string;
+  hub?: string;
+  season?: number;
+  week?: number;
   slug: string;
   faqs?: { question: string; answer: string }[];
 }
-const { title, description, pubDate, tags, author, pillar, slug, faqs = [] } = Astro.props;
+const {
+  title, description, pubDate, dateModified, tags, author, pillar, hub, slug, faqs = [],
+} = Astro.props;
+const effectiveDateModified = dateModified ?? pubDate;
 
 // "More in this series" — queried from real published content, not
 // generated/patched text. See DESIGN.md and n8n-pipeline-review.md for why.
+// Excludes this hub's own weekly posts when `hub` is set — those already
+// render in the "This season's weeks" section below, and showing the
+// same post in both sections on the hub anchor page is just noise.
 const seriesPosts = pillar
   ? (
       await getCollection(
         'blog',
-        (entry) => !entry.data.draft && entry.data.pillar === pillar && entry.slug !== slug
+        (entry) =>
+          (!entry.data.draft || import.meta.env.DEV) &&
+          entry.data.pillar === pillar &&
+          entry.slug !== slug &&
+          !(hub && entry.data.hub === hub)
       )
     ).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  : [];
+
+// "This season's weeks" — renders on the hub anchor page (nfl-dfs-value-plays.md
+// / nfl-dfs-matchup-analysis.md, which set `hub` but no `season`/`week`)
+// AND on each individual weekly post (cross-links sibling weeks). Matched
+// on `hub` alone, not `season` too — the anchor page is evergreen and
+// doesn't belong to one season, so requiring season here would silently
+// break the widget on the page it matters most on. Separate from
+// seriesPosts above: that one clusters by broader pillar topic, this one
+// is specifically this hub's weekly children, newest season/week first.
+const hubWeekPosts = hub
+  ? (
+      await getCollection(
+        'blog',
+        (entry) => (!entry.data.draft || import.meta.env.DEV) && entry.data.hub === hub && entry.slug !== slug
+      )
+    ).sort((a, b) => (b.data.season ?? 0) - (a.data.season ?? 0) || (b.data.week ?? 0) - (a.data.week ?? 0))
   : [];
 
 const canonicalURL = Astro.url.href;
@@ -34,6 +65,7 @@ const articleSchema = {
   headline: title,
   description,
   datePublished: pubDate.toISOString(),
+  dateModified: effectiveDateModified.toISOString(),
   author: { '@type': 'Organization', name: author },
   publisher: { '@type': 'Organization', name: 'DFS Engineer Playbook' },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalURL },
@@ -118,6 +150,24 @@ const breadcrumbSchema = {
         <slot />
       </article>
     </main>
+
+    {hubWeekPosts.length > 0 && (
+      <section class="section series-section">
+        <div class="wrap">
+          <p class="section-label">This season's weeks</p>
+          <ul class="post-grid">
+            {hubWeekPosts.map((post) => (
+              <li>
+                <a class="post-card" href={`/blog/${post.slug}/`}>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
 
     {seriesPosts.length > 0 && (
       <section class="section series-section">

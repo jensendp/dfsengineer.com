@@ -17,6 +17,15 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     pillar: z.string().optional(),
     contentType: z.enum(['Pillar', 'Spoke']).optional(),
+    // Weekly hub fields (nfl-dfs-value-plays / nfl-dfs-matchup-analysis) —
+    // set on the weekly Spoke posts, alongside pillar/contentType above so
+    // the existing pillar-filtered "More in this series" widget still
+    // surfaces them. See BlogPost.astro's hub-weeks query and
+    // dateModified prop. Optional so existing/non-hub posts are unaffected.
+    hub: z.enum(['value-plays', 'matchup-analysis']).optional(),
+    season: z.number().optional(),
+    week: z.number().optional(),
+    dateModified: z.coerce.date().optional(),
   }),
 });
 
