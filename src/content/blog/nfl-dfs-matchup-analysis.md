@@ -24,8 +24,13 @@ projection (my own model's `matchup` factor). But it's a *cumulative*,
 backward-looking number, which means it can mislead in a few specific
 ways:
 
-- **Small samples early in the season.** Three games of data can be
-  driven by one outlier performance, not a real defensive weakness.
+- **Small samples early in the season — and zero samples in Week 1
+  specifically.** Three games of data can be driven by one outlier
+  performance, not a real defensive weakness. Week 1 is a sharper
+  version of the same problem: there's no current-season data to draw
+  on at all, so the multiplier falls back entirely to how that defense
+  performed in prior seasons. Real data, not invented — but it's a
+  roster and scheme from a year (or more) ago, not this one.
 - **Injuries on the defense.** A defense that's allowed a lot to receivers
   because their top cornerback has been hurt for six weeks isn't
   necessarily still a soft matchup once that player is back.
