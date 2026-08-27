@@ -17,11 +17,11 @@ This breakdown covers the exact scoring systems on DraftKings, FanDuel, and Priz
 
 ## How NFL DFS Scoring Differs from Season-Long Fantasy
 
-If you've played season-long fantasy on ESPN or Yahoo, you already know the basics — touchdowns are good, turnovers are bad. But the specific point values don't carry over cleanly to DFS. The scoring systems on DraftKings, FanDuel, and PrizePicks are each proprietary, and none of them match the default settings on any major season-long platform. If you're still getting oriented on what DFS actually is and how contests are structured, the [complete beginner's breakdown](https://dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026) covers that ground before diving into scoring specifics.
+If you've played season-long fantasy on ESPN or Yahoo, you already know the basics — touchdowns are good, turnovers are bad. But the specific point values don't carry over cleanly to DFS. The scoring systems on DraftKings, FanDuel, and PrizePicks are each proprietary, and none of them match the default settings on any major season-long platform. If you're still getting oriented on what DFS actually is and how contests are structured, the [complete beginner's breakdown](https://www.dfsengineer.com/blog/what-is-nfl-dfs-a-complete-beginners-breakdown-2026) covers that ground before diving into scoring specifics.
 
 The single biggest structural difference: reception scoring. DraftKings awards 1 full point per reception (full PPR). FanDuel awards 0.5 points per reception (half-PPR). That gap sounds small until you run the numbers. A running back who catches 6 passes in a game earns 6 points from receptions alone on DraftKings but only 3 on FanDuel. Over a full slate of players, that distinction warps which positions carry the most value and which player profiles you should prioritize.
 
-> **Tip:** If terms like "PPR," "half-PPR," "slate," or "ceiling" are unfamiliar, the [NFL DFS glossary](https://dfsengineer.com/blog/nfl-dfs-glossary) and [terminology guide with real examples](https://dfsengineer.com/blog/nfl-dfs-terminology-40-terms-with-real-examples) define all of them in context.
+> **Tip:** If terms like "PPR," "half-PPR," "slate," or "ceiling" are unfamiliar, the [NFL DFS glossary](https://www.dfsengineer.com/blog/nfl-dfs-glossary) and [terminology guide with real examples](https://www.dfsengineer.com/blog/nfl-dfs-terminology-40-terms-with-real-examples) define all of them in context.
 
 DFS does simplify one thing, though. In season-long leagues, your commissioner might use custom settings — 6-point passing touchdowns, fractional scoring turned off, odd bonus rules. In DFS, every contest on a given platform uses the same scoring. No guessing. You learn DraftKings scoring once and it applies to every DraftKings contest you enter in 2026.
 
@@ -100,7 +100,7 @@ When you're using projections built for one platform — say, a DraftKings-based
 
 ## How Scoring Rules Change Which Players You Should Target
 
-Once you internalize how platform scoring shapes value, roster construction sharpens fast. For the step-by-step process of turning scoring knowledge into actual lineups, the [guide to building your first lineup](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) picks up where this article leaves off.
+Once you internalize how platform scoring shapes value, roster construction sharpens fast. For the step-by-step process of turning scoring knowledge into actual lineups, the [guide to building your first lineup](https://www.dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) picks up where this article leaves off.
 
 Say De'Von Achane is projected for 4 receptions, 80 rushing yards, 35 receiving yards, and a rushing touchdown in a given week. On DraftKings: 8.0 (rushing) + 6.0 (TD) + 4.0 (receptions) + 3.5 (receiving yards) = 21.5 points. If he hits 100 rushing yards instead, the extra yardage plus the 3-point bonus pushes him to 26.5. On FanDuel: 8.0 + 6.0 + 2.0 (receptions at half-PPR) + 3.5 = 19.5 points, and there's no bonus waiting at 100 yards. The ceiling gap is real.
 
@@ -131,7 +131,7 @@ Fumble scoring trips people up, too. DraftKings charges −1 for a fumble lost, 
 
 DST scoring is where beginners lose the most edge without realizing it. Points-allowed tiers are not linear. On DraftKings, a defense allowing 1–6 points scores 7 fantasy points, but allowing 7–13 drops that to 4. A single garbage-time touchdown can swing your DST score by 3 points — something most beginners never price in. Once you understand how those tiers actually work, you stop treating all "good defensive matchups" as equal.
 
-Both DraftKings and FanDuel use the same roster structure for NFL classic contests: 9 slots consisting of QB, RB, RB, WR, WR, WR, TE, FLEX, and a defense (labeled DST on DraftKings, DEF on FanDuel). Neither platform includes a kicker. The platforms differ in salary cap ($50,000 on DraftKings, $60,000 on FanDuel) and scoring rates — not in roster composition. Knowing this prevents a common beginner error: assuming FanDuel gives you an extra slot or different positional requirements. For a deeper look at how contest types, salary caps, and roster mechanics work across platforms, see [how NFL DFS works: mechanics, scoring, and real examples](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples).
+Both DraftKings and FanDuel use the same roster structure for NFL classic contests: 9 slots consisting of QB, RB, RB, WR, WR, WR, TE, FLEX, and a defense (labeled DST on DraftKings, DEF on FanDuel). Neither platform includes a kicker. The platforms differ in salary cap ($50,000 on DraftKings, $60,000 on FanDuel) and scoring rates — not in roster composition. Knowing this prevents a common beginner error: assuming FanDuel gives you an extra slot or different positional requirements. For a deeper look at how contest types, salary caps, and roster mechanics work across platforms, see [how NFL DFS works: mechanics, scoring, and real examples](https://www.dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples).
 
 ## Conclusion
 
@@ -141,7 +141,7 @@ The numbers are unambiguous. A running back with 4 receptions scores 4.0 points 
 
 Treat scoring rules as the foundation they are. Every projection you trust, every ownership read you make, every salary you evaluate — all of it sits on top of how points are actually counted. Get that layer wrong and everything built above it tilts.
 
-For the bigger picture on turning this scoring knowledge into complete lineup decisions, the [step-by-step process for playing NFL DFS in 2026](https://dfsengineer.com/blog/how-to-play-nfl-dfs-a-step-by-step-process-for-2026) walks through the full workflow from here.
+For the bigger picture on turning this scoring knowledge into complete lineup decisions, the [step-by-step process for playing NFL DFS in 2026](https://www.dfsengineer.com/blog/how-to-play-nfl-dfs-a-step-by-step-process-for-2026) walks through the full workflow from here.
 
 ## FAQ
 
