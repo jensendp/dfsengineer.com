@@ -1,0 +1,21 @@
+---
+// Google Analytics 4 (gtag.js). Production-only — gated on import.meta.env.PROD
+// so `npm run dev` and local builds never send hits, keeping real traffic
+// data clean of the person building the site. Measurement ID is a public,
+// client-side identifier (not a secret like an API key), so it's safe to
+// hardcode directly rather than route through an env var for a single-
+// environment static site.
+const GA_MEASUREMENT_ID = 'G-0YXZ2RPTKT';
+---
+
+{import.meta.env.PROD && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
+  </>
+)}

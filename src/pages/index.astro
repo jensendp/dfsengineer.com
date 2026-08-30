@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { readFileSync } from 'node:fs';
+import Analytics from '../components/Analytics.astro';
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -107,6 +108,7 @@ const dateFmt = (iso: string) =>
       name: 'DFS Engineer',
       url: 'https://www.dfsengineer.com',
     })} />
+    <Analytics />
   </head>
   <body>
     <header class="site-header">

@@ -1,6 +1,7 @@
 ---
 import '../../styles/global.css';
 import { getCollection } from 'astro:content';
+import Analytics from '../../components/Analytics.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -43,6 +44,7 @@ const breadcrumbSchema = {
     <meta name="twitter:description" content="Every post from DFS Engineer Playbook — fundamentals, scoring, strategy, and process, newest first." />
 
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} is:inline />
+    <Analytics />
   </head>
   <body>
     <header class="site-header">

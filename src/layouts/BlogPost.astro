@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
+import Analytics from '../components/Analytics.astro';
 
 interface Props {
   title: string;
@@ -119,6 +120,7 @@ const breadcrumbSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} is:inline />
     {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />}
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} is:inline />
+    <Analytics />
   </head>
   <body>
     <header class="site-header">

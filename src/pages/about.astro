@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
 
 const canonicalURL = 'https://www.dfsengineer.com/about/';
 
@@ -47,6 +48,7 @@ const breadcrumbSchema = {
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+    <Analytics />
   </head>
   <body>
     <header class="site-header">
