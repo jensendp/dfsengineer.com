@@ -1,43 +1,56 @@
 # DFS Engineer — Style Reference
 
-> A data lab for NFL DFS — chalk-white schematics on a blueprint-black field, one signal-green readout burning through the fog.
+> A data lab for NFL DFS — chalk schematics on a turf-dusk field, one signal-green readout burning through the fog.
 
 **Theme:** dark (primary), with a light "printout" mode for long-form articles.
 
 **Inspiration:** [WHOOP](https://styles.refero.design/style/05053a60-1964-4154-9d58-ebdf6352ed3a)'s
-high-contrast black/white split-canvas and oversized display type, crossed with
+high-contrast split-canvas and oversized display type, crossed with
 broadcast-graphics football (hash marks, scoreboard numerals) and a terminal/AI
 accent (monospace stat readouts, scanline texture). The site should feel like
 an instrument panel a sharp bettor built for themselves — not a picks-selling
-landing page. Confidence and math, not hype.
+landing page, and not a server room either. Confidence and math, with some
+warmth — like a stadium at dusk, not a data center at 2am.
 
 ## Concept
 
-DFS Engineer operates on a **schematic-on-black** system: full-bleed void
+DFS Engineer operates on a **schematic-on-turf** system: full-bleed void
 backgrounds carry oversized headline type and thin hairline grids (yard-line
-ticks), while content cards sit on a slightly raised carbon surface. Body copy
-and article pages flip to a warm paper-white surface for reading comfort —
-the dark canvas is for the tool/dashboard/marketing surfaces, the light
-canvas is for the blog. A single electric accent (Signal Green) marks
-anything the math likes — positive edge, high ceiling, "start" calls — so it
-must stay rare and load-bearing. A second accent (Alert Amber) marks risk —
-low floor, fade calls, injury flags. Never use both accents decoratively.
+ticks), while content cards sit on a slightly raised carbon surface. Void and
+Carbon both carry a warm green undertone rather than neutral black — grass
+under stadium lights, not a server room — which is what keeps the dark
+canvas feeling like football instead of ominous. Body copy and article pages
+flip to a warm paper surface for reading comfort — the dark canvas is for
+the tool/dashboard/marketing surfaces, the light canvas is for the blog. A
+single accent (Signal Green, softened from a neon lab-green to a natural
+turf green) marks anything the math likes — positive edge, high ceiling,
+"start" calls — so it must stay rare and load-bearing. A second accent
+(Alert Amber, warmed slightly to match) marks risk — low floor, fade calls,
+injury flags. Never use both accents decoratively.
 
 ## Tokens — Colors
 
 | Name | Value | Token | Role |
 |---|---|---|---|
-| Void | `#0a0a0d` | `--color-void` | Primary dark background — hero, nav, dashboard chrome |
-| Carbon | `#15161a` | `--color-carbon` | Raised surface on dark — cards, tables, code blocks |
-| Hairline | `#2a2c33` | `--color-hairline` | Borders, dividers, grid ticks on dark |
-| Paper | `#f7f6f2` | `--color-paper` | Light surface — article/blog canvas |
-| Chalk | `#ffffff` | `--color-chalk` | Primary text on dark, headline color |
-| Ink | `#12121a` | `--color-ink` | Primary text on light (paper) surfaces |
-| Fog | `#9a9ca6` | `--color-fog` | Secondary text on dark — captions, meta |
-| Slate | `#5b5d68` | `--color-slate` | Secondary text on light, muted labels |
-| Signal Green | `#8bff5a` | `--color-signal` | Single "the math likes this" accent — CTAs, positive deltas, active nav |
-| Alert Amber | `#ff9d3d` | `--color-alert` | Risk/fade/injury accent — negative deltas, warnings only |
-| Field Green | `#0f2e1c` | `--color-field` | Deep desaturated green wash for section backgrounds, never text |
+| Void | `#101a12` | `--color-void` | Primary dark background — hero, nav, dashboard chrome |
+| Carbon | `#1b2620` | `--color-carbon` | Raised surface on dark — cards, tables, code blocks |
+| Hairline | `#33443a` | `--color-hairline` | Borders, dividers, grid ticks on dark |
+| Paper | `#f7f6f0` | `--color-paper` | Light surface — article/blog canvas |
+| Chalk | `#f5f7f3` | `--color-chalk` | Primary text on dark, headline color |
+| Ink | `#16201a` | `--color-ink` | Primary text on light (paper) surfaces |
+| Fog | `#a3b3a8` | `--color-fog` | Secondary text on dark — captions, meta |
+| Slate | `#5c6b5f` | `--color-slate` | Secondary text on light, muted labels |
+| Signal Green | `#7ed957` | `--color-signal` | Single "the math likes this" accent — CTAs, positive deltas, active nav |
+| Alert Amber | `#ffab5c` | `--color-alert` | Risk/fade/injury accent — negative deltas, warnings only |
+| Field Green | `#16301f` | `--color-field` | Deep desaturated green wash for section backgrounds, never text |
+
+Dark canvas ≈ 90% of surface area (unchanged from before) — this palette
+revision (2026-08-30, "Turf Dusk") only warms the hue family toward green;
+it doesn't change the light/dark balance or the schematic/hairline-grid
+system. Chalk, Ink, Paper, Fog, and Slate all shifted a few points warmer
+too, so nothing on the page reads as pure neutral gray against the new
+warmer Void/Carbon/Paper — every text color was picked to match, not just
+the two brand colors.
 
 Dark canvas ≈ 90% of surface area. Signal Green covers well under 5% of any
 given view — it reads as a light on an instrument panel, not a brand wash.

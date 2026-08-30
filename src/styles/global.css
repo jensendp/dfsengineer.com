@@ -4,18 +4,21 @@
    gives the browser no early signal to start the font fetch. */
 
 :root {
-  /* Color */
-  --color-void: #0a0a0d;
-  --color-carbon: #15161a;
-  --color-hairline: #2a2c33;
-  --color-paper: #f7f6f2;
-  --color-chalk: #ffffff;
-  --color-ink: #12121a;
-  --color-fog: #9a9ca6;
-  --color-slate: #5b5d68;
-  --color-signal: #8bff5a;
-  --color-alert: #ff9d3d;
-  --color-field: #0f2e1c;
+  /* Color — "Turf Dusk": Void/Carbon carry a warm green undertone instead
+     of neutral black (grass under stadium lights, not a server room), and
+     Signal Green softened from neon to a natural turf green. See
+     DESIGN.md for the full rationale. */
+  --color-void: #101a12;
+  --color-carbon: #1b2620;
+  --color-hairline: #33443a;
+  --color-paper: #f7f6f0;
+  --color-chalk: #f5f7f3;
+  --color-ink: #16201a;
+  --color-fog: #a3b3a8;
+  --color-slate: #5c6b5f;
+  --color-signal: #7ed957;
+  --color-alert: #ffab5c;
+  --color-field: #16301f;
 
   /* Type */
   --font-display: 'Inter Tight', 'Neue Haas Grotesk', system-ui, sans-serif;
@@ -308,7 +311,7 @@ a:hover {
 .paper p { color: var(--color-slate); }
 .paper .site-header,
 .paper .site-footer {
-  border-color: #ddd9cf;
+  border-color: #dcded0;
 }
 .paper article {
   max-width: var(--prose-max);
@@ -372,7 +375,7 @@ a:hover {
 .paper article code {
   font-family: var(--font-mono);
   font-size: 0.9em;
-  background: #ece9df;
+  background: #eceee0;
   padding: 0.1em 0.35em;
   border-radius: var(--radius);
 }
@@ -402,7 +405,7 @@ a:hover {
 .paper article td {
   text-align: left;
   padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid #ddd9cf;
+  border-bottom: 1px solid #dcded0;
 }
 .paper article th {
   font-family: var(--font-body);
