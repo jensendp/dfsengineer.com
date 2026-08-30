@@ -1,6 +1,5 @@
 ---
-import '../styles/global.css';
-import Analytics from '../components/Analytics.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const canonicalURL = 'https://www.dfsengineer.com/about/';
 
@@ -25,138 +24,105 @@ const breadcrumbSchema = {
   ],
 };
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" />
-    <title>About Derek Jensen — DFS Engineer</title>
-    <meta name="description" content="20+ years in software, now building NFL DFS projections and tools in the open. Not another picks-selling service." />
-    <link rel="canonical" href={canonicalURL} />
-
-    <meta property="og:type" content="profile" />
-    <meta property="og:site_name" content="DFS Engineer" />
-    <meta property="og:title" content="About Derek Jensen — DFS Engineer" />
-    <meta property="og:description" content="20+ years in software, now building NFL DFS projections and tools in the open." />
-    <meta property="og:url" content={canonicalURL} />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="About Derek Jensen — DFS Engineer" />
-    <meta name="twitter:description" content="20+ years in software, now building NFL DFS projections and tools in the open." />
-
+<BaseLayout
+  title="About Derek Jensen — DFS Engineer"
+  description="20+ years in software, now building NFL DFS projections and tools in the open. Not another picks-selling service."
+  canonicalURL={canonicalURL}
+  ogType="profile"
+>
+  <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
-    <Analytics />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="wrap">
-        <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
-        <nav class="site-nav">
-          <a href="/blog/">Blog</a>
-          <a href="/about/">About</a>
-          <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
-        </nav>
-      </div>
-    </header>
+  </Fragment>
 
-    <section class="hero">
-      <div class="wrap">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-          <a href="/">Home</a><span>/</span><span aria-current="page">About</span>
-        </nav>
-        <p class="eyebrow">§ About</p>
-        <h1>I'm Derek Jensen.</h1>
-        <p class="lede">
-          20+ years building software. Now aiming all of it at NFL DFS —
-          real models, real backtests, the math shown in the open.
-        </p>
-      </div>
-    </section>
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><span aria-current="page">About</span>
+      </nav>
+      <p class="eyebrow">§ About</p>
+      <h1>I'm Derek Jensen.</h1>
+      <p class="lede">
+        20+ years building software. Now aiming all of it at NFL DFS —
+        real models, real backtests, the math shown in the open.
+      </p>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="wrap">
-        <h2 class="section-label">§ 01 — Why this exists</h2>
-        <p class="lede">
-          NFL DFS content is mostly a black box. You pay for someone's picks,
-          or their gut feel dressed up as a service, and you have no real way
-          to check their work.
-        </p>
-        <p class="lede">
-          I got tired of that. I wanted tools and a process I could actually
-          trust — because I could see how they worked, not because someone
-          told me to trust them.
-        </p>
-      </div>
-    </section>
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-label">§ 01 — Why this exists</h2>
+      <p class="lede">
+        NFL DFS content is mostly a black box. You pay for someone's picks,
+        or their gut feel dressed up as a service, and you have no real way
+        to check their work.
+      </p>
+      <p class="lede">
+        I got tired of that. I wanted tools and a process I could actually
+        trust — because I could see how they worked, not because someone
+        told me to trust them.
+      </p>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="wrap">
-        <h2 class="section-label">§ 02 — Where I'm coming from</h2>
-        <p class="lede">
-          I've spent 20+ years in software development — backend systems,
-          databases, web apps, mobile apps, most of the stack at one point or
-          another. The last several years have been focused specifically on
-          AI and data analytics.
-        </p>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-top:32px;">
-          <div class="stat-card">
-            <span class="stat-label">Years in software</span>
-            <span class="stat-value">20+</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Stack range</span>
-            <span class="stat-value" style="font-size:20px;">Backend → Mobile</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Current focus</span>
-            <span class="stat-value" style="font-size:20px;">AI &amp; Data Analytics</span>
-          </div>
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-label">§ 02 — Where I'm coming from</h2>
+      <p class="lede">
+        I've spent 20+ years in software development — backend systems,
+        databases, web apps, mobile apps, most of the stack at one point or
+        another. The last several years have been focused specifically on
+        AI and data analytics.
+      </p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-top:32px;">
+        <div class="stat-card">
+          <span class="stat-label">Years in software</span>
+          <span class="stat-value">20+</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Stack range</span>
+          <span class="stat-value" style="font-size:20px;">Backend → Mobile</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Current focus</span>
+          <span class="stat-value" style="font-size:20px;">AI &amp; Data Analytics</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="wrap">
-        <h2 class="section-label">§ 03 — Process, not picks</h2>
-        <p class="lede">
-          DFS Engineer Playbook is that experience pointed at one problem:
-          building real NFL DFS projections, lineup tools, and a repeatable
-          weekly process — for the rest of us, not just for people who can
-          already build this stuff themselves.
-        </p>
-        <p class="lede">
-          Everything here gets built the same way: state the model, run it
-          against real results, show the work — good or bad. You can already
-          see a piece of that on the homepage, where the projection numbers
-          are backtested, not just asserted. I'm not selling picks. I'm
-          building the tools and process I use myself, in the open.
-        </p>
-      </div>
-    </section>
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-label">§ 03 — Process, not picks</h2>
+      <p class="lede">
+        DFS Engineer Playbook is that experience pointed at one problem:
+        building real NFL DFS projections, lineup tools, and a repeatable
+        weekly process — for the rest of us, not just for people who can
+        already build this stuff themselves.
+      </p>
+      <p class="lede">
+        Everything here gets built the same way: state the model, run it
+        against real results, show the work — good or bad. You can already
+        see a piece of that on the homepage, where the projection numbers
+        are backtested, not just asserted. I'm not selling picks. I'm
+        building the tools and process I use myself, in the open.
+      </p>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="wrap">
-        <h2 class="section-label">§ 04 — Follow the work</h2>
-        <p class="lede">
-          Every model, every projection, every lineup decision gets written
-          up as it happens. If you want a real process instead of a guess,
-          start with the playbook — or join the community and follow along
-          live.
-        </p>
-        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:24px;">
-          <a class="btn btn-primary" href="/blog/">Read the playbook →</a>
-          <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
-        </div>
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-label">§ 04 — Follow the work</h2>
+      <p class="lede">
+        Every model, every projection, every lineup decision gets written
+        up as it happens. If you want a real process instead of a guess,
+        start with the playbook — or join the community and follow along
+        live.
+      </p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:24px;">
+        <a class="btn btn-primary" href="/blog/">Read the playbook →</a>
+        <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
       </div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="wrap">
-        <a href="https://www.skool.com/brew-loyalty-6636">Join the DFS Engineer Playbook community →</a>
-      </div>
-    </footer>
-  </body>
-</html>
+    </div>
+  </section>
+</BaseLayout>

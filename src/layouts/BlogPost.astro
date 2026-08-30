@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import Analytics from '../components/Analytics.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
 interface Props {
   title: string;
@@ -123,16 +125,7 @@ const breadcrumbSchema = {
     <Analytics />
   </head>
   <body>
-    <header class="site-header">
-      <div class="wrap">
-        <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
-        <nav class="site-nav">
-          <a href="/blog/">Blog</a>
-          <a href="/about/">About</a>
-          <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
-        </nav>
-      </div>
-    </header>
+    <SiteHeader />
 
     <section class="hero-post">
       <div class="wrap">
@@ -190,10 +183,6 @@ const breadcrumbSchema = {
       </section>
     )}
 
-    <footer class="site-footer">
-      <div class="wrap">
-        <a href="https://www.skool.com/brew-loyalty-6636">Join the DFS Engineer Playbook community →</a>
-      </div>
-    </footer>
+    <SiteFooter />
   </body>
 </html>

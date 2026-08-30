@@ -1,0 +1,16 @@
+---
+// Shared site header — was duplicated identically across index.astro,
+// blog/index.astro, about.astro, and BlogPost.astro (404.astro's copy was
+// missing the "About" link, an inconsistency this now fixes rather than
+// preserves). One place to edit nav links going forward.
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
+    <nav class="site-nav">
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+      <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
+    </nav>
+  </div>
+</header>

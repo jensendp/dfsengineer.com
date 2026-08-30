@@ -10,7 +10,7 @@ const GA_MEASUREMENT_ID = 'G-0YXZ2RPTKT';
 
 {import.meta.env.PROD && (
   <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script async is:inline src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
     <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }

@@ -1,0 +1,61 @@
+---
+// Shared shell for the site's static pages (home, blog index, about, 404) —
+// everything that isn't a blog post, which already has its own shared
+// layout (BlogPost.astro). Consolidates what was previously duplicated
+// independently across all 4: charset/viewport/favicon/fonts, Analytics,
+// SiteHeader/SiteFooter, and the OG/Twitter meta pattern. A new static
+// page now gets Analytics, the header, and the footer for free just by
+// using this layout — nothing to remember to copy in.
+//
+// Each page still owns its own title/description/canonical/OG content and
+// any JSON-LD schema (via the "head" slot) — those are real per-page facts,
+// not boilerplate, and stay that way rather than being collapsed into one
+// shared default that could quietly go stale or wrong for a specific page.
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL: string;
+  ogType?: string;
+  twitterCard?: string;
+  robots?: string;
+}
+
+const { title, description, canonicalURL, ogType = 'website', twitterCard = 'summary', robots } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {robots && <meta name="robots" content={robots} />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="DFS Engineer" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <slot name="head" />
+    <Analytics />
+  </head>
+  <body>
+    <SiteHeader />
+    <slot />
+    <SiteFooter />
+  </body>
+</html>

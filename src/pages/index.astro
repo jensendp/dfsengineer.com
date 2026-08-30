@@ -1,8 +1,7 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { readFileSync } from 'node:fs';
-import Analytics from '../components/Analytics.astro';
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -68,155 +67,124 @@ try {
 
 const dateFmt = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Site-wide entity schema — set once here, not repeated per page. No
+// `logo` field: there's no real logo image asset yet (the wordmark is
+// text, not an image) — omitted rather than pointing at a placeholder
+// that doesn't exist.
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'DFS Engineer Playbook',
+  url: 'https://www.dfsengineer.com',
+  sameAs: ['https://www.skool.com/brew-loyalty-6636'],
+  founder: { '@type': 'Person', name: 'Derek Jensen', url: 'https://www.dfsengineer.com/about/' },
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'DFS Engineer',
+  url: 'https://www.dfsengineer.com',
+};
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" />
-    <title>DFS Engineer — NFL DFS, run like a lab notebook</title>
-    <meta name="description" content="An engineer's real NFL DFS process — projections, lineup building, and results, built in the open. Not a picks-selling service." />
-    <link rel="canonical" href="https://www.dfsengineer.com/" />
+<BaseLayout
+  title="DFS Engineer — NFL DFS, run like a lab notebook"
+  description="An engineer's real NFL DFS process — projections, lineup building, and results, built in the open. Not a picks-selling service."
+  canonicalURL="https://www.dfsengineer.com/"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
+  </Fragment>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="DFS Engineer" />
-    <meta property="og:title" content="DFS Engineer — NFL DFS, run like a lab notebook" />
-    <meta property="og:description" content="An engineer's real NFL DFS process — projections, lineup building, and results, built in the open. Not a picks-selling service." />
-    <meta property="og:url" content="https://www.dfsengineer.com/" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="DFS Engineer — NFL DFS, run like a lab notebook" />
-    <meta name="twitter:description" content="An engineer's real NFL DFS process — projections, lineup building, and results, built in the open. Not a picks-selling service." />
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">§ 01 — Process, not picks</p>
+      <h1>NFL DFS, run<br />like a lab notebook.</h1>
+      <p class="lede">
+        Projections, lineup construction, and results — built in the open,
+        with the math shown. If the model likes a play, you'll see why.
+      </p>
+      <a class="btn btn-primary" href="#latest">Read the playbook ↓</a>
+    </div>
+  </section>
 
-    <!-- Site-wide entity schema — set once here, not repeated per page.
-         No `logo` field: there's no real logo image asset yet (the
-         wordmark is text, not an image) — omitted rather than pointing
-         at a placeholder that doesn't exist. -->
-    <script type="application/ld+json" is:inline set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'DFS Engineer Playbook',
-      url: 'https://www.dfsengineer.com',
-      sameAs: ['https://www.skool.com/brew-loyalty-6636'],
-      founder: { '@type': 'Person', name: 'Derek Jensen', url: 'https://www.dfsengineer.com/about/' },
-    })} />
-    <script type="application/ld+json" is:inline set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'DFS Engineer',
-      url: 'https://www.dfsengineer.com',
-    })} />
-    <Analytics />
-  </head>
-  <body>
-    <header class="site-header">
+  {slateInfo && (
+    <section class="section">
       <div class="wrap">
-        <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
-        <nav class="site-nav">
-          <a href="/blog/">Blog</a>
-          <a href="/about/">About</a>
-          <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
-        </nav>
-      </div>
-    </header>
-
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow">§ 01 — Process, not picks</p>
-        <h1>NFL DFS, run<br />like a lab notebook.</h1>
-        <p class="lede">
-          Projections, lineup construction, and results — built in the open,
-          with the math shown. If the model likes a play, you'll see why.
+        <h2 class="section-label">§ 02 — This week's slate</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
+          <div class="stat-card">
+            <span class="stat-label">Slate</span>
+            <span class="stat-value">{slateInfo.name}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Games</span>
+            <span class="stat-value">{slateInfo.numGames}</span>
+          </div>
+          {highestTotal && (
+            <div class="stat-card">
+              <span class="stat-label">Highest Total</span>
+              <span class="stat-value up">{highestTotal.over_under}</span>
+              <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{highestTotal.matchup}</span>
+            </div>
+          )}
+          {biggestSpread && (
+            <div class="stat-card">
+              <span class="stat-label">Biggest Spread</span>
+              <span class="stat-value">{biggestSpread.spread}</span>
+              <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{biggestSpread.matchup}</span>
+            </div>
+          )}
+        </div>
+        <p style="margin-top:16px; font-size:13px;">
+          Game-level market facts only — matchups and Vegas lines, the same information any sportsbook already publishes. Never a pick, never player-level data.
+          {!highestTotal && ' Odds data isn’t in yet for this slate — check back closer to kickoff.'}
         </p>
-        <a class="btn btn-primary" href="#latest">Read the playbook ↓</a>
       </div>
     </section>
+  )}
 
-    {slateInfo && (
-      <section class="section">
-        <div class="wrap">
-          <h2 class="section-label">§ 02 — This week's slate</h2>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
-            <div class="stat-card">
-              <span class="stat-label">Slate</span>
-              <span class="stat-value">{slateInfo.name}</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-label">Games</span>
-              <span class="stat-value">{slateInfo.numGames}</span>
-            </div>
-            {highestTotal && (
-              <div class="stat-card">
-                <span class="stat-label">Highest Total</span>
-                <span class="stat-value up">{highestTotal.over_under}</span>
-                <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{highestTotal.matchup}</span>
-              </div>
-            )}
-            {biggestSpread && (
-              <div class="stat-card">
-                <span class="stat-label">Biggest Spread</span>
-                <span class="stat-value">{biggestSpread.spread}</span>
-                <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{biggestSpread.matchup}</span>
-              </div>
-            )}
-          </div>
-          <p style="margin-top:16px; font-size:13px;">
-            Game-level market facts only — matchups and Vegas lines, the same information any sportsbook already publishes. Never a pick, never player-level data.
-            {!highestTotal && ' Odds data isn’t in yet for this slate — check back closer to kickoff.'}
-          </p>
-        </div>
-      </section>
-    )}
-
-    {accuracyCards.length > 0 && (
-      <section class="section">
-        <div class="wrap">
-          <h2 class="section-label">§ 03 — Model accuracy, backtested</h2>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
-            {accuracyCards.map((card) => (
-              <div class="stat-card">
-                <span class="stat-label">{card.label}</span>
-                <span class="stat-value up">{card.value}</span>
-              </div>
-            ))}
-          </div>
-          <p style="margin-top:16px; font-size:13px;">
-            Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim.
-            {accuracyGeneratedAt && ` As of ${dateFmt(accuracyGeneratedAt)}.`}
-            {' '}See the methodology behind these numbers in the playbook below.
-          </p>
-        </div>
-      </section>
-    )}
-
-    <section class="section" id="latest">
+  {accuracyCards.length > 0 && (
+    <section class="section">
       <div class="wrap">
-        <h2 class="section-label">§ 04 — Latest from the playbook</h2>
-        {posts.length === 0 && <p>First posts coming soon.</p>}
-        <ul class="post-grid">
-          {posts.map((post) => (
-            <li>
-              <a class="post-card" href={`/blog/${post.slug}/`}>
-                <h3>{post.data.title}</h3>
-                <p>{post.data.description}</p>
-              </a>
-            </li>
+        <h2 class="section-label">§ 03 — Model accuracy, backtested</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
+          {accuracyCards.map((card) => (
+            <div class="stat-card">
+              <span class="stat-label">{card.label}</span>
+              <span class="stat-value up">{card.value}</span>
+            </div>
           ))}
-        </ul>
-        {hasMore && (
-          <p style="margin-top:24px;">
-            <a class="btn btn-secondary" href="/blog/">View all posts →</a>
-          </p>
-        )}
+        </div>
+        <p style="margin-top:16px; font-size:13px;">
+          Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim.
+          {accuracyGeneratedAt && ` As of ${dateFmt(accuracyGeneratedAt)}.`}
+          {' '}See the methodology behind these numbers in the playbook below.
+        </p>
       </div>
     </section>
+  )}
 
-    <footer class="site-footer">
-      <div class="wrap">
-        <a href="https://www.skool.com/brew-loyalty-6636">Join the DFS Engineer Playbook community →</a>
-      </div>
-    </footer>
-  </body>
-</html>
+  <section class="section" id="latest">
+    <div class="wrap">
+      <h2 class="section-label">§ 04 — Latest from the playbook</h2>
+      {posts.length === 0 && <p>First posts coming soon.</p>}
+      <ul class="post-grid">
+        {posts.map((post) => (
+          <li>
+            <a class="post-card" href={`/blog/${post.slug}/`}>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+      {hasMore && (
+        <p style="margin-top:24px;">
+          <a class="btn btn-secondary" href="/blog/">View all posts →</a>
+        </p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

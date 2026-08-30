@@ -1,7 +1,6 @@
 ---
-import '../../styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import Analytics from '../../components/Analytics.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -22,84 +21,39 @@ const breadcrumbSchema = {
   ],
 };
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" />
-    <title>Blog — DFS Engineer</title>
-    <meta name="description" content="Every post from DFS Engineer Playbook — fundamentals, scoring, strategy, and process, newest first." />
-    <link rel="canonical" href="https://www.dfsengineer.com/blog/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="DFS Engineer" />
-    <meta property="og:title" content="Blog — DFS Engineer" />
-    <meta property="og:description" content="Every post from DFS Engineer Playbook — fundamentals, scoring, strategy, and process, newest first." />
-    <meta property="og:url" content="https://www.dfsengineer.com/blog/" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Blog — DFS Engineer" />
-    <meta name="twitter:description" content="Every post from DFS Engineer Playbook — fundamentals, scoring, strategy, and process, newest first." />
-
+<BaseLayout
+  title="Blog — DFS Engineer"
+  description="Every post from DFS Engineer Playbook — fundamentals, scoring, strategy, and process, newest first."
+  canonicalURL="https://www.dfsengineer.com/blog/"
+>
+  <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} is:inline />
-    <Analytics />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="wrap">
-        <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
-        <nav class="site-nav">
-          <a href="/blog/">Blog</a>
-          <a href="/about/">About</a>
-          <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
-        </nav>
-      </div>
-    </header>
+  </Fragment>
 
-    <section class="hero">
-      <div class="wrap">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-          <a href="/">Home</a><span>/</span><span aria-current="page">Blog</span>
-        </nav>
-        <p class="eyebrow">§ Blog</p>
-        <h1>The full playbook.</h1>
-        <p class="lede">
-          Browse by topic, or scan every post published so far, newest
-          first — fundamentals, scoring mechanics, and process, all with
-          the math shown.
-        </p>
-      </div>
-    </section>
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><span aria-current="page">Blog</span>
+      </nav>
+      <p class="eyebrow">§ Blog</p>
+      <h1>The full playbook.</h1>
+      <p class="lede">
+        Browse by topic, or scan every post published so far, newest
+        first — fundamentals, scoring mechanics, and process, all with
+        the math shown.
+      </p>
+    </div>
+  </section>
 
-    {pillars.length > 0 && (
-      <section class="section">
-        <div class="wrap">
-          <h2 class="section-label">Explore by topic</h2>
-          <ul class="post-grid">
-            {pillars.map((post) => (
-              <li>
-                <a class="post-card" href={`/blog/${post.slug}/`}>
-                  <h3>{post.data.pillar}</h3>
-                  <p>{post.data.description}</p>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )}
-
+  {pillars.length > 0 && (
     <section class="section">
       <div class="wrap">
-        <h2 class="section-label">All posts</h2>
-        {posts.length === 0 && <p>First posts coming soon.</p>}
+        <h2 class="section-label">Explore by topic</h2>
         <ul class="post-grid">
-          {posts.map((post) => (
+          {pillars.map((post) => (
             <li>
               <a class="post-card" href={`/blog/${post.slug}/`}>
-                <h3>{post.data.title}</h3>
+                <h3>{post.data.pillar}</h3>
                 <p>{post.data.description}</p>
               </a>
             </li>
@@ -107,11 +61,22 @@ const breadcrumbSchema = {
         </ul>
       </div>
     </section>
+  )}
 
-    <footer class="site-footer">
-      <div class="wrap">
-        <a href="https://www.skool.com/brew-loyalty-6636">Join the DFS Engineer Playbook community →</a>
-      </div>
-    </footer>
-  </body>
-</html>
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-label">All posts</h2>
+      {posts.length === 0 && <p>First posts coming soon.</p>}
+      <ul class="post-grid">
+        {posts.map((post) => (
+          <li>
+            <a class="post-card" href={`/blog/${post.slug}/`}>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
