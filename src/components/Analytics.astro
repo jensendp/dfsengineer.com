@@ -17,5 +17,27 @@ const GA_MEASUREMENT_ID = 'G-0YXZ2RPTKT';
       gtag('js', new Date());
       gtag('config', GA_MEASUREMENT_ID);
     </script>
+    {/*
+      Real conversion event: a click on any link to the Skool community —
+      the site's actual business action, unlike GA4's generic default key
+      events (purchase/lead-gen templates that nothing on this site fires).
+      Delegated at document level so every current Skool link (header,
+      footer, inline CTAs) and any future one is covered automatically,
+      with nothing to remember to instrument per-link. Enhanced
+      measurement already logs the raw outbound click; this adds a named,
+      markable event on top of it instead of "some outbound click, could
+      be any external link."
+    */}
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest && e.target.closest('a[href*="skool.com"]');
+        if (!link) return;
+        gtag('event', 'join_community_click', {
+          link_url: link.href,
+          link_text: (link.textContent || '').trim(),
+          page_path: location.pathname,
+        });
+      });
+    </script>
   </>
 )}
