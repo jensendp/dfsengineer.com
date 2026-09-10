@@ -2,7 +2,7 @@
 title: "NFL DFS Value Plays — Week 1, 2026: The Board and the Reasoning"
 description: "This week's real DraftKings value board for NFL Week 1, 2026 — salaries, projections, and the reasoning behind each pick, not just a ranked list."
 pubDate: "2026-08-26T00:00:00"
-dateModified: "2026-09-07T00:00:00"
+dateModified: "2026-09-10T00:00:00"
 tags: ["Salary & Value", "Value Plays", "Week 1", "NFL DFS"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -13,11 +13,14 @@ season: 2026
 week: 1
 ---
 
-*As of September 7, 2026, before Week 1 kickoff — this update carries a
-real methodology change, not just a fresh data pull: see "Why this board
-is DK-FPPG-based this week" below. Salaries and matchup data can still
-move before lock — injury news and line moves aren't reflected here
-until the next update.*
+*As of September 10, 2026, before Week 1 kickoff — real salaries,
+injuries, and depth charts refreshed today, plus one real fix: a player
+ruled Out could previously still rank on this DK-FPPG board (DK's own
+number doesn't zero out for game-day status the way this site's model
+does) — closed at the source, not just patched for this one player. See
+the update log below. Salaries and matchup data can still move before
+lock — injury news and line moves aren't reflected here until the next
+update.*
 
 Here's the real value board for Week 1, pulled straight from this week's
 salaries — no hand-picked "sleepers," just the players whose points-per-
@@ -81,10 +84,11 @@ model nearly identical (17.9 vs. 18.7) — one of the closer agreements on
 this board.
 
 **Tucker Kraft, TE, GB — $4,500, 15.4 DK FPPG (3.42 per $1k)**
-Green Bay's confirmed starting tight end, carrying a real Questionable
-injury designation. A large gap here too (10.2 projected vs. 15.4 DK
-FPPG, 34% divergence) — worth checking his practice status before lock,
-not just trusting either number blind.
+Green Bay's confirmed starting tight end. His earlier Questionable
+designation has since cleared — no injury flag as of this update. A real
+gap remains between the two numbers (11.5 projected vs. 15.4 DK FPPG,
+25% divergence) — down from 34% three days ago, but still the
+second-widest gap in the top 10, behind Houston's defense above.
 
 **Josh Allen, QB, BUF — $7,000, 23.3 DK FPPG (3.33 per $1k)**
 The most expensive name on this list by a real margin, and it still
@@ -114,6 +118,18 @@ that window, and the honest move is to show that shift, not pretend Week
 1 certainty exists three weeks out. Each entry below is what actually
 changed, not just a timestamp bump.
 
+- **September 10, 2026** — Real data refresh (fresh salaries, injuries,
+  depth charts) plus one real fix, not just new numbers: this board's
+  DK-FPPG ranking had no equivalent to this site's own model, which zeros
+  a player's projection entirely once they're ruled Out. DK's own FPPG
+  doesn't reflect game-day status at all, so an Out player's historical
+  average could still rank — confirmed live when Michael Penix Jr., ruled
+  Out this week, still landed at #20 on this board at his unadjusted
+  number. Out players are now excluded from this board regardless of
+  which number ranks it, the same way buried backups already were.
+  Separately: Tucker Kraft's Questionable tag has cleared, and several
+  numbers moved with the fresh data (see the top-plays section above) —
+  normal week-of drift, not another methodology change.
 - **September 7, 2026** — Methodology change, not a data refresh: this
   board is now ranked and valued by DK's own published FPPG instead of
   this site's own model, an explicit early-season stopgap (see "Why this
@@ -163,11 +179,15 @@ quietly including the name anyway.
 
 ### Does an injury designation actually change the numbers?
 
-Yes, directly, in this site's own model — a real "Questionable,"
+Yes, in two ways now. In this site's own model, a real "Questionable,"
 "Doubtful," or "Out" status pulls a player's own-model projection down
-before they'd show up on this site's normal board. It's shown here as a
-plain designation either way so you can weigh it yourself, whichever
-number you're looking at.
+before they'd show up on this site's normal board. And as of September
+10, an "Out" designation excludes a player from this board outright,
+regardless of which number (DK's or this site's) is doing the ranking —
+DK's own FPPG doesn't adjust for game-day status on its own, so that
+exclusion is applied directly rather than assumed. Any remaining
+designation is still shown as a plain label so you can weigh it
+yourself.
 
 ### Does the matchup affect this week's rankings?
 

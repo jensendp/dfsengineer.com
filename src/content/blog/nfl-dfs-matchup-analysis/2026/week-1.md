@@ -2,7 +2,7 @@
 title: "NFL DFS Matchup Analysis — Week 1, 2026: Reading This Week's Real Lines"
 description: "This week's real Vegas lines and position-level matchup reads for NFL Week 1, 2026 — which games favor which positions, and why, not just a list of spreads."
 pubDate: "2026-08-27T00:00:00"
-dateModified: "2026-08-27T00:00:00"
+dateModified: "2026-09-10T00:00:00"
 tags: ["Matchups", "Week 1", "NFL DFS"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -13,7 +13,7 @@ season: 2026
 week: 1
 ---
 
-*As of August 27, 2026, before Week 1 kickoff (games start September 13).
+*As of September 10, 2026, before Week 1 kickoff (games start September 13).
 Lines can still move before lock — this reflects real spreads and totals
 as of this update, not what they'll be at kickoff.*
 
@@ -37,15 +37,15 @@ picture of it.
 
 ## The best stacking environment: TB @ CIN
 
-**Spread: CIN -3.5, Over/Under: 51.5** — the highest total on the slate,
+**Spread: CIN -3.5, Over/Under: 50.5** — the highest total on the slate,
 with a spread close enough that neither team is a clear lock to abandon
 the pass. This is the week's real full-game-stack candidate.
 
-The position-level reads back that up. Joe Burrow carries a 1.25x
+The position-level reads back that up. Joe Burrow carries a 1.24x
 matchup multiplier — the single highest quarterback read across this
-week's featured games — with his TE room right behind him at 1.18x
+week's featured games — with his TE room right behind him at 1.22x
 (Cincinnati's confirmed starter is Mike Gesicki). On the other side,
-Tampa Bay's Baker Mayfield sits at 1.13x, and Cade Otton's 1.33x
+Tampa Bay's Baker Mayfield sits at 1.13x, and Cade Otton's 1.36x
 multiplier is the highest offensive skill-position number in any of
 this week's featured games — real signal for a tight-end-driven game
 script on both sides, not just one.
@@ -56,7 +56,7 @@ the numbers point to first.
 
 ## The tightest game on the board: GB @ MIN
 
-**Spread: MIN -1.5, Over/Under: 45.5.** Not the highest total on the
+**Spread: MIN -1.5, Over/Under: 46.5.** Not the highest total on the
 slate, but the closest spread by a real margin — the kind of game
 that's live for both offenses deep into the fourth quarter, since
 neither side is expected to pull away.
@@ -70,7 +70,7 @@ assuming it's noise.
 
 ## The one to fade for stacking: ARI @ LAC
 
-**Spread: LAC -10.5, Over/Under: 46.5.** A real total, sitting right in
+**Spread: LAC -9.5, Over/Under: 47.5.** A real total, sitting right in
 the middle of the slate — but the spread is the widest on the board by
 a wide margin. This is exactly the "high total, large spread" case the
 [optimizer guide](https://www.dfsengineer.com/blog/nfl-dfs-optimizer-guide-tools-process-worked-examples)
@@ -80,14 +80,14 @@ exposure toward games with a real chance of staying competitive
 instead.
 
 What the lopsided spread does support: the Chargers' backfield.
-Omarion Hampton carries a 1.18x multiplier — the highest running back
+Omarion Hampton carries a 1.19x multiplier — the highest running back
 read across this week's featured games — consistent with a favorite
 expected to lean on the run in a positive game script. A standalone
 value play, not a stack piece.
 
 ## The one with the least offensive relevance: NYJ @ TEN
 
-**Spread: TEN -3.0, Over/Under: 38.5** — the lowest total on the entire
+**Spread: TEN -1.5, Over/Under: 38.5** — the lowest total on the entire
 slate. Neither offense projects to do much, and the real signal here
 isn't at receiver or running back, it's at defense: both DSTs carry
 the two highest defensive multipliers on this page (NYJ 1.54x, TEN
@@ -103,6 +103,13 @@ honest move is to show that shift, not pretend Week 1 certainty exists
 three weeks out. Each entry below is what actually changed, not just a
 timestamp bump.
 
+- **September 10, 2026** — Real data refresh, not a methodology change:
+  fresh Vegas lines and depth charts pulled today shifted several
+  numbers (TB @ CIN's total ticked down to 50.5, GB @ MIN's total ticked
+  up to 46.5, ARI @ LAC's spread narrowed to LAC -9.5, NYJ @ TEN's
+  spread narrowed to TEN -1.5). Same four featured games and same
+  overall reads still hold — this is normal week-of line movement, not
+  a reversal of any of them.
 - **August 27, 2026** — Initial publish.
 
 ## FAQ
