@@ -2,7 +2,7 @@
 title: "NFL DFS Matchup Analysis — Week 2, 2026: Reading This Week's Real Lines"
 description: "This week's real Vegas lines and position-level matchup reads for NFL Week 2, 2026 — which games favor which positions, and why, not just a list of spreads."
 pubDate: "2026-09-16T00:00:00"
-dateModified: "2026-09-16T00:00:00"
+dateModified: "2026-09-16T12:00:00"
 tags: ["Matchups", "Week 2", "NFL DFS"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -13,7 +13,7 @@ season: 2026
 week: 2
 ---
 
-*As of September 15, 2026. Lines can still move before lock — this
+*As of September 16, 2026. Lines can still move before lock — this
 reflects real spreads and totals as of this update, not what they'll be
 at kickoff.*
 
@@ -32,7 +32,7 @@ real signal that's just getting started, not a settled read yet.
 
 ## The best stacking environment: DAL @ WAS
 
-**Spread: DAL -3.5, Over/Under: 50.5** — the highest total on the slate,
+**Spread: DAL -4.5, Over/Under: 50.5** — the highest total on the slate,
 with a spread close enough that neither team is a clear lock to abandon
 the pass. This is the week's real full-game-stack candidate.
 
@@ -45,8 +45,9 @@ this is the environment the numbers point to first.
 ## The tightest game on the board: ATL @ CAR
 
 **Spread: ATL -2.5, Over/Under: 43.5.** Not the highest total on the
-slate, but the closest spread by a real margin — the kind of game
-that's live for both offenses deep into the fourth quarter.
+slate, and tied with DEN @ JAX for the closest spread — but this is the
+one with real position-level signal behind it, the kind of game that's
+live for both offenses deep into the fourth quarter.
 
 One real, worth-naming number here: Bijan Robinson carries a 1.26x
 matchup multiplier — the highest running back read across this week's
@@ -57,7 +58,7 @@ this week, not just the obvious running back.
 
 ## The one to fade for stacking: SF @ MIA
 
-**Spread: SF -12.5, Over/Under: 45.5.** A real total, right in the
+**Spread: SF -13.5, Over/Under: 45.5.** A real total, right in the
 middle of the slate — but the spread is the widest on the board by a
 wide margin. A decent total doesn't mean a good stacking environment
 when one side is this heavy a favorite. Route correlation exposure
