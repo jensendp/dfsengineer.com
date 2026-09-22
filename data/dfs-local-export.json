@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T03:37:30.033395+00:00",
+  "generated_at": "2026-09-22T12:52:30.790828+00:00",
   "safety_note": "All 'historical_example' data below is retrospective \u2014 from a completed, already-scored slate. Never treat this as a current recommendation.",
   "methodology": {
     "profiles": {
@@ -7,10 +7,14 @@
         "weights": {
           "name": "default",
           "matchup_weight": 0.0,
-          "weather_weight": 1.0,
+          "weather_weight": 0.0,
           "game_script_weight": 0.0,
           "injury_weight": 1.0,
-          "opportunity_weight": 0.0,
+          "opportunity_weight": 1.0,
+          "role_rank_weight": 1.0,
+          "team_change_weight": 1.0,
+          "spread_weight": 0.0,
+          "total_weight": 0.0,
           "position_overrides": {
             "DST": {
               "matchup": 1.0
@@ -26,6 +30,10 @@
           "game_script_weight": 0.0,
           "injury_weight": 0.0,
           "opportunity_weight": 0.0,
+          "role_rank_weight": 0.0,
+          "team_change_weight": 0.0,
+          "spread_weight": 0.0,
+          "total_weight": 0.0,
           "position_overrides": {}
         }
       },
@@ -33,15 +41,49 @@
         "weights": {
           "name": "opportunity",
           "matchup_weight": 0.0,
-          "weather_weight": 1.0,
+          "weather_weight": 0.0,
           "game_script_weight": 0.0,
           "injury_weight": 1.0,
           "opportunity_weight": 1.0,
+          "role_rank_weight": 1.0,
+          "team_change_weight": 1.0,
+          "spread_weight": 0.0,
+          "total_weight": 0.0,
           "position_overrides": {
             "DST": {
               "matchup": 1.0
             }
           }
+        }
+      },
+      "weather-only": {
+        "weights": {
+          "name": "weather-only",
+          "matchup_weight": 0.0,
+          "weather_weight": 1.0,
+          "game_script_weight": 0.0,
+          "injury_weight": 0.0,
+          "opportunity_weight": 0.0,
+          "role_rank_weight": 0.0,
+          "team_change_weight": 0.0,
+          "spread_weight": 0.0,
+          "total_weight": 0.0,
+          "position_overrides": {}
+        }
+      },
+      "vegas-only": {
+        "weights": {
+          "name": "vegas-only",
+          "matchup_weight": 0.0,
+          "weather_weight": 0.0,
+          "game_script_weight": 0.0,
+          "injury_weight": 0.0,
+          "opportunity_weight": 0.0,
+          "role_rank_weight": 0.0,
+          "team_change_weight": 0.0,
+          "spread_weight": 1.0,
+          "total_weight": 1.0,
+          "position_overrides": {}
         }
       }
     },
@@ -68,42 +110,90 @@
       {
         "profile": "default",
         "position": "FB",
-        "n": 34,
-        "mae": 1.22,
-        "rmse": 2.09,
-        "corr": 0.388
+        "n": 38,
+        "mae": 1.14,
+        "rmse": 1.96,
+        "corr": 0.403
       },
       {
         "profile": "default",
         "position": "QB",
         "n": 1880,
-        "mae": 6.79,
-        "rmse": 8.67,
-        "corr": 0.479
+        "mae": 6.73,
+        "rmse": 8.63,
+        "corr": 0.487
       },
       {
         "profile": "default",
         "position": "RB",
-        "n": 4009,
-        "mae": 4.98,
+        "n": 4011,
+        "mae": 4.94,
         "rmse": 6.95,
         "corr": 0.597
       },
       {
         "profile": "default",
         "position": "TE",
-        "n": 3272,
-        "mae": 3.84,
-        "rmse": 5.35,
-        "corr": 0.522
+        "n": 3277,
+        "mae": 3.8,
+        "rmse": 5.34,
+        "corr": 0.526
       },
       {
         "profile": "default",
         "position": "WR",
+        "n": 6532,
+        "mae": 4.96,
+        "rmse": 6.95,
+        "corr": 0.553
+      },
+      {
+        "profile": "default-plus-vegas",
+        "position": "DST",
+        "n": 1678,
+        "mae": 4.9,
+        "rmse": 6.67,
+        "corr": 0.198
+      },
+      {
+        "profile": "default-plus-vegas",
+        "position": "FB",
+        "n": 34,
+        "mae": 1.22,
+        "rmse": 2.09,
+        "corr": 0.388
+      },
+      {
+        "profile": "default-plus-vegas",
+        "position": "QB",
+        "n": 1880,
+        "mae": 6.86,
+        "rmse": 8.76,
+        "corr": 0.468
+      },
+      {
+        "profile": "default-plus-vegas",
+        "position": "RB",
+        "n": 4009,
+        "mae": 4.96,
+        "rmse": 6.98,
+        "corr": 0.598
+      },
+      {
+        "profile": "default-plus-vegas",
+        "position": "TE",
+        "n": 3272,
+        "mae": 3.84,
+        "rmse": 5.39,
+        "corr": 0.513
+      },
+      {
+        "profile": "default-plus-vegas",
+        "position": "WR",
         "n": 6528,
-        "mae": 5.02,
-        "rmse": 6.97,
-        "corr": 0.549
+        "mae": 5.01,
+        "rmse": 7.01,
+        "corr": 0.543
       },
       {
         "profile": "game-script-only",
@@ -276,58 +366,58 @@
       {
         "profile": "off",
         "position": "QB",
-        "n": 1231,
-        "mae": 6.71,
-        "rmse": 8.73,
-        "corr": 0.497
+        "n": 1880,
+        "mae": 6.8,
+        "rmse": 8.67,
+        "corr": 0.478
       },
       {
         "profile": "off",
         "position": "RB",
-        "n": 2515,
-        "mae": 5.18,
-        "rmse": 7.19,
-        "corr": 0.567
+        "n": 4250,
+        "mae": 4.77,
+        "rmse": 6.79,
+        "corr": 0.62
       },
       {
         "profile": "off",
         "position": "TE",
-        "n": 2019,
-        "mae": 4.06,
-        "rmse": 5.62,
-        "corr": 0.483
+        "n": 3539,
+        "mae": 3.66,
+        "rmse": 5.22,
+        "corr": 0.549
       },
       {
         "profile": "off",
         "position": "WR",
-        "n": 4067,
-        "mae": 5.52,
-        "rmse": 7.69,
-        "corr": 0.49
+        "n": 7082,
+        "mae": 4.73,
+        "rmse": 6.75,
+        "corr": 0.582
       },
       {
         "profile": "opportunity",
         "position": "RB",
-        "n": 2515,
-        "mae": 5.19,
-        "rmse": 7.17,
-        "corr": 0.572
+        "n": 4250,
+        "mae": 4.76,
+        "rmse": 6.79,
+        "corr": 0.621
       },
       {
         "profile": "opportunity",
         "position": "TE",
-        "n": 2019,
-        "mae": 4.07,
-        "rmse": 5.63,
-        "corr": 0.483
+        "n": 3539,
+        "mae": 3.65,
+        "rmse": 5.21,
+        "corr": 0.552
       },
       {
         "profile": "opportunity",
         "position": "WR",
-        "n": 4067,
-        "mae": 5.56,
-        "rmse": 7.72,
-        "corr": 0.491
+        "n": 7082,
+        "mae": 4.74,
+        "rmse": 6.76,
+        "corr": 0.583
       },
       {
         "profile": "opportunity-030",
@@ -352,13 +442,612 @@
         "mae": 5.57,
         "rmse": 7.76,
         "corr": 0.487
+      },
+      {
+        "profile": "vegas-only",
+        "position": "DST",
+        "n": 1678,
+        "mae": 4.9,
+        "rmse": 6.32,
+        "corr": 0.129
+      },
+      {
+        "profile": "vegas-only",
+        "position": "FB",
+        "n": 34,
+        "mae": 1.23,
+        "rmse": 2.09,
+        "corr": 0.385
+      },
+      {
+        "profile": "vegas-only",
+        "position": "QB",
+        "n": 1880,
+        "mae": 6.92,
+        "rmse": 8.81,
+        "corr": 0.46
+      },
+      {
+        "profile": "vegas-only",
+        "position": "RB",
+        "n": 4009,
+        "mae": 4.99,
+        "rmse": 6.98,
+        "corr": 0.599
+      },
+      {
+        "profile": "vegas-only",
+        "position": "TE",
+        "n": 3272,
+        "mae": 3.87,
+        "rmse": 5.4,
+        "corr": 0.512
+      },
+      {
+        "profile": "vegas-only",
+        "position": "WR",
+        "n": 6528,
+        "mae": 5.05,
+        "rmse": 7.03,
+        "corr": 0.54
+      },
+      {
+        "profile": "weather-only",
+        "position": "QB",
+        "n": 1880,
+        "mae": 6.78,
+        "rmse": 8.66,
+        "corr": 0.48
+      },
+      {
+        "profile": "weather-only",
+        "position": "TE",
+        "n": 3272,
+        "mae": 3.83,
+        "rmse": 5.34,
+        "corr": 0.523
+      },
+      {
+        "profile": "weather-only",
+        "position": "WR",
+        "n": 6528,
+        "mae": 5.03,
+        "rmse": 6.98,
+        "corr": 0.548
       }
     ]
   },
   "historical_example": {
-    "season": null,
-    "week": null,
-    "value_plays": [],
-    "scored_lineups": []
+    "season": 2026,
+    "week": 2,
+    "value_plays": [
+      {
+        "player": "CAR DST",
+        "position": "DST",
+        "salary": 2700,
+        "projected_points": 3.2,
+        "actual_points": 26.0,
+        "value_per_1k": 9.63
+      },
+      {
+        "player": "Dalton Schultz",
+        "position": "TE",
+        "salary": 3200,
+        "projected_points": 9.8,
+        "actual_points": 29.0,
+        "value_per_1k": 9.06
+      },
+      {
+        "player": "NE DST",
+        "position": "DST",
+        "salary": 3100,
+        "projected_points": 9.2,
+        "actual_points": 21.0,
+        "value_per_1k": 6.77
+      },
+      {
+        "player": "Darren Waller",
+        "position": "TE",
+        "salary": 3100,
+        "projected_points": 6.1,
+        "actual_points": 18.3,
+        "value_per_1k": 5.9
+      },
+      {
+        "player": "MIN DST",
+        "position": "DST",
+        "salary": 2600,
+        "projected_points": 12.7,
+        "actual_points": 15.0,
+        "value_per_1k": 5.77
+      },
+      {
+        "player": "Tre Tucker",
+        "position": "WR",
+        "salary": 4500,
+        "projected_points": 7.0,
+        "actual_points": 25.9,
+        "value_per_1k": 5.76
+      },
+      {
+        "player": "Jaxon Smith-Njigba",
+        "position": "WR",
+        "salary": 8100,
+        "projected_points": 23.9,
+        "actual_points": 45.5,
+        "value_per_1k": 5.62
+      },
+      {
+        "player": "Cody White",
+        "position": "WR",
+        "salary": 3000,
+        "projected_points": 1.0,
+        "actual_points": 16.4,
+        "value_per_1k": 5.47
+      },
+      {
+        "player": "Jake Ferguson",
+        "position": "TE",
+        "salary": 3800,
+        "projected_points": 10.8,
+        "actual_points": 20.3,
+        "value_per_1k": 5.34
+      },
+      {
+        "player": "CeeDee Lamb",
+        "position": "WR",
+        "salary": 7300,
+        "projected_points": 15.1,
+        "actual_points": 38.3,
+        "value_per_1k": 5.25
+      },
+      {
+        "player": "Nate Adkins",
+        "position": "TE",
+        "salary": 2500,
+        "projected_points": 2.5,
+        "actual_points": 12.8,
+        "value_per_1k": 5.12
+      },
+      {
+        "player": "Rashod Bateman",
+        "position": "WR",
+        "salary": 4400,
+        "projected_points": 3.3,
+        "actual_points": 21.8,
+        "value_per_1k": 4.95
+      },
+      {
+        "player": "Ryan Miller",
+        "position": "WR",
+        "salary": 3000,
+        "projected_points": 3.6,
+        "actual_points": 14.7,
+        "value_per_1k": 4.9
+      },
+      {
+        "player": "Denzel Boston",
+        "position": "WR",
+        "salary": 4200,
+        "projected_points": 11.7,
+        "actual_points": 20.5,
+        "value_per_1k": 4.88
+      },
+      {
+        "player": "Dak Prescott",
+        "position": "QB",
+        "salary": 6400,
+        "projected_points": 19.1,
+        "actual_points": 29.8,
+        "value_per_1k": 4.65
+      }
+    ],
+    "scored_lineups": [
+      {
+        "source": "hindsight",
+        "label": "hindsight-optimal",
+        "total_salary": 49800,
+        "total_projection": 258.5,
+        "actual_points": 258.5,
+        "players": [
+          {
+            "id": 83,
+            "name": "Dak Prescott",
+            "position": "QB",
+            "team": "DAL",
+            "salary": 6400,
+            "projection": 29.76,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 4.65,
+            "points_needed_2x": 12.8,
+            "projected_2x": true
+          },
+          {
+            "id": 157,
+            "name": "Dalton Schultz",
+            "position": "TE",
+            "team": "HOU",
+            "salary": 3200,
+            "projection": 29.0,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 9.06,
+            "points_needed_2x": 6.4,
+            "projected_2x": true
+          },
+          {
+            "id": 298,
+            "name": "CeeDee Lamb",
+            "position": "WR",
+            "team": "DAL",
+            "salary": 7300,
+            "projection": 38.3,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.25,
+            "points_needed_2x": 14.6,
+            "projected_2x": true
+          },
+          {
+            "id": 352,
+            "name": "DeVonta Smith",
+            "position": "WR",
+            "team": "PHI",
+            "salary": 6800,
+            "projection": 30.7,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 4.51,
+            "points_needed_2x": 13.6,
+            "projected_2x": true
+          },
+          {
+            "id": 471,
+            "name": "Jaxon Smith-Njigba",
+            "position": "WR",
+            "team": "SEA",
+            "salary": 8100,
+            "projection": 45.5,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.62,
+            "points_needed_2x": 16.2,
+            "projected_2x": true
+          },
+          {
+            "id": 478,
+            "name": "Tre Tucker",
+            "position": "WR",
+            "team": "LV",
+            "salary": 4500,
+            "projection": 25.9,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.76,
+            "points_needed_2x": 9.0,
+            "projected_2x": true
+          },
+          {
+            "id": 694,
+            "name": "CAR DST",
+            "position": "DST",
+            "team": "CAR",
+            "salary": 2700,
+            "projection": 26.0,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 9.63,
+            "points_needed_2x": 5.4,
+            "projected_2x": true
+          },
+          {
+            "id": 2083,
+            "name": "Omarion Hampton",
+            "position": "RB",
+            "team": "LAC",
+            "salary": 6600,
+            "projection": 18.5,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 2.8,
+            "points_needed_2x": 13.2,
+            "projected_2x": true
+          },
+          {
+            "id": 2631,
+            "name": "Jonah Coleman",
+            "position": "RB",
+            "team": "DEN",
+            "salary": 4200,
+            "projection": 14.8,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 3.52,
+            "points_needed_2x": 8.4,
+            "projected_2x": true
+          }
+        ]
+      },
+      {
+        "source": "hindsight",
+        "label": "hindsight-optimal",
+        "total_salary": 49800,
+        "total_projection": 258.5,
+        "actual_points": 258.5,
+        "players": [
+          {
+            "id": 83,
+            "name": "Dak Prescott",
+            "position": "QB",
+            "team": "DAL",
+            "salary": 6400,
+            "projection": 29.76,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 4.65,
+            "points_needed_2x": 12.8,
+            "projected_2x": true
+          },
+          {
+            "id": 157,
+            "name": "Dalton Schultz",
+            "position": "TE",
+            "team": "HOU",
+            "salary": 3200,
+            "projection": 29.0,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 9.06,
+            "points_needed_2x": 6.4,
+            "projected_2x": true
+          },
+          {
+            "id": 298,
+            "name": "CeeDee Lamb",
+            "position": "WR",
+            "team": "DAL",
+            "salary": 7300,
+            "projection": 38.3,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.25,
+            "points_needed_2x": 14.6,
+            "projected_2x": true
+          },
+          {
+            "id": 352,
+            "name": "DeVonta Smith",
+            "position": "WR",
+            "team": "PHI",
+            "salary": 6800,
+            "projection": 30.7,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 4.51,
+            "points_needed_2x": 13.6,
+            "projected_2x": true
+          },
+          {
+            "id": 471,
+            "name": "Jaxon Smith-Njigba",
+            "position": "WR",
+            "team": "SEA",
+            "salary": 8100,
+            "projection": 45.5,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.62,
+            "points_needed_2x": 16.2,
+            "projected_2x": true
+          },
+          {
+            "id": 478,
+            "name": "Tre Tucker",
+            "position": "WR",
+            "team": "LV",
+            "salary": 4500,
+            "projection": 25.9,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.76,
+            "points_needed_2x": 9.0,
+            "projected_2x": true
+          },
+          {
+            "id": 694,
+            "name": "CAR DST",
+            "position": "DST",
+            "team": "CAR",
+            "salary": 2700,
+            "projection": 26.0,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 9.63,
+            "points_needed_2x": 5.4,
+            "projected_2x": true
+          },
+          {
+            "id": 2083,
+            "name": "Omarion Hampton",
+            "position": "RB",
+            "team": "LAC",
+            "salary": 6600,
+            "projection": 18.5,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 2.8,
+            "points_needed_2x": 13.2,
+            "projected_2x": true
+          },
+          {
+            "id": 2631,
+            "name": "Jonah Coleman",
+            "position": "RB",
+            "team": "DEN",
+            "salary": 4200,
+            "projection": 14.8,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 3.52,
+            "points_needed_2x": 8.4,
+            "projected_2x": true
+          }
+        ]
+      },
+      {
+        "source": "hindsight",
+        "label": "hindsight-optimal",
+        "total_salary": 49800,
+        "total_projection": 258.5,
+        "actual_points": 258.5,
+        "players": [
+          {
+            "id": 83,
+            "name": "Dak Prescott",
+            "position": "QB",
+            "team": "DAL",
+            "salary": 6400,
+            "projection": 29.76,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 4.65,
+            "points_needed_2x": 12.8,
+            "projected_2x": true
+          },
+          {
+            "id": 157,
+            "name": "Dalton Schultz",
+            "position": "TE",
+            "team": "HOU",
+            "salary": 3200,
+            "projection": 29.0,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 9.06,
+            "points_needed_2x": 6.4,
+            "projected_2x": true
+          },
+          {
+            "id": 298,
+            "name": "CeeDee Lamb",
+            "position": "WR",
+            "team": "DAL",
+            "salary": 7300,
+            "projection": 38.3,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.25,
+            "points_needed_2x": 14.6,
+            "projected_2x": true
+          },
+          {
+            "id": 352,
+            "name": "DeVonta Smith",
+            "position": "WR",
+            "team": "PHI",
+            "salary": 6800,
+            "projection": 30.7,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 4.51,
+            "points_needed_2x": 13.6,
+            "projected_2x": true
+          },
+          {
+            "id": 471,
+            "name": "Jaxon Smith-Njigba",
+            "position": "WR",
+            "team": "SEA",
+            "salary": 8100,
+            "projection": 45.5,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.62,
+            "points_needed_2x": 16.2,
+            "projected_2x": true
+          },
+          {
+            "id": 478,
+            "name": "Tre Tucker",
+            "position": "WR",
+            "team": "LV",
+            "salary": 4500,
+            "projection": 25.9,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 5.76,
+            "points_needed_2x": 9.0,
+            "projected_2x": true
+          },
+          {
+            "id": 694,
+            "name": "CAR DST",
+            "position": "DST",
+            "team": "CAR",
+            "salary": 2700,
+            "projection": 26.0,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 9.63,
+            "points_needed_2x": 5.4,
+            "projected_2x": true
+          },
+          {
+            "id": 2083,
+            "name": "Omarion Hampton",
+            "position": "RB",
+            "team": "LAC",
+            "salary": 6600,
+            "projection": 18.5,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 2.8,
+            "points_needed_2x": 13.2,
+            "projected_2x": true
+          },
+          {
+            "id": 2631,
+            "name": "Jonah Coleman",
+            "position": "RB",
+            "team": "DEN",
+            "salary": 4200,
+            "projection": 14.8,
+            "floor": null,
+            "pos_rank": null,
+            "effective_pos_rank": null,
+            "value_score": 3.52,
+            "points_needed_2x": 8.4,
+            "projected_2x": true
+          }
+        ]
+      }
+    ]
   }
 }
