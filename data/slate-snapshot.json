@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-26T20:13:06.123912+00:00",
+  "generated_at": "2026-09-22T12:50:44.155418+00:00",
   "scope_note": "Game-level market facts only (matchups, Vegas lines) \u2014 never player-level data. Safe to show for the current/upcoming slate, unlike the retrospective-only content-grounding export.",
   "slate": {
     "season": 2026,
-    "week": 1,
-    "slate_name": "Week 1 Main Slate",
-    "num_games": 12
+    "week": 3,
+    "slate_name": "Week 3 Main Slate",
+    "num_games": 13
   },
   "highlights": {
     "highest_total": {
-      "matchup": "TB @ CIN",
-      "over_under": 51.5
+      "matchup": "BAL @ DAL",
+      "over_under": 52.5
     },
     "biggest_spread": {
-      "matchup": "ARI @ LAC",
-      "spread": 10.5
+      "matchup": "KC @ MIA",
+      "spread": -11.5
     }
   }
 }
