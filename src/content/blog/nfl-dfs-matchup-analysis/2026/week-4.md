@@ -2,7 +2,7 @@
 title: "NFL DFS Matchup Analysis — Week 4, 2026: Reading This Week's Real Lines"
 description: "This week's real Vegas lines and position-level matchup reads for NFL Week 4, 2026 — which games favor which positions, and why, not just a list of spreads."
 pubDate: "2026-09-30T00:00:00"
-dateModified: "2026-09-30T12:00:00"
+dateModified: "2026-10-01T16:00:00"
 tags: ["Matchups", "Week 4", "NFL DFS"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -13,7 +13,7 @@ season: 2026
 week: 4
 ---
 
-*As of September 30, 2026. Lines can still move before lock — this
+*Updated October 1, 2026 — added the full DVP board below. Lines can still move before lock — this
 reflects real spreads and totals as of this update, not what they'll be
 at kickoff.*
 
@@ -72,6 +72,59 @@ entire slate, and the widest spread on the board. Most skill-position
 reads in this game sit close to neutral. One real number stands out
 anyway: T.J. Hockenson carries a 1.13x matchup multiplier on the
 Minnesota side — genuine signal even in a game this lopsided on paper.
+
+## The full DVP board: every team, every skill position
+
+Not just the four featured games above — here's where every team on this
+week's slate ranks against quarterbacks, running backs, wide receivers,
+and tight ends, built the same way as the featured-game numbers (real
+cumulative fantasy points allowed vs. league average, through this
+season's games so far). Above 1.0 means that defense has allowed more
+than average to that position; below 1.0 means less.
+
+**One real caveat before using this as more than a research tool**: this
+site's own projection model backtested this exact number as a *direct*
+point multiplier for QB/RB/WR/TE and found it net-negative — it's
+zeroed out of the model's own projections for offense (DST is the one
+exception, where it's kept at full weight). That doesn't mean the
+underlying data is useless; it means treat this as a prompt for your own
+research — a real schematic gap worth investigating — not a guaranteed
+points bump to build around blindly.
+
+| Team | QB | RB | WR | TE |
+|---|---|---|---|---|
+| ARI | 1.09 | 1.18 | 1.01 | 0.95 |
+| BAL | 0.93 | 0.96 | 1.03 | 0.94 |
+| BUF | 0.91 | 1.10 | 0.91 | 0.87 |
+| CHI | 0.97 | 1.05 | 0.97 | 1.07 |
+| CIN | 1.13 | 1.09 | 0.96 | 1.36 |
+| DAL | 1.12 | 0.98 | 1.04 | 0.98 |
+| DEN | 0.91 | 0.97 | 0.92 | 1.04 |
+| GB | 0.99 | 1.06 | 0.99 | 0.99 |
+| HOU | 1.02 | 0.87 | 0.97 | 0.96 |
+| JAX | 1.01 | 1.03 | 1.03 | 0.97 |
+| KC | 0.97 | 0.82 | 0.87 | 1.05 |
+| LAC | 1.02 | 0.91 | 1.02 | 0.90 |
+| LAR | 1.08 | 0.95 | 1.06 | 1.07 |
+| LV | 0.99 | 1.00 | 0.98 | 1.01 |
+| MIA | 1.03 | 1.02 | 0.92 | 1.13 |
+| MIN | 0.90 | 0.90 | 1.10 | 0.88 |
+| NE | 0.87 | 0.97 | 0.96 | 0.95 |
+| NYG | 0.96 | 1.15 | 1.05 | 0.84 |
+| NYJ | 0.87 | 1.12 | 0.88 | 0.99 |
+| PHI | 1.03 | 0.91 | 1.00 | 0.90 |
+| SEA | 0.97 | 0.96 | 0.96 | 1.12 |
+| SF | 0.93 | 1.04 | 1.01 | 0.91 |
+| TB | 1.23 | 0.91 | 1.05 | 1.22 |
+| TEN | 0.97 | 0.99 | 1.00 | 0.83 |
+
+**Two real standouts this week beyond the four featured games above**:
+Cincinnati is the softest matchup in the league against tight ends
+(1.36x) and the 2nd-softest against quarterbacks (1.13x) — real
+reinforcement for the JAX@CIN stack already covered. Tampa Bay is the
+single softest matchup against quarterbacks (1.23x) and 2nd-softest
+against tight ends (1.22x) — a real signal in a game (GB @ TB) that
+didn't make this week's featured list.
 
 ## FAQ
 
