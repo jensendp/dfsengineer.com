@@ -2,7 +2,7 @@
 title: "NFL DFS Value Plays — Week 4, 2026: The Board and the Reasoning"
 description: "This week's real DraftKings value board for NFL Week 4, 2026 — salaries, projections, and the reasoning behind each pick, not just a ranked list."
 pubDate: "2026-09-30T00:00:00"
-dateModified: "2026-09-30T00:00:00"
+dateModified: "2026-10-01T15:00:00"
 tags: ["Salary & Value", "Value Plays", "Week 4", "NFL DFS"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -32,11 +32,19 @@ disagreement worth tracking.
 
 **Brock Purdy, QB, SF — $6,700, 25.6 projected (3.83 per $1k)**
 Confirmed starter, reasonable agreement with DK's own number (27.3).
+Worth one honest caveat beyond DK's own number, though: an independent
+outside projection source lands close to dead even on him this week —
+genuinely split, not the clean consensus pick the salary alone would
+suggest.
 
 **Chase Brown, RB, CIN — $6,100, 21.6 projected (3.53 per $1k)**
-Confirmed starter bouncing back from a real quiet Week 3 — DK's FPPG
-(13.0) still reflects that recent game more heavily than this site's
-model does, a real gap worth watching either direction.
+Confirmed starter bouncing back from a real quiet Week 3 — and the
+strongest cross-source agreement on this entire board. Two independent
+outside reads this week landed on the same specific case: a real 22-25-15
+touch range over his last three weeks with only one touchdown to show
+for it, a genuine buy-low ahead of touchdown regression rather than a
+hopeful guess. DK's FPPG (13.0) still reflects the quiet recent game
+more heavily than either read above does.
 
 **Kenyon Sadiq, TE, NYJ — $4,000, 13.9 projected (3.47 per $1k)**
 The single best tight end value on the whole board, with DK's own
@@ -53,7 +61,11 @@ read.
 
 **Derrick Henry, RB, BAL — $8,400, 28.4 projected (3.38 per $1k)**
 The most expensive name on this board, and it still clears — real,
-reasonable agreement with DK's own number (26.0).
+reasonable agreement with DK's own number (26.0). One real caveat from
+a different comparison, though: an independent outside projection
+source agrees he belongs in this tier but lands notably lower on his
+exact point total — this site's model is the more bullish of the two
+reads specifically, worth knowing before treating his ceiling as settled.
 
 **Zach Ertz, TE, PHI — $3,100, 10.3 projected (3.33 per $1k)**
 Not a confirmed #1 — TE2 on Philadelphia's real depth chart, carrying
@@ -65,11 +77,25 @@ one.
 
 **Michael Wilson, WR, ARI — $5,500, 18.2 projected (3.31 per $1k)**
 Confirmed starter, DK's FPPG (13.4) running cooler — real, moderate
-disagreement.
+disagreement. An outside source's read on the underlying usage backs the
+higher number: a real 35% first-read target share, top-5 on the entire
+slate by that measure, still priced like a complementary piece rather
+than a real target earner.
 
 **Trey McBride, TE, ARI — $6,500, 20.7 projected (3.19 per $1k)**
 The clean top-tier tight end value this week, close agreement with
 DK's own number (19.7).
+
+## Worth knowing: one real availability risk beyond the salary tag
+
+Justin Jefferson (MIN, $7,300) isn't a value play — he's priced like
+the star he is — but he's worth a direct flag anyway. DK only lists him
+Questionable, but real signal points toward Minnesota sitting him
+entirely this week: the team is already 3-0, has a Week 6 bye coming
+up, and has no real reason to push a lingering ankle issue. That's a
+genuine inactive risk, not a normal game-time call, and it's worth
+knowing before anyone builds around him assuming a standard
+Questionable-tag outcome.
 
 ## Worth knowing: defenses lead this week's value board again
 
