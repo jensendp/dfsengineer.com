@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-09-29T13:41:27.080945+00:00",
+  "generated_at": "2026-10-07T13:23:25.432490+00:00",
   "scope_note": "Game-level market facts only (matchups, Vegas lines) \u2014 never player-level data. Safe to show for the current/upcoming slate, unlike the retrospective-only content-grounding export.",
   "slate": {
     "season": 2026,
-    "week": 4,
-    "slate_name": "Week 4 Main Slate",
-    "num_games": 12
+    "week": 5,
+    "slate_name": "Week 5 Main Slate",
+    "num_games": 11
   },
   "highlights": {
     "highest_total": {
-      "matchup": "JAX @ CIN",
-      "over_under": 51.5
+      "matchup": "DET @ ARI",
+      "over_under": 54.5
     },
     "biggest_spread": {
-      "matchup": "TEN @ BAL",
-      "spread": 11.5
+      "matchup": "HOU @ TEN",
+      "spread": -7.5
     }
   }
 }
