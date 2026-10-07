@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T13:23:36.458032+00:00",
+  "generated_at": "2026-10-07T13:29:41.124381+00:00",
   "safety_note": "All 'historical_example' data below is retrospective \u2014 from a completed, already-scored slate. Never treat this as a current recommendation.",
   "methodology": {
     "profiles": {
@@ -142,7 +142,7 @@
         "n": 7,
         "mae": 0.14,
         "rmse": 0.38,
-        "corr": NaN
+        "corr": null
       },
       {
         "profile": "default",
