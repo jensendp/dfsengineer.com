@@ -2,7 +2,7 @@
 title: "NFL DFS Matchup Analysis — Week 5, 2026: Reading This Week's Real Lines"
 description: "This week's real Vegas lines and position-level matchup reads for NFL Week 5, 2026 — which games favor which positions, and why, not just a list of spreads."
 pubDate: "2026-10-07T00:00:00"
-dateModified: "2026-10-07T00:00:00"
+dateModified: "2026-10-08T00:00:00"
 tags: ["Matchups", "Week 5", "NFL DFS"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -13,9 +13,12 @@ season: 2026
 week: 5
 ---
 
-*As of October 7, 2026, before this week's games lock. Lines can still
-move before kickoff — this reflects real spreads and totals as of this
-update, not what they'll be at lock.*
+*Updated October 8, 2026 — corrected a real error in every spread below:
+the favored team in each matchup was reported backwards in the original
+version of this post (a sign-convention mistake on the spread field, not
+a data problem — see the FAQ for the real convention). Lines can also
+move before kickoff on their own — this reflects real spreads and totals
+as of this update, not what they'll be at lock.*
 
 Eleven games on this week's Main Slate, down from twelve — and, same as
 every week, they're not equally useful for DFS. A high total tells you a
@@ -29,10 +32,10 @@ defensive performance behind them, alongside the prior-season base.
 
 ## The best stacking environment: DET @ ARI
 
-**Spread: ARI -4.5, Over/Under: 54.5** — the highest total on the slate,
-and not close: the next-highest game is seven points lower. A spread
-inside a touchdown means neither side is a lock to abandon the pass
-early either.
+**Spread: DET -5.5, Over/Under: 54.5** — the highest total on the slate,
+and not close: the next-highest game is nine points lower. Detroit is
+the real favorite here, not Arizona, but a spread inside a touchdown
+still means neither side is a lock to abandon the pass early.
 
 The position-level reads back it up on both sides. Jacoby Brissett
 carries a real 1.24x matchup multiplier at quarterback, with Michael
@@ -41,34 +44,32 @@ whole slate. On the Detroit side, Jahmyr Gibbs sits at 1.16x and Jared
 Goff at 1.09x — a real two-way shootout environment, not just a high
 number on the scoreboard.
 
-## Second-highest total, and the tighter spread: SF @ SEA
+## Tied for second on total, the tightest spread of the three: CHI @ GB
 
-**Spread: SF -2.5, Over/Under: 46.5.** The second-highest total on the
-slate, and a tighter spread than the top game — a real second stacking
-candidate.
+**Spread: CHI -2.5, Over/Under: 45.5.** Chicago is the real favorite
+here, not Green Bay — and this is the tightest spread of three games
+tied at 45.5 this week, a real close-game candidate. Nothing here
+clears a true standout threshold, though: D'Andre Swift (1.06x) and
+Tucker Kraft (1.04x) are the two best numbers on the board, genuinely
+modest reads rather than a buried standout.
 
-The one real individual number here: George Kittle carries a 1.12x
-matchup multiplier on the 49ers side. Seattle's own offense reads close
-to neutral across the skill positions this week, Jaxon Smith-Njigba
-included — the signal in this game is concentrated on one tight end, not
-spread across the board.
+## Also tied at 45.5, a real individual standout: SF @ SEA
 
-## Close spread, modest signal across the board: CHI @ GB
+**Spread: SEA -3.0, Over/Under: 45.5.** Seattle is the real favorite
+here, not San Francisco. The one real individual number in this game:
+George Kittle carries a 1.12x matchup multiplier on the 49ers side.
+Seattle's own offense reads close to neutral across the skill
+positions this week, Jaxon Smith-Njigba included — the signal in this
+game is concentrated on one tight end, not spread across the board.
 
-**Spread: GB -3.0, Over/Under: 45.5.** Tied for third-highest total, and
-a close-enough spread that both offenses should stay involved. Unlike
-the two games above, nothing here clears a real standout threshold —
-D'Andre Swift (1.06x) and Tucker Kraft (1.04x) are the two best numbers
-on the board, genuinely modest reads rather than a buried standout.
+## The widest of the tied group, and the one where the real signal is on both defenses: LV @ NE
 
-## The one where the real signal is on both defenses: LV @ NE
-
-**Spread: NE +3.5 (Raiders favored), Over/Under: 45.5.** Tied with the
-Bears/Packers game for third-highest total, but the real story here
-isn't on offense. Both defenses carry an identical 1.38x matchup
-multiplier — Las Vegas and New England each grading as a genuinely soft
-DST matchup against the other, an unusual case of both sides of the same
-game standing out the same way. The skill-position reads stay close to
+**Spread: NE -3.5, Over/Under: 45.5.** New England is the real favorite
+here, not Las Vegas. The real story in this game isn't on offense
+either way — both defenses carry an identical 1.38x matchup multiplier,
+Las Vegas and New England each grading as a genuinely soft DST matchup
+against the other, an unusual case of both sides of the same game
+standing out the same way. The skill-position reads stay close to
 neutral on both sides — Rhamondre Stevenson and TreVeyon Henderson at
 1.01x, Hunter Henry at 1.00x — so this week the better angle in this
 specific game is the defense/special teams slot, not a skill-position
@@ -167,6 +168,16 @@ current-season sample of the year so far. The
 [matchup analysis hub](/blog/nfl-dfs-matchup-analysis/) covers this and
 its other real limitations (small samples, defensive injuries, game
 script blindness) in full.
+
+### How do I read a spread number like "DET -5.5"?
+
+The number after the team name is how many points that team is favored
+by — a negative number next to a team name means that team is the
+favorite. This post names the actual favorite directly for each game
+rather than printing a bare home/away-relative number, specifically to
+avoid the kind of sign confusion that led to an earlier version of this
+post naming the wrong favorite in all four featured games (corrected
+October 8, 2026).
 
 ### How often does this get updated before kickoff?
 
