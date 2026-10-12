@@ -15,8 +15,9 @@ interface Props {
   pillar?: string;
   contentType?: string;
   hub?: string;
-  season?: number;
+  season?: number | string;
   week?: number;
+  slateDate?: Date;
   slug: string;
   faqs?: { question: string; answer: string }[];
 }
@@ -51,13 +52,22 @@ const seriesPosts = pillar
 // break the widget on the page it matters most on. Separate from
 // seriesPosts above: that one clusters by broader pillar topic, this one
 // is specifically this hub's weekly children, newest season/week first.
+// Sorted by slateDate (nightly sports) falling back to pubDate (weekly
+// sports, which don't set slateDate) — real chronological order, newest
+// first. Previously sorted by `season` then `week`, both numbers; that
+// broke once `season` became a string for NBA ("2026-27") and `week`
+// doesn't exist for a nightly cadence at all. slateDate/pubDate always
+// exist and always sort correctly regardless of what cadence or season
+// format a given sport uses, so this one comparator now serves every hub.
 const hubWeekPosts = hub
   ? (
       await getCollection(
         'blog',
         (entry) => (!entry.data.draft || import.meta.env.DEV) && entry.data.hub === hub && entry.slug !== slug
       )
-    ).sort((a, b) => (b.data.season ?? 0) - (a.data.season ?? 0) || (b.data.week ?? 0) - (a.data.week ?? 0))
+    ).sort((a, b) =>
+      (b.data.slateDate ?? b.data.pubDate).valueOf() - (a.data.slateDate ?? a.data.pubDate).valueOf()
+    )
   : [];
 
 const canonicalURL = Astro.url.href;
@@ -150,7 +160,7 @@ const breadcrumbSchema = {
     {hubWeekPosts.length > 0 && (
       <section class="section series-section">
         <div class="wrap">
-          <p class="section-label">This season's weeks</p>
+          <p class="section-label">More from this hub</p>
           <ul class="post-grid">
             {hubWeekPosts.map((post) => (
               <li>
