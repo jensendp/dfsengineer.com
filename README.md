@@ -1,7 +1,7 @@
 # dfsengineer.com
 
-Astro static site for DFS Engineer Playbook's NFL DFS content — same stack
-as derekjensen.io (Astro content collections → GitHub → Vercel), by
+Astro static site for DFS Engineer Playbook's NFL and NBA DFS content — same
+stack as derekjensen.io (Astro content collections → GitHub → Vercel), by
 deliberate choice, not default (see `content-plan.md` and
 `n8n-pipeline-review.md` in the `skool` project's `dfs-engineer-playbook/`
 folder for the full reasoning and the content plan this scaffold serves).
@@ -11,24 +11,68 @@ folder for the full reasoning and the content plan this scaffold serves).
 - `src/content/blog/` — one markdown file per post. Frontmatter schema is
   defined in `src/content/config.ts` and must stay in sync with what the
   n8n content pipeline writes (`n8n-dfs-content-pipeline.json`, "Build
-  Post Content" node): `title`, `description`, `pubDate`, `tags`, `author`,
-  `draft`, `heroImage`.
-- `src/pages/index.astro` — post listing.
-- `src/pages/blog/[...slug].astro` — individual post pages.
-- `src/layouts/BlogPost.astro` — shared post layout.
+  Post Content" node). Fields: `title`, `description`, `pubDate`, `tags`,
+  `author`, `draft`, plus optional `pillar`, `contentType`
+  (`Pillar` | `Spoke`), and the hub fields `hub`, `season`, `week`,
+  `slateDate`, `dateModified`.
+  - `hub` is a free string (NFL: `value-plays`, `matchup-analysis`; NBA
+    will use `picks-today`), so a new sport needs no schema change.
+  - `season` is a number (NFL, `2026`) or a string (NBA, `"2026-27"`).
+  - Weekly sports set `week`; nightly sports set `slateDate`. Never both.
+- `src/pages/index.astro`, `about.astro`, `404.astro` — home, about, 404.
+- `src/pages/blog/index.astro` — post listing.
+- `src/pages/blog/[...slug].astro` — individual post pages (catch-all, so
+  nested season/week folders work).
+- `src/pages/nba/scorecard.astro` — public NBA model scorecard.
+- `src/pages/nba/scorecard.json.ts` — the same record as a JSON endpoint.
+- `src/layouts/` — `BaseLayout`, `BlogPost`.
+- `src/components/` — `SiteHeader`, `SiteFooter`, `Analytics`.
+- `src/lib/nba-record.ts` — build-time loader for the scorecard record.
+- `data/` — build inputs, committed:
+  - `dfs-local-export.json` — NFL content-grounding export.
+  - `slate-snapshot.json` — NFL slate snapshot.
+  - `nba/scorecard.json` — NBA record exported by `nba-local`
+    (`Projects/nba-local`). Refresh with `nba-local pull-record` with
+    `NBA_RECORD_DEST` set to `<this repo>/data/nba`. Set
+    `NBA_SCORECARD_FILE` to preview the page against another export.
 
-## Status (Aug 26, 2026)
+## Status (Oct 13, 2026)
 
-7 posts live (6 fundamentals + an About page). Content plan, the
-20-pillar topical map, and the Year 1 page selection live in the
-`skool` project: `dfs-engineer-playbook/content-plan.md` and
-`content-map-400.md` — but that plan has since been validated against
-real keyword/SERP/competitor data and reconciled directly in the
-Notion "DFS Content Pipeline" DB (`Keyword`/`Validated`/`Priority`
-fields). Most of the original 400-page plan collapsed into ~14 real
-page targets once checked against actual search demand; see OpenSEO's
-project context (custom section `pillar-keyword-validation`) for the
-full breakdown.
+### NFL — in season
+
+23 posts: 17 evergreen guides plus two weekly hubs
+(`nfl-dfs-value-plays`, `nfl-dfs-matchup-analysis`) with Weeks 1–5 of
+2026 published. Weekly posts continue through the season.
+
+### NBA — pre-season, data gathering
+
+The 2026-27 NBA season starts **Oct 20, 2026**. Until then, nothing
+reports on real results; the work is groundwork:
+
+- 4 evergreen guides are live: complete guide, minutes and injuries,
+  ownership and leverage, and NBA DFS vs NFL DFS.
+- The `/nba/scorecard/` page and `scorecard.json` endpoint are built and
+  linked in the header. `data/nba/scorecard.json` is currently empty
+  (`rows: 0`, `enough_data: false`), so the page renders its "season
+  hasn't started" state. The loader never fabricates data: a missing or
+  unreadable file is treated as an empty record.
+- `nba-local` is collecting data for the projection model. Reporting
+  starts with real season data once games are played.
+- Not built yet: the NBA `picks-today` hub and its nightly posts
+  (`hub: picks-today`, `slateDate`), and season/index pages.
+
+### Content planning
+
+The content plan, the 20-pillar topical map, and the Year 1 page
+selection live in the `skool` project:
+`dfs-engineer-playbook/content-plan.md` and `content-map-400.md`. That plan
+has since been validated against real keyword/SERP/competitor data and
+reconciled directly in the Notion "DFS Content Pipeline" DB
+(`Keyword`/`Validated`/`Priority` fields). Most of the original 400-page
+plan collapsed into ~14 real page targets once checked against actual
+search demand; see OpenSEO's project context (custom section
+`pillar-keyword-validation`) for the full breakdown. NBA planning is in
+`nba/nba-content-plan.md`.
 
 ### URL structure — resolved
 
@@ -67,5 +111,6 @@ The flat-vs-pillar-nested question from the original plan is settled:
 
 ```
 npm install
-npm run dev
+npm run dev      # dev server
+npm run build    # astro check + astro build (35 pages as of Oct 13, 2026)
 ```
