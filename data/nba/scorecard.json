@@ -1,0 +1,19 @@
+{
+ "summary": {
+  "generated_at": "2026-10-08T14:22:41+00:00",
+  "since": null,
+  "until": null,
+  "season_types": [
+   2,
+   3,
+   5
+  ],
+  "rows": 0,
+  "slates": 0,
+  "nights": 0,
+  "model_versions": [],
+  "enough_data": false
+ },
+ "rows": [],
+ "note": "Each row is the last projection saved before that player's game tipped off. Players who did not play are included."
+}

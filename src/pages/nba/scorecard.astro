@@ -1,0 +1,291 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadRecord } from '../../lib/nba-record';
+
+// Set to true to take the page back to draft: it becomes noindex. (To also keep it out of the sitemap, filter
+// '/nba/scorecard' in astro.config.mjs.)
+const DRAFT = false;
+
+const canonicalURL = 'https://www.dfsengineer.com/nba/scorecard/';
+const record = loadRecord();
+const s = record?.summary;
+
+const hasRows = !!s && s.rows > 0;
+const enough = !!s?.enough_data;
+const state: 'empty' | 'progress' | 'full' = !hasRows ? 'empty' : enough ? 'full' : 'progress';
+const includesPreseason = !!s?.season_types?.includes(1);
+
+// Section labels count up in render order, so they stay sequential whichever sections a given state shows.
+let sectionNo = 0;
+const nextNo = () => String(++sectionNo).padStart(2, '0');
+
+const f = (v: number | null | undefined, d = 2) => (v == null ? 'n/a' : v.toFixed(d));
+const signed = (v: number | null | undefined, d = 2) => (v == null ? 'n/a' : (v > 0 ? '+' : '') + v.toFixed(d));
+const pct = (v: number | null | undefined) => (v == null ? 'n/a' : Math.round(v * 100) + '%');
+
+const pts = s?.points;
+const modelBeatsDk = !!pts && pts.model.mae != null && pts.dk_fppg.mae != null && pts.model.mae < pts.dk_fppg.mae;
+const updated = s?.generated_at ? new Date(s.generated_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' }) : null;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.dfsengineer.com/' },
+    { '@type': 'ListItem', position: 2, name: 'NBA scorecard', item: canonicalURL },
+  ],
+};
+---
+<BaseLayout
+  title="NBA DFS Projection Scorecard — Every Projection Graded | DFS Engineer"
+  description="Every NBA DFS projection is saved before tip-off and graded against the box score, including the players who did not play. See how it compares to DraftKings' own season averages."
+  canonicalURL={canonicalURL}
+  robots={DRAFT ? 'noindex, nofollow' : undefined}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><span aria-current="page">NBA scorecard</span>
+      </nav>
+      <p class="eyebrow">§ NBA — The record</p>
+      <h1>Every NBA projection, graded in public.</h1>
+      <p class="lede">
+        Each projection is saved before the game tips off and never edited. After the game it is graded against
+        the box score, players who did not play included. The good nights and the bad ones stay on the page.
+      </p>
+    </div>
+  </section>
+
+  {includesPreseason && (
+    <section class="section">
+      <div class="wrap">
+        <p class="notice">
+          <strong>Preseason preview.</strong> These numbers include preseason games, where starters play fewer
+          minutes and many veterans sit. Treat them as a test of the system, not as evidence about how the model
+          will do in the regular season.
+        </p>
+      </div>
+    </section>
+  )}
+
+  {state === 'empty' && (
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-label">{`§ ${nextNo()} — Where the record stands`}</h2>
+        <p class="lede">
+          There is nothing to grade yet, and that is deliberate. The public record starts with the first
+          regular-season slate on October 20, 2026. Preseason games are tracked privately for testing and are
+          not counted here.
+        </p>
+        <p class="lede">
+          Once games are graded, this page fills in on its own with the model's error, how it compares to a
+          plain DraftKings season average, how often the 80% range held, and every pick on the value board.
+        </p>
+      </div>
+    </section>
+  )}
+
+  {state === 'progress' && s && (
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-label">{`§ ${nextNo()} — Progress so far`}</h2>
+        <p class="lede">
+          {s.players_played ?? 0} players graded over {s.nights} {s.nights === 1 ? 'night' : 'nights'}. That is
+          too few to judge anything: the scorecard waits for 30 graded players before it draws conclusions, and a
+          real read takes weeks. The raw rows are below as they come in.
+        </p>
+      </div>
+    </section>
+  )}
+
+  {state !== 'empty' && s && pts && (
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-label">{`§ ${nextNo()} — Fantasy points: model vs. the baselines`}</h2>
+        <p class="lede">
+          All three methods are scored on the identical {pts.n} players, so none of them gets an easier test.
+          Lower error is better. The baseline to beat is simply the player's DraftKings season average.
+        </p>
+        <div class="card-grid">
+          <div class="stat-card">
+            <span class="stat-label">Model error (MAE)</span>
+            <span class={`stat-value ${state === 'full' && modelBeatsDk ? 'up' : ''}`}>{f(pts.model.mae)}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">DK season average error</span>
+            <span class="stat-value">{f(pts.dk_fppg.mae)}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">80% range held</span>
+            <span class="stat-value">{pct(s.range?.coverage)}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Players graded</span>
+            <span class="stat-value">{s.players_played ?? 0}</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="score-table">
+            <thead><tr><th>Method</th><th>MAE (pts)</th><th>Bias (pts)</th><th>Correlation</th></tr></thead>
+            <tbody>
+              <tr><td>This model</td><td>{f(pts.model.mae)}</td><td>{signed(pts.model.bias)}</td><td>{f(pts.model.corr)}</td></tr>
+              <tr><td>Model without injury logic</td><td>{f(pts.no_absence_logic.mae)}</td><td>{signed(pts.no_absence_logic.bias)}</td><td>{f(pts.no_absence_logic.corr)}</td></tr>
+              <tr><td>DraftKings season average</td><td>{f(pts.dk_fppg.mae)}</td><td>{signed(pts.dk_fppg.bias)}</td><td>{f(pts.dk_fppg.corr)}</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">
+          MAE is the average miss in fantasy points. Bias is the average of projection minus actual, so a positive
+          number means the method ran high. The 80% range is the model's floor-to-ceiling band; it should contain
+          the actual score about 80% of the time{s.range ? ` (${s.range.n} players here)` : ''}.
+        </p>
+      </div>
+    </section>
+  )}
+
+  {state !== 'empty' && s && (s.minutes || s.availability || s.lineups) && (
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-label">{`§ ${nextNo()} — Minutes, availability and lineups`}</h2>
+        {s.minutes && (
+          <p class="lede">
+            <strong>Minutes.</strong> Projected minutes missed by {f(s.minutes.model_mae, 1)} on average, against
+            {' '}{f(s.minutes.baseline_mae, 1)} for a plain recent average ({s.minutes.n} players).
+          </p>
+        )}
+        {s.availability && s.availability.players_projected_20_plus > 0 && (
+          <p class="lede">
+            <strong>Availability.</strong> Of {s.availability.players_projected_20_plus} players projected for 20+
+            points, {pct(s.availability.did_not_play_rate)} did not play: {pct(s.availability.did_not_play_rate_when_healthy)}
+            {' '}of those with no injury tag, and {pct(s.availability.did_not_play_rate_when_questionable)} of the
+            {' '}{s.availability.questionable_count} listed as questionable or doubtful. A projection for someone
+            who sits is graded as a miss.
+          </p>
+        )}
+        {s.lineups && s.lineups.projections_with_published_lineup > 0 && (
+          <p class="lede">
+            <strong>Confirmed lineups.</strong> A DraftKings lineup flag existed before tip-off for
+            {' '}{pct(s.lineups.share_of_projections_with_published_lineup)} of projections. Of the
+            {' '}{s.lineups.flagged_starters} players flagged as starters, {pct(s.lineups.flagged_who_started)}
+            {' '}started, and {pct(s.lineups.actual_starters_flagged)} of players who started had been flagged.
+          </p>
+        )}
+      </div>
+    </section>
+  )}
+
+  {state !== 'empty' && s?.value_board && (
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-label">{`§ ${nextNo()} — The value board`}</h2>
+        <p class="lede">
+          Each night the model picks its best points-per-dollar plays. A pick counts as a hit when the player
+          returns 5x salary or more; a pick who does not play counts as a miss. The comparison picks use the
+          same rule on DraftKings season averages.
+        </p>
+        <div class="table-wrap">
+          <table class="score-table">
+            <thead><tr><th>Picks by</th><th>Picks</th><th>Hit rate</th><th>Avg. actual pts</th></tr></thead>
+            <tbody>
+              <tr><td>This model</td><td>{s.value_board.model.picks}</td><td>{pct(s.value_board.model.hit_rate)}</td><td>{f(s.value_board.model.avg_actual, 1)}</td></tr>
+              <tr><td>DraftKings season average</td><td>{s.value_board.dk_fppg.picks}</td><td>{pct(s.value_board.dk_fppg.hit_rate)}</td><td>{f(s.value_board.dk_fppg.avg_actual, 1)}</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">Rule: {s.value_board.definition}.</p>
+      </div>
+    </section>
+  )}
+
+  {state !== 'empty' && s?.nightly && s.nightly.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-label">{`§ ${nextNo()} — Night by night`}</h2>
+        <div class="table-wrap">
+          <table class="score-table">
+            <thead><tr><th>Date</th><th>Players</th><th>Model MAE</th><th>DK avg. MAE</th><th>Value picks</th><th>Hit rate</th></tr></thead>
+            <tbody>
+              {[...s.nightly].reverse().map((n) => (
+                <tr>
+                  <td>{n.date}</td><td>{n.players_played}</td><td>{f(n.model_mae)}</td><td>{f(n.dk_mae)}</td>
+                  <td>{n.value_picks}</td><td>{pct(n.value_hit_rate)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-label">{`§ ${nextNo()} — The rules this is graded by`}</h2>
+      <ul class="rules">
+        <li><strong>Saved before tip-off.</strong> Each player is graded on the last projection saved before his own game started. Nothing is edited afterward, and each row carries its save time.</li>
+        <li><strong>No-shows count.</strong> A player who was projected and did not play is a miss, not a quietly removed row.</li>
+        <li><strong>Same players, same test.</strong> The model and each baseline are scored on exactly the same players.</li>
+        <li><strong>Waits for enough data.</strong> No verdict until 30 players have been graded, and the sample size sits next to every number.</li>
+        {!includesPreseason && (
+          <li><strong>Regular season only.</strong> Preseason games are tested privately and kept out of the public record.</li>
+        )}
+        <li><strong>Fantasy points use DraftKings NBA scoring.</strong> The box score is the only source for the actual result.</li>
+      </ul>
+      <p class="fine">
+        The full record, one row per graded projection with its save time, is published as
+        {' '}<a href="/nba/scorecard.json">scorecard.json</a> so you can recompute every figure above.
+        {updated && ` Last updated ${updated}.`}
+        {s && s.model_versions.length > 0 && ` Model: ${s.model_versions.join('; ')}.`}
+      </p>
+      <p class="fine">
+        This is a research record, not a promise of results. DFS involves risk, and a model that is accurate on
+        average can still lose money.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .table-wrap { overflow-x: auto; margin: 24px 0 8px; }
+  .score-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .score-table th, .score-table td {
+    text-align: right;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--color-hairline);
+    white-space: nowrap;
+  }
+  .score-table th:first-child, .score-table td:first-child { text-align: left; }
+  .score-table thead th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-fog);
+    font-weight: 500;
+  }
+  .score-table td { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .score-table td:first-child { font-family: var(--font-body); }
+  .fine { font-size: 14px; color: var(--color-fog); max-width: var(--prose-max); margin-top: 12px; }
+  .fine a { color: var(--color-signal); }
+  .notice {
+    border: 1px solid var(--color-alert);
+    border-left-width: 4px;
+    background: var(--color-carbon);
+    color: var(--color-chalk);
+    padding: 16px 20px;
+    max-width: var(--prose-max);
+    margin: 0;
+  }
+  .rules { max-width: var(--prose-max); padding-left: 20px; display: grid; gap: 12px; margin: 16px 0 24px; }
+  .rules li { color: var(--color-chalk); }
+</style>
