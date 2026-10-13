@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPosts, nbaSeasonStarted } from '../lib/site-data';
+
+const posts = await getPosts();
+
+// Hand-ordered starter paths. Order and the one-line "why next" are editorial,
+// so they live here; titles come from the real posts, and a slug that no
+// longer exists is skipped rather than rendered as a dead link.
+const step = (slug: string, why: string) => ({ post: posts.find((p) => p.slug === slug), why });
+const nflPath = [
+  step('what-is-nfl-dfs-a-complete-beginners-breakdown-2026', 'The format in plain language: lineups, salaries, contests.'),
+  step('how-nfl-dfs-works-mechanics-scoring-real-examples', 'A worked example, so the rules stop being abstract.'),
+  step('nfl-dfs-beginners-guide-build-your-first-lineup-2026', 'Do it once, end to end, with a real slate.'),
+  step('nfl-dfs-strategy-guide-a-complete-process-for-2026', 'The weekly routine the rest of the site builds on.'),
+  step('nfl-dfs-projections-guide', "Why you can't just trust a number, and how to check it."),
+  step('nfl-dfs-value-plays', 'Then follow the weekly posts: value plays and matchup analysis.'),
+].filter((s) => s.post);
+const nbaPath = [
+  step('nba-dfs-complete-guide-rules-scoring-strategy', 'Everything about the format in one place.'),
+  step('nba-dfs-vs-nfl-dfs-what-changes', 'Start here if you already play NFL.'),
+  step('nba-dfs-minutes-injuries-starter-sits-data', 'The biggest source of NBA slate-to-slate variance.'),
+  step('nba-dfs-ownership-leverage-guide', 'How to differentiate lineups in large contests.'),
+].filter((s) => s.post);
+const reference = [
+  { slug: 'nfl-dfs-glossary', kicker: 'Terms' },
+  { slug: 'nfl-dfs-terminology-40-terms-with-real-examples', kicker: 'Terms' },
+  { slug: 'nfl-dfs-scoring-explained-draftkings-fanduel-more', kicker: 'Scoring' },
+]
+  .map((r) => ({ ...r, post: posts.find((p) => p.slug === r.slug) }))
+  .filter((r) => r.post);
+
+const canonicalURL = 'https://www.dfsengineer.com/start/';
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.dfsengineer.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Start Here', item: canonicalURL },
+  ],
+};
+---
+<BaseLayout
+  title="New to DFS? Start Here — NFL and NBA | DFS Engineer"
+  description="A guided path into daily fantasy sports: what DFS is, how lineups and scoring work, and the order to read the NFL and NBA guides."
+  canonicalURL={canonicalURL}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="hero compact">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span aria-current="page">Start Here</span></nav>
+      <p class="eyebrow">New to DFS?</p>
+      <h1>Start here.</h1>
+      <p class="lede">
+        Daily fantasy sports is a salary-cap game: you build a lineup under a budget, your players score points from real stats, and you're ranked against everyone else. This site covers the process behind good lineups, with the math shown. It doesn't sell picks.
+      </p>
+      <div class="subnav">
+        <a href="#nfl">NFL path</a><a href="#nba">NBA path</a><a href="#reference">Reference</a><a href="#graded">How we're graded</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nfl">
+    <div class="wrap">
+      <h2 class="section-label">Path 1 — NFL DFS · weekly slates, September to February</h2>
+      <ol class="path-list">
+        {nflPath.map((s, i) => (
+          <li><a href={`/blog/${s.post!.slug}/`}><span class="step">{i + 1}</span><span class="body"><strong>{s.post!.data.title}</strong><em>{s.why}</em></span></a></li>
+        ))}
+      </ol>
+      <p style="margin-top:16px"><a class="btn btn-secondary" href="/nfl/">Go to NFL hub →</a></p>
+    </div>
+  </section>
+
+  <section class="section nopad-top" id="nba">
+    <div class="wrap">
+      <h2 class="section-label">Path 2 — NBA DFS · nightly slates, October to April</h2>
+      <ol class="path-list">
+        {nbaPath.map((s, i) => (
+          <li><a href={`/blog/${s.post!.slug}/`}><span class="step">{i + 1}</span><span class="body"><strong>{s.post!.data.title}</strong><em>{s.why}</em></span></a></li>
+        ))}
+      </ol>
+      <p style="margin-top:16px">
+        <a class="btn btn-secondary" href="/nba/">Go to NBA hub →</a>
+        {!nbaSeasonStarted() && <span class="badge soon" style="margin-left:8px">Season starts Oct 20</span>}
+      </p>
+    </div>
+  </section>
+
+  {reference.length > 0 && (
+    <section class="section nopad-top" id="reference">
+      <div class="wrap">
+        <h2 class="section-label">Reference — keep these open</h2>
+        <ul class="start-grid">
+          {reference.map((r) => (
+            <li><a class="post-card" href={`/blog/${r.post!.slug}/`}><span class="kicker">{r.kicker}</span><h3>{r.post!.data.title}</h3></a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section nopad-top" id="graded">
+    <div class="wrap">
+      <h2 class="section-label">How we're graded</h2>
+      <div class="trust-strip">
+        <p><strong style="color:var(--color-chalk)">Graded in public.</strong> Projections are scored against real results: the NFL model's backtested accuracy, and the NBA scorecard once games are played.</p>
+        <span>
+          <a class="btn btn-secondary" href="/nfl/#accuracy">NFL accuracy</a>
+          <a class="btn btn-secondary" href="/nba/scorecard/">NBA scorecard</a>
+        </span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

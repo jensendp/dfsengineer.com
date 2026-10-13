@@ -3,14 +3,27 @@
 // blog/index.astro, about.astro, and BlogPost.astro (404.astro's copy was
 // missing the "About" link, an inconsistency this now fixes rather than
 // preserves). One place to edit nav links going forward.
+//
+// The current section is highlighted via aria-current, matched on the URL
+// prefix so /nba/scorecard/ still lights up NBA and every /blog/<slug>/
+// lights up Blog. The home page matches nothing on purpose.
+const path = Astro.url.pathname;
+const links = [
+  { href: '/start/', label: 'Start Here' },
+  { href: '/nfl/', label: 'NFL' },
+  { href: '/nba/', label: 'NBA' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/about/', label: 'About' },
+];
+const isCurrent = (href: string) => path === href || path.startsWith(href);
 ---
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="/">DFS<span>·</span>Engineer</a>
     <nav class="site-nav">
-      <a href="/blog/">Blog</a>
-      <a href="/nba/scorecard/">NBA Scorecard</a>
-      <a href="/about/">About</a>
+      {links.map((l) => (
+        <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+      ))}
       <a class="btn btn-secondary" href="https://www.skool.com/brew-loyalty-6636">Join the community →</a>
     </nav>
   </div>

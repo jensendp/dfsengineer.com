@@ -1,72 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import { readFileSync } from 'node:fs';
+import {
+  getPosts, sportOf, newestFirst, isHubEdition, editionLabel, loadSlate, nbaSeasonStarted,
+  type Post, type Sport,
+} from '../lib/site-data';
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-// Homepage shows only the most recent — the full, unbounded list lives at
-// /blog/. Without this cap the homepage would grow a new card forever as
-// content publishes, eventually becoming an unusable single-page wall.
-const LATEST_COUNT = 6;
-const posts = allPosts.slice(0, LATEST_COUNT);
-const hasMore = allPosts.length > LATEST_COUNT;
+const allPosts = await getPosts();
+const slate = loadSlate();
+const slateWeek = slate?.name?.match(/\d+/)?.[0];
 
-// "Model accuracy" stat cards — real numbers from the dfs-local backtest
-// export (see dfs-local/src/dfs_local/export/content_grounding.py), read
-// at build time from the file the pipeline already commits to this repo.
-// A snapshot, not a live trend — refreshed by manually re-running
-// `dfs-local push-content-export`, so it's labeled with the date it was
-// actually generated rather than implying it's continuously live.
-// No fabricated placeholders: if the export is missing or empty, the
-// section renders nothing rather than a fake number.
-type AccuracyRow = { profile: string; position: string; n: number; mae: number; corr: number | null };
-let accuracyCards: { label: string; value: string }[] = [];
-let accuracyGeneratedAt: string | null = null;
-try {
-  const raw = readFileSync(new URL('../../data/dfs-local-export.json', import.meta.url), 'utf-8');
-  const exportData = JSON.parse(raw);
-  const rows: AccuracyRow[] = exportData?.model_accuracy?.by_profile_position ?? [];
-  const defaultRows = rows.filter((r) => r.profile === 'default' && r.corr !== null);
-  const order = ['QB', 'RB', 'WR', 'TE'];
-  const byPosition = order
-    .map((pos) => defaultRows.find((r) => r.position === pos))
-    .filter((r): r is AccuracyRow => Boolean(r));
-  if (byPosition.length > 0) {
-    accuracyCards = byPosition.map((r) => ({
-      label: `${r.position} Model Corr`,
-      value: r.corr!.toFixed(3),
-    }));
-    accuracyGeneratedAt = exportData?.generated_at ?? null;
+// Each sport panel: the newest weekly/nightly edition of each hub first (so
+// the NFL weekly posts aren't pushed out by newer evergreen guides), then
+// the newest guides to fill three rows.
+function panelPosts(sport: Sport): Post[] {
+  const mine = allPosts.filter((p) => sportOf(p) === sport);
+  const latestPerHub = new Map<string, Post>();
+  for (const p of mine.filter(isHubEdition).sort(newestFirst)) {
+    if (!latestPerHub.has(p.data.hub!)) latestPerHub.set(p.data.hub!, p);
   }
-} catch {
-  accuracyCards = [];
+  const editions = [...latestPerHub.values()].slice(0, 2);
+  const guides = mine.filter((p) => !isHubEdition(p) && p.data.contentType === 'Pillar');
+  return [...editions, ...guides].slice(0, 3);
 }
+const nfl = panelPosts('nfl');
+const nba = panelPosts('nba');
 
-// "This week's slate" — game-level market facts only (matchups, Vegas
-// lines), never player-level data. See
-// dfs-local/src/dfs_local/export/slate_snapshot.py for the scope rule.
-// Highlight fields come back null until real odds data exists for the
-// slate; the section renders only the fields that are actually present.
-type SlateHighlight = { matchup: string; over_under?: number; spread?: number } | null;
-let slateInfo: { name: string | null; numGames: number } | null = null;
-let highestTotal: SlateHighlight = null;
-let biggestSpread: SlateHighlight = null;
-try {
-  const raw = readFileSync(new URL('../../data/slate-snapshot.json', import.meta.url), 'utf-8');
-  const snapshot = JSON.parse(raw);
-  if (snapshot?.slate?.num_games > 0) {
-    slateInfo = { name: snapshot.slate.slate_name, numGames: snapshot.slate.num_games };
-    highestTotal = snapshot?.highlights?.highest_total ?? null;
-    biggestSpread = snapshot?.highlights?.biggest_spread ?? null;
-  }
-} catch {
-  slateInfo = null;
-}
+// "Start here" cards — slugs checked against real content, missing ones skipped.
+const startCards = [
+  { slug: 'what-is-nfl-dfs-a-complete-beginners-breakdown-2026', kicker: 'Basics' },
+  { slug: 'nba-dfs-vs-nfl-dfs-what-changes', kicker: 'Basics' },
+  { slug: 'nfl-dfs-strategy-guide-a-complete-process-for-2026', kicker: 'Process' },
+]
+  .map((c) => ({ ...c, post: allPosts.find((p) => p.slug === c.slug) }))
+  .filter((c) => c.post);
 
-const dateFmt = (iso: string) =>
-  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const nbaStarted = nbaSeasonStarted();
 
 // Site-wide entity schema — set once here, not repeated per page. No
 // `logo` field: there's no real logo image asset yet (the wordmark is
@@ -97,95 +65,92 @@ const websiteSchema = {
     <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
   </Fragment>
 
-  <section class="hero">
+  <section class="hero compact">
     <div class="wrap">
-      <p class="eyebrow">§ 01 — Process, not picks</p>
-      <h1>DFS, run<br />like a lab notebook.</h1>
+      <p class="eyebrow">Process, not picks</p>
+      <h1>DFS, run like a lab notebook.</h1>
       <p class="lede">
         Projections, lineup construction, and results — NFL and NBA, built
         in the open, with the math shown. If the model likes a play,
         you'll see why.
       </p>
-      <a class="btn btn-primary" href="#latest">Read the playbook ↓</a>
+      <a class="btn btn-primary" href="/nfl/">NFL hub →</a>
+      <a class="btn btn-secondary" href="/nba/">NBA hub →</a>
     </div>
   </section>
 
-  {slateInfo && (
-    <section class="section">
-      <div class="wrap">
-        <h2 class="section-label">§ 02 — This week's slate</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
-          <div class="stat-card">
-            <span class="stat-label">Slate</span>
-            <span class="stat-value">{slateInfo.name}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Games</span>
-            <span class="stat-value">{slateInfo.numGames}</span>
-          </div>
-          {highestTotal && (
-            <div class="stat-card">
-              <span class="stat-label">Highest Total</span>
-              <span class="stat-value up">{highestTotal.over_under}</span>
-              <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{highestTotal.matchup}</span>
-            </div>
-          )}
-          {biggestSpread && (
-            <div class="stat-card">
-              <span class="stat-label">Biggest Spread</span>
-              <span class="stat-value">{biggestSpread.spread}</span>
-              <span class="mono" style="display:block; margin-top:4px; font-size:12px; color:var(--color-fog);">{biggestSpread.matchup}</span>
-            </div>
-          )}
-        </div>
-        <p style="margin-top:16px; font-size:13px;">
-          Game-level market facts only — matchups and Vegas lines, the same information any sportsbook already publishes. Never a pick, never player-level data.
-          {!highestTotal && ' Odds data isn’t in yet for this slate — check back closer to kickoff.'}
-        </p>
-      </div>
-    </section>
-  )}
-
-  {accuracyCards.length > 0 && (
-    <section class="section">
-      <div class="wrap">
-        <h2 class="section-label">§ 03 — Model accuracy, backtested</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px;">
-          {accuracyCards.map((card) => (
-            <div class="stat-card">
-              <span class="stat-label">{card.label}</span>
-              <span class="stat-value up">{card.value}</span>
-            </div>
-          ))}
-        </div>
-        <p style="margin-top:16px; font-size:13px;">
-          Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim.
-          {accuracyGeneratedAt && ` As of ${dateFmt(accuracyGeneratedAt)}.`}
-          {' '}See the methodology behind these numbers in the playbook below.
-        </p>
-      </div>
-    </section>
-  )}
-
-  <section class="section" id="latest">
+  <section class="section">
     <div class="wrap">
-      <h2 class="section-label">§ 04 — Latest from the playbook</h2>
-      {posts.length === 0 && <p>First posts coming soon.</p>}
-      <ul class="post-grid">
-        {posts.map((post) => (
-          <li>
-            <a class="post-card" href={`/blog/${post.slug}/`}>
-              <h3>{post.data.title}</h3>
-              <p>{post.data.description}</p>
-            </a>
-          </li>
+      <h2 class="section-label">Pick a sport</h2>
+      <div class="sport-grid">
+        <article class="sport-panel">
+          <header>
+            <h2>NFL</h2>
+            <span class="badge live">In season{slateWeek ? ` · Week ${slateWeek}` : ''}</span>
+          </header>
+          {slate && (
+            <div class="sport-status">
+              <span>Slate <b>{slate.name}</b></span>
+              <span>Games <b>{slate.numGames}</b></span>
+              {slate.highestTotal && <span>Top total <b>{slate.highestTotal.over_under}</b></span>}
+            </div>
+          )}
+          <ul class="mini-list">
+            {nfl.map((p) => (
+              <li><a href={`/blog/${p.slug}/`}><span>{p.data.title}</span><span class="tag">{editionLabel(p)}</span></a></li>
+            ))}
+          </ul>
+          <div class="actions"><a class="btn btn-primary" href="/nfl/">Go to NFL hub →</a></div>
+        </article>
+
+        <article class="sport-panel">
+          <header>
+            <h2>NBA</h2>
+            {nbaStarted ? <span class="badge live">In season</span> : <span class="badge soon">Season starts Oct 20</span>}
+          </header>
+          <div class="sport-status">
+            <span>Season <b>2026-27</b></span>
+            <span>Scorecard <b>{nbaStarted ? 'Live' : 'Opens with real games'}</b></span>
+          </div>
+          <ul class="mini-list">
+            {nba.map((p) => (
+              <li><a href={`/blog/${p.slug}/`}><span>{p.data.title}</span><span class="tag">{editionLabel(p)}</span></a></li>
+            ))}
+          </ul>
+          <div class="actions">
+            <a class="btn btn-primary" href="/nba/">Go to NBA hub →</a>
+            <a class="btn btn-secondary" href="/nba/scorecard/">Scorecard</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section nopad-top">
+    <div class="wrap">
+      <h2 class="section-label">New to DFS? Start here</h2>
+      <ul class="start-grid">
+        {startCards.map((c) => (
+          <li><a class="post-card" href={`/blog/${c.post!.slug}/`}><span class="kicker">{c.kicker}</span><h3>{c.post!.data.title}</h3></a></li>
         ))}
       </ul>
-      {hasMore && (
-        <p style="margin-top:24px;">
-          <a class="btn btn-secondary" href="/blog/">View all posts →</a>
+      <p style="margin-top:16px"><a class="btn btn-secondary" href="/start/">See the full starter path →</a></p>
+    </div>
+  </section>
+
+  <section class="section nopad-top">
+    <div class="wrap">
+      <div class="trust-strip">
+        <p>
+          <strong style="color:var(--color-chalk)">Graded in public.</strong>
+          Projections are scored against real results — the NFL model's backtested accuracy, and the NBA scorecard once games are played.
         </p>
-      )}
+        <span>
+          <a class="btn btn-secondary" href="/nfl/#accuracy">NFL accuracy</a>
+          <a class="btn btn-secondary" href="/nba/scorecard/">NBA scorecard</a>
+        </span>
+      </div>
+      <p style="margin-top:24px"><a href="/blog/" class="mono" style="font-size:13px">Browse all {allPosts.length} posts →</a></p>
     </div>
   </section>
 </BaseLayout>

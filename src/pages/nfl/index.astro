@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, sportOf, newestFirst, isHubEdition, loadSlate, loadAccuracy, dateFmt } from '../../lib/site-data';
+
+const posts = (await getPosts()).filter((p) => sportOf(p) === 'nfl');
+const slate = loadSlate();
+const accuracy = loadAccuracy();
+
+// Weekly series: one list per hub, driven by the `hub` frontmatter field.
+const series = [
+  { hub: 'value-plays', title: 'Value Plays' },
+  { hub: 'matchup-analysis', title: 'Matchup Analysis' },
+].map((s) => ({
+  ...s,
+  anchor: posts.find((p) => p.data.hub === s.hub && !isHubEdition(p)),
+  editions: posts.filter((p) => p.data.hub === s.hub && isHubEdition(p)).sort(newestFirst),
+}));
+
+const guides = posts
+  .filter((p) => !isHubEdition(p))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const canonicalURL = 'https://www.dfsengineer.com/nfl/';
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.dfsengineer.com/' },
+    { '@type': 'ListItem', position: 2, name: 'NFL', item: canonicalURL },
+  ],
+};
+---
+<BaseLayout
+  title="NFL DFS — Weekly Value Plays, Matchups and Guides | DFS Engineer"
+  description="Weekly NFL DFS value plays and matchup analysis, the slate's market facts, the model's backtested accuracy, and the guides behind the process."
+  canonicalURL={canonicalURL}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="hero compact">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span aria-current="page">NFL</span></nav>
+      <p class="eyebrow">NFL · 2026 season{slate ? ` · ${slate.name}` : ''}</p>
+      <h1>NFL DFS</h1>
+      <p class="lede">Weekly value plays and matchup analysis, the slate's market facts, and the model's backtested accuracy.</p>
+      <div class="subnav">
+        {slate && <a href="#week">This week</a>}
+        <a href="#series">Weekly series</a>
+        {accuracy.cards.length > 0 && <a href="#accuracy">Accuracy</a>}
+        <a href="#guides">Guides</a>
+      </div>
+    </div>
+  </section>
+
+  {slate && (
+    <section class="section" id="week">
+      <div class="wrap">
+        <h2 class="section-label">This week's slate</h2>
+        <div class="stat-grid">
+          <div class="stat-card"><span class="stat-label">Slate</span><span class="stat-value">{slate.name}</span></div>
+          <div class="stat-card"><span class="stat-label">Games</span><span class="stat-value">{slate.numGames}</span></div>
+          {slate.highestTotal && (
+            <div class="stat-card"><span class="stat-label">Highest Total</span><span class="stat-value up">{slate.highestTotal.over_under}</span><span class="mono stat-sub">{slate.highestTotal.matchup}</span></div>
+          )}
+          {slate.biggestSpread && (
+            <div class="stat-card"><span class="stat-label">Biggest Spread</span><span class="stat-value">{slate.biggestSpread.spread}</span><span class="mono stat-sub">{slate.biggestSpread.matchup}</span></div>
+          )}
+        </div>
+        <p style="margin-top:16px; font-size:13px;">
+          Game-level market facts only — matchups and Vegas lines, the same information any sportsbook already publishes. Never a pick, never player-level data.
+          {!slate.highestTotal && ' Odds data isn’t in yet for this slate — check back closer to kickoff.'}
+        </p>
+      </div>
+    </section>
+  )}
+
+  <section class={`section${slate ? ' nopad-top' : ''}`} id="series">
+    <div class="wrap">
+      <h2 class="section-label">Weekly series</h2>
+      <div class="sport-grid">
+        {series.map((s) => (
+          <div>
+            <h3>{s.anchor ? <a href={`/blog/${s.anchor.slug}/`}>{s.title}</a> : s.title}</h3>
+            <ul class="mini-list">
+              {s.editions.slice(0, 3).map((p, i) => (
+                <li><a href={`/blog/${p.slug}/`}><span>Week {p.data.week}{p.data.season ? `, ${p.data.season}` : ''}</span><span class="tag">{i === 0 ? 'Latest' : ''}</span></a></li>
+              ))}
+              {s.anchor && <li><a href={`/blog/${s.anchor.slug}/`}><span>All weeks and how to use this series →</span><span class="tag"></span></a></li>}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {accuracy.cards.length > 0 && (
+    <section class="section nopad-top" id="accuracy">
+      <div class="wrap">
+        <h2 class="section-label">Model accuracy, backtested</h2>
+        <div class="stat-grid">
+          {accuracy.cards.map((c) => (
+            <div class="stat-card"><span class="stat-label">{c.label}</span><span class="stat-value up">{c.value}</span></div>
+          ))}
+        </div>
+        <p style="margin-top:16px; font-size:13px;">
+          Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim.
+          {accuracy.generatedAt && ` As of ${dateFmt(accuracy.generatedAt)}.`}
+        </p>
+      </div>
+    </section>
+  )}
+
+  <section class="section nopad-top" id="guides">
+    <div class="wrap">
+      <h2 class="section-label">Guides</h2>
+      <ul class="start-grid">
+        {guides.map((p) => (
+          <li><a class="post-card" href={`/blog/${p.slug}/`}><span class="kicker">{p.data.contentType === 'Pillar' ? 'Guide' : 'Reference'}</span><h3>{p.data.title}</h3></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

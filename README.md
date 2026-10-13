@@ -19,7 +19,14 @@ folder for the full reasoning and the content plan this scaffold serves).
     will use `picks-today`), so a new sport needs no schema change.
   - `season` is a number (NFL, `2026`) or a string (NBA, `"2026-27"`).
   - Weekly sports set `week`; nightly sports set `slateDate`. Never both.
-- `src/pages/index.astro`, `about.astro`, `404.astro` — home, about, 404.
+- `src/pages/index.astro` — sport-first home: NFL and NBA panels, a short
+  "Start here" row, and a link to the public record.
+- `src/pages/start.astro` — `/start/`, the hand-ordered NFL and NBA starter
+  paths (order and blurbs are editorial; titles come from the posts).
+- `src/pages/nfl/index.astro`, `src/pages/nba/index.astro` — sport hubs:
+  slate and accuracy (NFL), weekly or nightly series, scorecard strip (NBA),
+  and every evergreen guide for that sport.
+- `src/pages/about.astro`, `404.astro` — about, 404.
 - `src/pages/blog/index.astro` — post listing.
 - `src/pages/blog/[...slug].astro` — individual post pages (catch-all, so
   nested season/week folders work).
@@ -28,6 +35,10 @@ folder for the full reasoning and the content plan this scaffold serves).
 - `src/layouts/` — `BaseLayout`, `BlogPost`.
 - `src/components/` — `SiteHeader`, `SiteFooter`, `Analytics`.
 - `src/lib/nba-record.ts` — build-time loader for the scorecard record.
+- `src/lib/site-data.ts` — shared helpers for the home and hub pages: sport
+  detection (slug prefix `nba-`, otherwise NFL), weekly/nightly edition
+  detection, slate and accuracy loaders, and the NBA season-start date
+  that flips the pre-season wording.
 - `data/` — build inputs, committed:
   - `dfs-local-export.json` — NFL content-grounding export.
   - `slate-snapshot.json` — NFL slate snapshot.
@@ -40,9 +51,9 @@ folder for the full reasoning and the content plan this scaffold serves).
 
 ### NFL — in season
 
-23 posts: 17 evergreen guides plus two weekly hubs
+26 posts: 16 evergreen guides plus two weekly hubs
 (`nfl-dfs-value-plays`, `nfl-dfs-matchup-analysis`) with Weeks 1–5 of
-2026 published. Weekly posts continue through the season.
+2026 published (10 weekly posts). Weekly posts continue through the season.
 
 ### NBA — pre-season, data gathering
 
@@ -112,5 +123,5 @@ The flat-vs-pillar-nested question from the original plan is settled:
 ```
 npm install
 npm run dev      # dev server
-npm run build    # astro check + astro build (35 pages as of Oct 13, 2026)
+npm run build    # astro check + astro build (38 pages as of Oct 13, 2026)
 ```

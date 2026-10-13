@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, sportOf, newestFirst, isHubEdition, nbaSeasonStarted } from '../../lib/site-data';
+import { loadRecord } from '../../lib/nba-record';
+
+const posts = (await getPosts()).filter((p) => sportOf(p) === 'nba');
+const editions = posts.filter(isHubEdition).sort(newestFirst);
+const guides = posts.filter((p) => !isHubEdition(p));
+const started = nbaSeasonStarted();
+
+const record = loadRecord();
+const rows = record?.summary.rows ?? 0;
+const nights = record?.summary.nights ?? 0;
+
+const canonicalURL = 'https://www.dfsengineer.com/nba/';
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.dfsengineer.com/' },
+    { '@type': 'ListItem', position: 2, name: 'NBA', item: canonicalURL },
+  ],
+};
+---
+<BaseLayout
+  title="NBA DFS — Guides, Nightly Picks and Scorecard | DFS Engineer"
+  description="NBA DFS guides, nightly slate analysis, and a public scorecard grading the model against real box scores, 2026-27 season."
+  canonicalURL={canonicalURL}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <section class="hero compact">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span aria-current="page">NBA</span></nav>
+      <p class="eyebrow">NBA · 2026-27 season{started ? '' : ' · starts Oct 20'}</p>
+      <h1>NBA DFS</h1>
+      <p class="lede">Nightly slates from October to April. Learn the format now; the model's record starts when the games do.</p>
+      <div class="subnav">
+        <a href="#tonight">{started ? 'Latest' : 'Tonight'}</a>
+        <a href="#scorecard">Scorecard</a>
+        <a href="#guides">Guides</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tonight">
+    <div class="wrap">
+      <h2 class="section-label">{started ? 'Latest slate analysis' : "Tonight's slate"}</h2>
+      {editions.length > 0 ? (
+        <ul class="mini-list">
+          {editions.slice(0, 5).map((p, i) => (
+            <li><a href={`/blog/${p.slug}/`}><span>{p.data.title}</span><span class="tag">{i === 0 ? 'Latest' : ''}</span></a></li>
+          ))}
+        </ul>
+      ) : (
+        <div class="empty-note">
+          <p><strong style="color:var(--color-chalk)">{started ? 'First slate posts are coming.' : 'The season starts Oct 20.'}</strong> Nightly picks and the slate snapshot appear here once games are on the schedule.</p>
+          <p>Until then, the model is collecting data. Nothing here is a projection of real games.</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section nopad-top" id="scorecard">
+    <div class="wrap">
+      <h2 class="section-label">Scorecard</h2>
+      <div class="trust-strip">
+        <p>Every pick is graded against real box scores and published here, hits and misses. Rows: <span class="mono">{rows}</span> · Nights: <span class="mono">{nights}</span>.</p>
+        <a class="btn btn-secondary" href="/nba/scorecard/">Open scorecard →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section nopad-top" id="guides">
+    <div class="wrap">
+      <h2 class="section-label">Guides</h2>
+      <ul class="start-grid">
+        {guides.map((p) => (
+          <li><a class="post-card" href={`/blog/${p.slug}/`}><span class="kicker">Guide</span><h3>{p.data.title}</h3></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
