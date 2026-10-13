@@ -619,5 +619,6 @@
     "split_avg": 10.99,
     "agreed_avg": 9.16
   },
-  "published_at": "2026-10-13T09:00:00"
+  "published_at": "2026-10-13T10:12:55",
+  "retroactive": true
 }

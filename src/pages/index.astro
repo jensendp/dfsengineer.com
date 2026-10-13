@@ -18,7 +18,13 @@ function panelPosts(sport: Sport): Post[] {
   for (const p of mine.filter(isHubEdition).sort(newestFirst)) {
     if (!latestPerHub.has(p.data.hub!)) latestPerHub.set(p.data.hub!, p);
   }
-  const editions = [...latestPerHub.values()].slice(0, 2);
+  // The two weekly staples lead; newer series (signals, review) only fill in
+  // if there's room, so they don't push value plays / matchups off the panel.
+  const PRIORITY = ['value-plays', 'matchup-analysis'];
+  const rank = (hub: string) => (PRIORITY.includes(hub) ? PRIORITY.indexOf(hub) : PRIORITY.length);
+  const editions = [...latestPerHub.values()]
+    .sort((a, b) => rank(a.data.hub!) - rank(b.data.hub!))
+    .slice(0, 2);
   const guides = mine.filter((p) => !isHubEdition(p) && p.data.contentType === 'Pillar');
   return [...editions, ...guides].slice(0, 3);
 }

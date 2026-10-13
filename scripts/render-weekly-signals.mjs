@@ -23,6 +23,8 @@ if (!input) {
 }
 const data = JSON.parse(readFileSync(resolve(root, input), 'utf-8'));
 const { season, week, players } = data;
+// A record rebuilt after the games (before this pipeline existed) says so on the page.
+const retro = Boolean(data.retroactive);
 if (!Array.isArray(players) || players.length === 0) {
   console.error('export has no players — nothing to render');
   process.exit(1);
@@ -77,11 +79,15 @@ const outsideLine = data.n_outside_sources
   ? `${data.n_outside_sources} articles and podcasts logged this week`
   : 'Articles and podcasts logged this week';
 
-const body = `*${asOf()} Salaries, injury tags, and projections can move after this
+const intro = retro
+  ? `*Week ${week} was the first board. It was rebuilt from the model's records after the games, before this series existed, so treat it as a sample of the format. From Week ${week + 1} on, the snapshot is published before kickoff and never changed. This is a record of what the data looked like, not instructions, and it is graded in the [Week ${week} review](/blog/nfl-dfs-weekly-review/${season}/week-${week}/).*`
+  : `*${asOf()} Salaries, injury tags, and projections can move after this
 was pulled, and nothing here reflects news after the snapshot. This is a
 record of what the data looked like, not instructions — and it gets graded
 in the [Week ${week} review](/blog/nfl-dfs-weekly-review/${season}/week-${week}/) once the
-games are played.*
+games are played.*`;
+
+const body = `${intro}
 
 Most DFS content gives you a list of names and a confidence level. This
 page does something different: it shows the signals the model was reading
@@ -97,7 +103,7 @@ Three kinds of input go into each player's row:
   salary, matchup, recent form, and the week's market lines.
 - **Public projection sources** — free, publicly available projections.
   The "Public avg" column is the average of whichever public projections
-  existed for that player.
+  existed for that player.${retro ? ' This week it covers fewer public sources than later weeks will.' : ''}
 - **Outside opinion** — ${outsideLine.charAt(0).toLowerCase()}${outsideLine.slice(1)},
   recorded as bullish or bearish on a player, never as a point number.
 
@@ -171,7 +177,7 @@ It is ${data.selection}. The agreement score only picks and orders the board; it
 
 ### Does this change after the games?
 
-No. This page is the snapshot as it stood before kickoff. The review post grades exactly what is shown here, so the numbers are never updated afterward.
+${retro ? `Not once it is published. Week ${week}'s board was rebuilt after the games, so it is a sample of the format. From Week ${week + 1} on, the snapshot is published before kickoff and the review grades exactly what was shown.` : 'No. This page is the snapshot as it stood before kickoff. The review post grades exactly what is shown here, so the numbers are never updated afterward.'}
 `;
 
 const front = `---

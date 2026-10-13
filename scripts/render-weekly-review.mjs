@@ -24,6 +24,7 @@ if (!input) {
 }
 const data = JSON.parse(readFileSync(resolve(root, input), 'utf-8'));
 const { season, week, accuracy, outside_opinion: oo } = data;
+const retro = Boolean(data.retroactive);
 const graded = data.board.filter((p) => p.actual != null && p.model != null && p.public != null);
 if (graded.length < 10) {
   console.error(`only ${graded.length} graded players — is the week scored? nothing rendered`);
@@ -121,9 +122,16 @@ const takeaways = [
 ];
 
 const nextWeek = week + 1;
-const body = `*Results as of the Week ${week} games. This grades the
+const intro = retro
+  ? `*Results as of the Week ${week} games. This grades the
+[pre-game board](/blog/nfl-dfs-weekly-signals/${season}/week-${week}/) as it was rebuilt
+after the games — a sample of the format, before snapshots were published ahead of
+kickoff. From Week ${week + 1} on, each snapshot goes up first and is graded exactly as it was.*`
+  : `*Results as of the Week ${week} games. This grades the
 [pre-game snapshot](/blog/nfl-dfs-weekly-signals/${season}/week-${week}/) exactly as
-it was published — no projection was changed after the fact.*
+it was published — no projection was changed after the fact.*`;
+
+const body = `${intro}
 
 The pre-game post showed what the data looked like. Here is how it
 graded: projections against real DraftKings points, the hits, the misses,
@@ -180,7 +188,7 @@ The grade for the Week ${week} signals post: the pre-game projections compared w
 
 ### Did the projections change after the games?
 
-No. This grades the snapshot exactly as it was published before kickoff.
+${retro ? `Week ${week}'s board was rebuilt after the games, not published beforehand, so this week is a sample of the format. From Week ${week + 1} on, the grade is of a snapshot published before kickoff.` : 'No. This grades the snapshot exactly as it was published before kickoff.'}
 
 ### Why show both the board and the full slate?
 

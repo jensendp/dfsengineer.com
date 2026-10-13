@@ -1,20 +1,36 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getPosts, sportOf, newestFirst, isHubEdition, loadSlate, loadAccuracy, dateFmt } from '../../lib/site-data';
+import { getPosts, sportOf, newestFirst, isHubEdition, loadSlate, loadAccuracy, dateFmt, type Post } from '../../lib/site-data';
 
 const posts = (await getPosts()).filter((p) => sportOf(p) === 'nfl');
 const slate = loadSlate();
 const accuracy = loadAccuracy();
 
 // Weekly series: one list per hub, driven by the `hub` frontmatter field.
-const series = [
+const series = ([
   { hub: 'value-plays', title: 'Value Plays' },
   { hub: 'matchup-analysis', title: 'Matchup Analysis' },
-].map((s) => ({
-  ...s,
-  anchor: posts.find((p) => p.data.hub === s.hub && !isHubEdition(p)),
-  editions: posts.filter((p) => p.data.hub === s.hub && isHubEdition(p)).sort(newestFirst),
-}));
+])
+  .map((s) => ({
+    ...s,
+    anchor: posts.find((p) => p.data.hub === s.hub && !isHubEdition(p)),
+    editions: posts.filter((p) => p.data.hub === s.hub && isHubEdition(p)).sort(newestFirst),
+  }))
+  .filter((s) => s.editions.length > 0 || s.anchor);
+
+// Signals and review are a pair: one row per week, linking whichever of the
+// two exist yet (the review only appears after the games). A week with
+// neither published (still drafts) gets no row, and no row means no card.
+const pairs = new Map<string, { season: string; week: number; signals?: Post; review?: Post }>();
+for (const p of posts.filter(isHubEdition)) {
+  if (p.data.hub !== 'weekly-signals' && p.data.hub !== 'weekly-review') continue;
+  const key = `${p.data.season}-${p.data.week}`;
+  const row = pairs.get(key) ?? { season: String(p.data.season ?? ''), week: p.data.week ?? 0 };
+  if (p.data.hub === 'weekly-signals') row.signals = p;
+  else row.review = p;
+  pairs.set(key, row);
+}
+const gradedWeeks = [...pairs.values()].sort((a, b) => b.season.localeCompare(a.season) || b.week - a.week);
 
 const guides = posts
   .filter((p) => !isHubEdition(p))
@@ -91,6 +107,23 @@ const breadcrumbSchema = {
             </ul>
           </div>
         ))}
+        {gradedWeeks.length > 0 && (
+          <div>
+            <h3>Signals &amp; Review</h3>
+            <ul class="mini-list">
+              {gradedWeeks.slice(0, 3).map((w, i) => (
+                <li class="pair-row">
+                  <span>Week {w.week}{w.season ? `, ${w.season}` : ''}</span>
+                  <span class="pair-links">
+                    {w.signals ? <a href={`/blog/${w.signals.slug}/`}>Signals</a> : <span class="muted">Signals</span>}
+                    {w.review ? <a href={`/blog/${w.review.slug}/`}>Review</a> : <span class="muted">Review pending</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p class="series-note">Graded in public: the pre-game snapshot, then its grade.</p>
+          </div>
+        )}
       </div>
     </div>
   </section>

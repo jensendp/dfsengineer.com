@@ -1,11 +1,11 @@
 ---
 title: "NFL DFS Week 5 Review: How the Pre-Game Signals Graded"
 description: "Week 5's pre-game board graded against real DraftKings points: model vs the public average, hits and misses, and what one week can and can't tell you."
-pubDate: "2026-10-13T09:00:00"
-dateModified: "2026-10-13T09:00:00"
+pubDate: "2026-10-13T10:12:55"
+dateModified: "2026-10-13T10:12:55"
 tags: ["NFL DFS","Week 5","Projections","Weekly Review"]
 author: "DFS Engineer Playbook"
-draft: true
+draft: false
 pillar: "NFL DFS Projections"
 contentType: "Spoke"
 hub: "weekly-review"
@@ -14,8 +14,9 @@ week: 5
 ---
 
 *Results as of the Week 5 games. This grades the
-[pre-game snapshot](/blog/nfl-dfs-weekly-signals/2026/week-5/) exactly as
-it was published — no projection was changed after the fact.*
+[pre-game board](/blog/nfl-dfs-weekly-signals/2026/week-5/) as it was rebuilt
+after the games — a sample of the format, before snapshots were published ahead of
+kickoff. From Week 6 on, each snapshot goes up first and is graded exactly as it was.*
 
 The pre-game post showed what the data looked like. Here is how it
 graded: projections against real DraftKings points, the hits, the misses,
@@ -93,7 +94,7 @@ The grade for the Week 5 signals post: the pre-game projections compared with re
 
 ### Did the projections change after the games?
 
-No. This grades the snapshot exactly as it was published before kickoff.
+Week 5's board was rebuilt after the games, not published beforehand, so this week is a sample of the format. From Week 6 on, the grade is of a snapshot published before kickoff.
 
 ### Why show both the board and the full slate?
 

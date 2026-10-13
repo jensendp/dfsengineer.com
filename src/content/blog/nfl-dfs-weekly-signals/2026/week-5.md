@@ -1,11 +1,11 @@
 ---
 title: "NFL DFS Week 5 Signals: What the Data Looked Like Before Kickoff"
 description: "A pre-game snapshot of the Week 5 board: model and public projections, and where the sources agreed and split. A record to be graded, not picks."
-pubDate: "2026-10-11T08:00:00"
-dateModified: "2026-10-11T08:00:00"
+pubDate: "2026-10-13T10:11:55"
+dateModified: "2026-10-13T10:11:55"
 tags: ["NFL DFS","Week 5","Projections","Weekly Signals"]
 author: "DFS Engineer Playbook"
-draft: true
+draft: false
 pillar: "NFL DFS Projections"
 contentType: "Spoke"
 hub: "weekly-signals"
@@ -13,11 +13,7 @@ season: 2026
 week: 5
 ---
 
-*Snapshot taken before Week 5 kickoff. Salaries, injury tags, and projections can move after this
-was pulled, and nothing here reflects news after the snapshot. This is a
-record of what the data looked like, not instructions — and it gets graded
-in the [Week 5 review](/blog/nfl-dfs-weekly-review/2026/week-5/) once the
-games are played.*
+*Week 5 was the first board. It was rebuilt from the model's records after the games, before this series existed, so treat it as a sample of the format. From Week 6 on, the snapshot is published before kickoff and never changed. This is a record of what the data looked like, not instructions, and it is graded in the [Week 5 review](/blog/nfl-dfs-weekly-review/2026/week-5/).*
 
 Most DFS content gives you a list of names and a confidence level. This
 page does something different: it shows the signals the model was reading
@@ -33,7 +29,7 @@ Three kinds of input go into each player's row:
   salary, matchup, recent form, and the week's market lines.
 - **Public projection sources** — free, publicly available projections.
   The "Public avg" column is the average of whichever public projections
-  existed for that player.
+  existed for that player. This week it covers fewer public sources than later weeks will.
 - **Outside opinion** — 9 articles and podcasts logged this week,
   recorded as bullish or bearish on a player, never as a point number.
 
@@ -191,4 +187,4 @@ It is top 5 per position by agreement score, plus the next 20 overall. The agree
 
 ### Does this change after the games?
 
-No. This page is the snapshot as it stood before kickoff. The review post grades exactly what is shown here, so the numbers are never updated afterward.
+Not once it is published. Week 5's board was rebuilt after the games, so it is a sample of the format. From Week 6 on, the snapshot is published before kickoff and the review grades exactly what was shown.
