@@ -41,7 +41,7 @@ const breadcrumbSchema = {
 };
 ---
 <BaseLayout
-  title="New to DFS? Start Here — NFL and NBA | DFS Engineer"
+  title="New to DFS? Start Here: NFL and NBA | DFS Engineer"
   description="A guided path into daily fantasy sports: what DFS is, how lineups and scoring work, and the order to read the NFL and NBA guides."
   canonicalURL={canonicalURL}
 >
@@ -65,7 +65,7 @@ const breadcrumbSchema = {
 
   <section class="section" id="nfl">
     <div class="wrap">
-      <h2 class="section-label">Path 1 — NFL DFS · weekly slates, September to February</h2>
+      <h2 class="section-label">Path 1: NFL DFS, weekly slates from September to February</h2>
       <ol class="path-list">
         {nflPath.map((s, i) => (
           <li><a href={`/blog/${s.post!.slug}/`}><span class="step">{i + 1}</span><span class="body"><strong>{s.post!.data.title}</strong><em>{s.why}</em></span></a></li>
@@ -77,7 +77,7 @@ const breadcrumbSchema = {
 
   <section class="section nopad-top" id="nba">
     <div class="wrap">
-      <h2 class="section-label">Path 2 — NBA DFS · nightly slates, October to April</h2>
+      <h2 class="section-label">Path 2: NBA DFS, nightly slates from October to April</h2>
       <ol class="path-list">
         {nbaPath.map((s, i) => (
           <li><a href={`/blog/${s.post!.slug}/`}><span class="step">{i + 1}</span><span class="body"><strong>{s.post!.data.title}</strong><em>{s.why}</em></span></a></li>
@@ -93,7 +93,7 @@ const breadcrumbSchema = {
   {reference.length > 0 && (
     <section class="section nopad-top" id="reference">
       <div class="wrap">
-        <h2 class="section-label">Reference — keep these open</h2>
+        <h2 class="section-label">Reference: keep these open</h2>
         <ul class="start-grid">
           {reference.map((r) => (
             <li><a class="post-card" href={`/blog/${r.post!.slug}/`}><span class="kicker">{r.kicker}</span><h3>{r.post!.data.title}</h3></a></li>
@@ -107,7 +107,7 @@ const breadcrumbSchema = {
     <div class="wrap">
       <h2 class="section-label">How we're graded</h2>
       <div class="trust-strip">
-        <p><strong style="color:var(--color-chalk)">Graded in public.</strong> Projections are scored against real results: the NFL model's backtested accuracy, and the NBA scorecard once games are played.</p>
+        <p><strong style="color:var(--color-chalk)">Graded in public.</strong> Projections are scored against real results: the NFL model's backtested accuracy now, and the NBA scorecard once games are played.</p>
         <span>
           <a class="btn btn-secondary" href="/nfl/#accuracy">NFL accuracy</a>
           <a class="btn btn-secondary" href="/nba/scorecard/">NBA scorecard</a>

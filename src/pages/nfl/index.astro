@@ -47,7 +47,7 @@ const breadcrumbSchema = {
 };
 ---
 <BaseLayout
-  title="NFL DFS — Weekly Value Plays, Matchups and Guides | DFS Engineer"
+  title="NFL DFS: Weekly Value Plays, Matchups and Guides | DFS Engineer"
   description="Weekly NFL DFS value plays and matchup analysis, the slate's market facts, the model's backtested accuracy, and the guides behind the process."
   canonicalURL={canonicalURL}
 >
@@ -60,7 +60,7 @@ const breadcrumbSchema = {
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span aria-current="page">NFL</span></nav>
       <p class="eyebrow">NFL · 2026 season{slate ? ` · ${slate.name}` : ''}</p>
       <h1>NFL DFS</h1>
-      <p class="lede">Weekly value plays and matchup analysis, the slate's market facts, and the model's backtested accuracy.</p>
+      <p class="lede">Weekly value plays and matchup analysis, plus the slate's market facts and the model's backtested accuracy.</p>
       <div class="subnav">
         {slate && <a href="#week">This week</a>}
         <a href="#series">Weekly series</a>
@@ -85,8 +85,8 @@ const breadcrumbSchema = {
           )}
         </div>
         <p style="margin-top:16px; font-size:13px;">
-          Game-level market facts only — matchups and Vegas lines, the same information any sportsbook already publishes. Never a pick, never player-level data.
-          {!slate.highestTotal && ' Odds data isn’t in yet for this slate — check back closer to kickoff.'}
+          Game-level market facts only: matchups and Vegas lines that any sportsbook already publishes. This section names no players.
+          {!slate.highestTotal && ' Odds data isn’t in yet for this slate. Check back closer to kickoff.'}
         </p>
       </div>
     </section>
@@ -138,7 +138,7 @@ const breadcrumbSchema = {
           ))}
         </div>
         <p style="margin-top:16px; font-size:13px;">
-          Correlation between projected and actual DraftKings points, by position — from real backtested slates, not a live claim.
+          Correlation between projected and actual DraftKings points by position, from real backtested slates. It is not a live claim.
           {accuracy.generatedAt && ` As of ${dateFmt(accuracy.generatedAt)}.`}
         </p>
       </div>

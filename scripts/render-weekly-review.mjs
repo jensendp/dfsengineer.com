@@ -47,7 +47,7 @@ const bModelCorr = corr(M, A), bPubCorr = corr(P, A);
 const bModelMae = mae(M), bPubMae = mae(P);
 const closer = graded.filter((p) => Math.abs(p.model - p.actual) < Math.abs(p.public - p.actual)).length;
 
-const f1 = (v) => (v == null ? '—' : v.toFixed(1));
+const f1 = (v) => (v == null ? 'n/a' : v.toFixed(1));
 const f2 = (v) => v.toFixed(2);
 const money = (n) => `$${n.toLocaleString('en-US')}`;
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -65,7 +65,7 @@ const diffTable = (rs) =>
   [
     '| Player | Pos | Team | Salary | Model | Public avg | Actual |',
     '|---|---|---|---:|---:|---:|---:|',
-    ...rs.map((p) => `| ${p.player} | ${p.position} | ${p.team ?? '—'} | ${money(p.salary)} | ${f1(p.model)} | ${f1(p.public)} | ${f1(p.actual)} |`),
+    ...rs.map((p) => `| ${p.player} | ${p.position} | ${p.team ?? 'n/a'} | ${money(p.salary)} | ${f1(p.model)} | ${f1(p.public)} | ${f1(p.actual)} |`),
   ].join('\n');
 
 // ---------- wording that follows the numbers ----------
@@ -79,9 +79,9 @@ const boardVerdict = verdict(bModelCorr, bPubCorr, bModelMae, bPubMae);
 const slateVerdict = verdict(accuracy.model.corr, accuracy.public.avg_corr, accuracy.model.mae, accuracy.public.avg_mae);
 
 const boardLine = {
-  better: `On the ${graded.length}-player board, the **model's projections lined up better with real results than the public average did**`,
-  worse: `On the ${graded.length}-player board, the **model's projections lined up worse with real results than the public average did**`,
-  mixed: `On the ${graded.length}-player board, the **model and the public average split the grading**`,
+  better: `On the ${graded.length}-player board, the model's projections lined up better with real results than the public average did`,
+  worse: `On the ${graded.length}-player board, the model's projections lined up worse with real results than the public average did`,
+  mixed: `On the ${graded.length}-player board, the model and the public average split the grading`,
 }[boardVerdict];
 const slateLine = {
   better: 'the model beat the public sources on both measures',
@@ -98,8 +98,8 @@ const splitNote = sameDir == null ? '' : sameDir
 
 const ordered = oo.bullish_avg > oo.neutral_avg && oo.neutral_avg > oo.bearish_avg;
 const oppLine = ordered
-  ? `Players flagged bullish by logged articles and podcasts averaged **${f1(oo.bullish_avg)}** actual points across the ${oo.n} graded, versus **${f1(oo.neutral_avg)}** for neutral and **${f1(oo.bearish_avg)}** for bearish — the order you'd hope for.`
-  : `Players flagged bullish by logged articles and podcasts averaged **${f1(oo.bullish_avg)}** actual points across the ${oo.n} graded, versus **${f1(oo.neutral_avg)}** for neutral and **${f1(oo.bearish_avg)}** for bearish. That did not line up cleanly this week.`;
+  ? `Players flagged bullish by logged articles and podcasts averaged ${f1(oo.bullish_avg)} actual points across the ${oo.n} graded, versus ${f1(oo.neutral_avg)} for neutral and ${f1(oo.bearish_avg)} for bearish, the order you'd hope for.`
+  : `Players flagged bullish by logged articles and podcasts averaged ${f1(oo.bullish_avg)} actual points across the ${oo.n} graded, versus ${f1(oo.neutral_avg)} for neutral and ${f1(oo.bearish_avg)} for bearish. That did not line up cleanly this week.`;
 
 const injSection = inj.length === 0 ? '' : `
 ## Injury tags
@@ -109,42 +109,42 @@ ${inj.length} player${inj.length === 1 ? '' : 's'} on the board carried an injur
 
 const takeaways = [
   boardVerdict === 'better'
-    ? '**The model beat the public average on this board.** Check whether it holds next week before reading anything into it.'
+    ? 'The model beat the public average on this board. Check whether that holds next week before reading anything into it.'
     : boardVerdict === 'worse'
-    ? "**The model did not beat the public average on this board.** Say it plainly, check it again next week, and look at where the model's big gaps came from."
-    : '**The model and the public average split the grading on this board.** Neither won outright.',
+    ? "The model did not beat the public average on this board. We will check again next week and look at where its big gaps came from."
+    : 'The model and the public average split the grading on this board. Neither won outright.',
   slateVerdict === 'mixed'
-    ? '**Across the full slate the result was mixed:** the model won on one accuracy measure and lost on the other. Whether that holds up is the real test.'
+    ? 'Across the full slate the result was mixed: the model won on one accuracy measure and lost on the other. Whether that holds over more weeks is the test.'
     : slateVerdict === 'better'
-    ? '**Across the full slate the model beat the public sources.** One week is a start, not a record.'
-    : '**Across the full slate the model trailed the public sources.** The model earns its place by being checked, not assumed.',
-  '**Process over verdicts.** The point of publishing the snapshot before and the grade after is that the grading can\'t be bent. The weeks that look bad are as useful as the ones that look good.',
+    ? 'Across the full slate the model beat the public sources. One week is a start, not a record.'
+    : 'Across the full slate the model trailed the public sources. The model earns its place by being checked, so we keep checking.',
+  'Publishing the snapshot first and the grade afterward means the grade cannot be adjusted to fit. Bad weeks are as useful as good ones.',
 ];
 
 const nextWeek = week + 1;
 const intro = retro
   ? `*Results as of the Week ${week} games. This grades the
-[pre-game board](/blog/nfl-dfs-weekly-signals/${season}/week-${week}/) as it was rebuilt
-after the games — a sample of the format, before snapshots were published ahead of
-kickoff. From Week ${week + 1} on, each snapshot goes up first and is graded exactly as it was.*`
+[pre-game board](/blog/nfl-dfs-weekly-signals/${season}/week-${week}/) as we rebuilt it
+after the games, a sample of the format from before snapshots went up ahead of
+kickoff. From Week ${week + 1} on, each snapshot goes up first and gets graded as published.*`
   : `*Results as of the Week ${week} games. This grades the
-[pre-game snapshot](/blog/nfl-dfs-weekly-signals/${season}/week-${week}/) exactly as
-it was published — no projection was changed after the fact.*`;
+[pre-game snapshot](/blog/nfl-dfs-weekly-signals/${season}/week-${week}/) as
+published. No projection changed after the fact.*`;
 
 const body = `${intro}
 
-The pre-game post showed what the data looked like. Here is how it
-graded: projections against real DraftKings points, the hits, the misses,
-and a plain read on whether the model earned its place on the board.
-One week is a small sample, so the point of this page is to show the
-method and the numbers, not to declare a winner.
+The pre-game post showed what the data looked like. This one grades it:
+projections against real DraftKings points, the hits and misses, and
+whether the model earned its place on the board. One week is a small
+sample, so this page shows the method and the numbers and declares no
+winner.
 
 ## The short version
 
 - ${boardLine}: correlation ${f2(bModelCorr)} vs ${f2(bPubCorr)}, average miss ${f1(bModelMae)} vs ${f1(bPubMae)} points. The model was closer than the public average on ${closer} of ${graded.length} players.
-- Across **all ${accuracy.model.n} graded players** (not just the board), ${slateLine}: the model's average miss was **${f2(accuracy.model.mae)} points** vs **${f2(accuracy.public.avg_mae)}** for the ${accuracy.public.sources} public sources (their individual scores averaged), with correlation **${accuracy.model.corr.toFixed(3)}** vs **${accuracy.public.avg_corr.toFixed(3)}**.
-- The board is a selected group — the top-scoring names — so its correlations run lower than a full slate's. That's expected, and it's why both views are shown.
-- The largest model miss on the board was **${tooHigh[0].player}** (model ${f1(tooHigh[0].model)}, actual ${f1(tooHigh[0].actual)}); the largest beat was **${tooLow[0].player}** (model ${f1(tooLow[0].model)}, actual ${f1(tooLow[0].actual)}).
+- Across all ${accuracy.model.n} graded players (not just the board), ${slateLine}: the model's average miss was ${f2(accuracy.model.mae)} points vs ${f2(accuracy.public.avg_mae)} for the ${accuracy.public.sources} public sources (their individual scores averaged), with correlation ${accuracy.model.corr.toFixed(3)} vs ${accuracy.public.avg_corr.toFixed(3)}.
+- The board is a selected group, the top-scoring names, so its correlations run lower than a full slate's. Both views are shown for that reason.
+- The largest model miss on the board was ${tooHigh[0].player} (model ${f1(tooHigh[0].model)}, actual ${f1(tooHigh[0].actual)}). The largest beat was ${tooLow[0].player} (model ${f1(tooLow[0].model)}, actual ${f1(tooLow[0].actual)}).
 
 ## Board results by group
 
@@ -152,7 +152,7 @@ method and the numbers, not to declare a winner.
 |---|---:|---:|---:|---:|
 ${[split.length ? groupRow('Sources split', split) : null, agreed.length ? groupRow('Sources agreed', agreed) : null].filter(Boolean).join('\n')}
 
-${split.length && agreed.length ? `Players where the sources agreed averaged ${f1(mean(agreed.map((p) => p.actual)))} points; the split group averaged ${f1(mean(split.map((p) => p.actual)))}. Over the full ${oo.n}-player pool, split players averaged ${f1(oo.split_avg)} vs ${f1(oo.agreed_avg)} for the rest. ${splitNote} ${split.length < 20 ? `With only ${split.length} players in the split group this week there is no reliable conclusion either way.` : ''} It is worth tracking across more weeks.` : 'There was no split group to compare this week.'}
+${split.length && agreed.length ? `Players where the sources agreed averaged ${f1(mean(agreed.map((p) => p.actual)))} points; the split group averaged ${f1(mean(split.map((p) => p.actual)))}. Over the full ${oo.n}-player pool, split players averaged ${f1(oo.split_avg)} vs ${f1(oo.agreed_avg)} for the rest. ${splitNote} ${split.length < 20 ? `With only ${split.length} players in the split group this week there is no reliable conclusion either way.` : ''} We will keep tracking it.` : 'There was no split group to compare this week.'}
 
 ## Biggest misses and beats against the model
 
@@ -167,17 +167,17 @@ ${diffTable(tooHigh)}
 
 ${diffTable(tooLow)}
 
-Both lists are ordinary single-week variance. That is why we grade over many weeks and not one.
+Both lists are ordinary single-week variance, which is why the grade runs over many weeks.
 
 ## Outside opinion
 
-${oppLine} One week is not a trend, but it is a signal we will keep tracking.
+${oppLine} One week is not a trend. We will keep tracking it.
 ${injSection}
 ## What this means
 
 ${takeaways.map((t) => `- ${t}`).join('\n')}
 
-Next week's snapshot goes up before the games, and gets graded the same way.
+Next week's snapshot goes up before the games and gets graded the same way.
 The fuller discussion happens in the [community](https://www.skool.com/brew-loyalty-6636).
 
 ## FAQ
@@ -192,11 +192,11 @@ ${retro ? `Week ${week}'s board was rebuilt after the games, not published befor
 
 ### Why show both the board and the full slate?
 
-The board is the top-scoring names, a selected group, so its correlations run lower than a full slate's. The full-slate numbers show how the model did on everyone; the board shows how it did on the players the signals page actually featured.
+The board is the top-scoring names, a selected group, so its correlations run lower than a full slate's. The full-slate numbers cover everyone. The board covers the players the signals page featured.
 
 ### Is one week enough to judge the model?
 
-No. A single slate is noisy, which is why the same snapshot and the same grade are published every week.
+No. A single slate is noisy, so the same snapshot and grade are published every week.
 `;
 
 const iso = (data.generated_at ? new Date(data.generated_at) : new Date()).toISOString().slice(0, 19);
