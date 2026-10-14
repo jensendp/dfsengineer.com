@@ -75,4 +75,5 @@ export function loadSlate(): {
 export const NBA_SEASON_START = new Date('2026-10-20T00:00:00-04:00');
 export const nbaSeasonStarted = () => Date.now() >= NBA_SEASON_START.valueOf();
 
-export const editionLabel = (p: Post) => (isHubEdition(p) ? (p.data.slateDate ? 'Nightly' : 'Weekly') : 'Guide');
+export const editionLabel = (p: Post) =>
+  isHubEdition(p) ? (p.data.slateDate ? 'Nightly' : p.data.week !== undefined ? `Week ${p.data.week}` : 'Weekly') : 'Guide';
