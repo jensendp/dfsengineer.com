@@ -239,6 +239,8 @@ Process is the edge. Run it every week.
 
 If you're ready to go deeper on any piece of this framework, the [How to Play NFL DFS: A Step-by-Step Process](https://dfsengineer.com/blog/how-to-play-nfl-dfs-a-step-by-step-process-for-2026) guide covers the full end-to-end workflow, and the [NFL DFS Scoring Explained](https://dfsengineer.com/blog/nfl-dfs-scoring-explained-draftkings-fanduel-more) breakdown ensures you understand exactly how each platform converts on-field production into fantasy points — which matters more than most players realize when comparing stack options across DraftKings and FanDuel.
 
+If you also play the NBA, the stacking logic above mostly does not carry over. The [NBA DFS vs NFL DFS comparison](https://dfsengineer.com/blog/nba-dfs-vs-nfl-dfs-what-changes) covers what changes.
+
 ## FAQ
 
 ### What makes GPP strategy different from cash game strategy in NFL DFS?

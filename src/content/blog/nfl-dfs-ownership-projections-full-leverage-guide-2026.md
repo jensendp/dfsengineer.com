@@ -186,6 +186,8 @@ But the framework matters more than any single week's projections. A repeatable 
 
 The players who consistently cash in large-field GPPs treat ownership as data, apply it with discipline, and refine their process every week. Build that habit and the results follow. If you're just getting started building that weekly habit, the [NFL DFS beginner's guide](https://dfsengineer.com/blog/nfl-dfs-beginners-guide-build-your-first-lineup-2026) walks through the full first-lineup process from scratch.
 
+If you also play the NBA, leverage works differently there. Rotation teammates showed almost no correlation in our 2025-26 data (+0.05, against +0.44 for an NFL quarterback and his top receiver), so NBA leverage comes from individual player choices. The [NBA DFS ownership and leverage guide](https://dfsengineer.com/blog/nba-dfs-ownership-leverage-guide) has the details.
+
 ## FAQ
 
 ### How often do NFL DFS ownership projections change before lock?
