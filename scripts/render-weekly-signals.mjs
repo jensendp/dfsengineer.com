@@ -152,7 +152,7 @@ ${splitPlayers.map((p) => `- ${p.player} (${p.position}, ${p.team ?? 'n/a'})`).j
 - Salary tells you what a player costs, not how he will score.
 
 Come back after the games for the grade: every projection on this page
-against the real result. The fuller discussion happens in the
+against what actually happened. The fuller discussion happens in the
 [community](https://www.skool.com/brew-loyalty-6636).
 
 ## FAQ

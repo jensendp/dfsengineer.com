@@ -79,8 +79,8 @@ const boardVerdict = verdict(bModelCorr, bPubCorr, bModelMae, bPubMae);
 const slateVerdict = verdict(accuracy.model.corr, accuracy.public.avg_corr, accuracy.model.mae, accuracy.public.avg_mae);
 
 const boardLine = {
-  better: `On the ${graded.length}-player board, the model's projections lined up better with real results than the public average did`,
-  worse: `On the ${graded.length}-player board, the model's projections lined up worse with real results than the public average did`,
+  better: `On the ${graded.length}-player board, the model's projections lined up better with what actually happened than the public average did`,
+  worse: `On the ${graded.length}-player board, the model's projections lined up worse with what actually happened than the public average did`,
   mixed: `On the ${graded.length}-player board, the model and the public average split the grading`,
 }[boardVerdict];
 const slateLine = {
@@ -134,7 +134,7 @@ published. No projection changed after the fact.*`;
 const body = `${intro}
 
 The pre-game post showed what the data looked like. This one grades it:
-projections against real DraftKings points, the hits and misses, and
+projections against actual DraftKings points, the hits and misses, and
 whether the model earned its place on the board. One week is a small
 sample, so this page shows the method and the numbers and declares no
 winner.
@@ -184,7 +184,7 @@ The fuller discussion happens in the [community](https://www.skool.com/brew-loya
 
 ### What is this page?
 
-The grade for the Week ${week} signals post: the pre-game projections compared with real DraftKings points, with the hits and the misses.
+The grade for the Week ${week} signals post: the pre-game projections compared with actual DraftKings points, with the hits and the misses.
 
 ### Did the projections change after the games?
 
@@ -202,7 +202,7 @@ No. A single slate is noisy, so the same snapshot and grade are published every 
 const iso = (data.generated_at ? new Date(data.generated_at) : new Date()).toISOString().slice(0, 19);
 const front = `---
 title: "NFL DFS Week ${week} Review: How the Pre-Game Signals Graded"
-description: "Week ${week}'s pre-game board graded against real DraftKings points: model vs the public average, hits and misses, and what one week can and can't tell you."
+description: "Week ${week}'s pre-game board graded against actual DraftKings points: model vs the public average, hits and misses, and what one week can and can't tell you."
 pubDate: "${data.published_at ?? iso}"
 dateModified: "${data.published_at ?? iso}"
 tags: ["NFL DFS","Week ${week}","Projections","Weekly Review"]
