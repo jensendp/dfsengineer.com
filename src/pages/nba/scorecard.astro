@@ -60,6 +60,38 @@ const breadcrumbSchema = {
     </div>
   </section>
 
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-label">{`§ ${nextNo()} — What this page grades`}</h2>
+      <div class="explainer">
+        <div>
+          <h3>What gets graded</h3>
+          <ul>
+            <li>Fantasy points: each projection against the player's DraftKings NBA score from the box score.</li>
+            <li>Minutes: projected minutes against minutes played.</li>
+            <li>The 80% range: whether the actual score landed inside it.</li>
+            <li>The value board: the model's top 10 points-per-dollar plays on each slate, among players projected for 15 or more points, judged on whether they returned 5x salary.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Which games count</h3>
+          <ul>
+            <li>Regular-season, play-in and playoff games. Preseason is tested privately.</li>
+            <li>Each player in each game is graded once, on the last projection saved before his tip-off.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What it leaves out</h3>
+          <ul>
+            <li>Players listed Out when the projection is saved. They have no projection, so they are not graded. A player who was projected and then did not play is graded as a miss.</li>
+            <li>Players with fewer than three games of history. They have no projection.</li>
+            <li>Ownership and anyone's contest lineups. This page does not track either.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   {includesPreseason && (
     <section class="section">
       <div class="wrap">
@@ -286,6 +318,25 @@ const breadcrumbSchema = {
     max-width: var(--prose-max);
     margin: 0;
   }
+  .explainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-carbon);
+    padding: 24px;
+    margin-top: 16px;
+  }
+  .explainer h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-fog);
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+  .explainer ul { padding-left: 18px; display: grid; gap: 10px; margin: 0; font-size: 15px; color: var(--color-chalk); }
   .rules { max-width: var(--prose-max); padding-left: 20px; display: grid; gap: 12px; margin: 16px 0 24px; }
   .rules li { color: var(--color-chalk); }
 </style>
