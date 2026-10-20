@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-15T13:37:01.154078+00:00",
+  "generated_at": "2026-10-20T14:12:37.540196+00:00",
   "scope_note": "Game-level market facts only (matchups, Vegas lines) \u2014 never player-level data. Safe to show for the current/upcoming slate, unlike the retrospective-only content-grounding export.",
   "slate": {
     "season": 2026,
-    "week": 6,
-    "slate_name": "Week 6 Main Slate",
+    "week": 7,
+    "slate_name": "Week 7 Main Slate",
     "num_games": 10
   },
   "highlights": {
     "highest_total": {
-      "matchup": "BUF @ LV",
+      "matchup": "GB @ DET",
       "over_under": 53.5
     },
     "biggest_spread": {
-      "matchup": "ARI @ LAR",
-      "spread": 12.5
+      "matchup": "NYG @ HOU",
+      "spread": 10.0
     }
   }
 }
