@@ -26,22 +26,22 @@ The clear value leader at any position this week, tied directly to Wednesday's m
 The other side of the same game. Both defenses in CLE @ TEN look live this week.
 
 **Brock Purdy, QB, SF, $6,600, 24.7 projected (3.74 per $1k)**
-Confirmed starter, close agreement with DK's own FPPG (22.7).
+Close agreement with DK's own FPPG (22.7).
 
 **Puka Nacua, WR, LAR, $8,400, 29.4 projected (3.49 per $1k)**
-Confirmed starter, the highest score on this week's entire consensus check, not just among receivers.
+The highest score on this week's entire consensus check, not just among receivers.
 
 **Bryce Young, QB, CAR, $5,900, 20.4 projected (3.46 per $1k)**
-Confirmed starter, close agreement with DK's own number (23.7, the gap runs the other direction here).
+Close agreement with DK's own number (23.7, the gap runs the other direction here).
 
 **C.J. Stroud, QB, HOU, $5,700, 19.6 projected (3.45 per $1k)**
-Confirmed starter, tight agreement with DK's own FPPG (20.7).
+Tight agreement with DK's own FPPG (20.7).
 
 **Minnesota DST, $3,500, 12.0 projected (3.43 per $1k)**
-Confirmed value, and the one defense near the top of this board whose own matchup number (0.91x) isn't doing the heavy lifting, this one's about the raw price.
+The one defense near the top of this board whose own matchup number (0.91x) isn't doing the heavy lifting, this one's about the raw price.
 
 **Jahmyr Gibbs, RB, DET, $9,800, 31.9 projected (3.25 per $1k)**
-Confirmed starter, tied to the highest total on the slate (GB @ DET, 53.5), and the single highest raw projection on the whole board. The sources split on how much to trust that number, agreeing on his tier but not the ceiling.
+Tied to the highest total on the slate (GB @ DET, 53.5), and the single highest raw projection on the whole board. The sources split on how much to trust that number, agreeing on his tier but not the ceiling.
 
 ## Worth knowing: defenses lead the board again
 
