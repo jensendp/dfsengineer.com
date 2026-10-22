@@ -45,7 +45,7 @@ Confirmed starter, tied to the highest total on the slate (GB @ DET, 53.5), and 
 
 ## Worth knowing: defenses lead the board again
 
-Three of this week's top eight spots by value are defenses, and it's not a fluke of cheap pricing. Tennessee and Cleveland both tie to Wednesday's matchup read, the single softest matchups in the league for defenses to score against this week, in a game against each other. Houston's DST (not shown above, $3,400, 3.33 per $1k) is a step behind but tells the same story against a Giants offense that's been generous to defenses most of the season.
+Three of this week's top eight spots by value are defenses, and it's not a fluke of cheap pricing. **Tennessee** and **Cleveland** both tie to Wednesday's matchup read, the single softest matchups in the league for defenses to score against this week, in a game against each other. **Houston**'s DST (not shown above, $3,400, 3.33 per $1k) is a step behind but tells the same story against a Giants offense that's been generous to defenses most of the season.
 
 ## FAQ
 

@@ -19,19 +19,19 @@ These matchup multipliers carry six weeks of current-season defensive performanc
 
 ## The highest total on the slate: GB @ DET
 
-**Spread: DET -3.0, Over/Under: 53.5.** Detroit is favored at home in the week's highest-scoring projected game. Jordan Love carries the standout number here, a 1.24x matchup against a Lions defense that's the single most generous number at quarterback in the entire league right now. Christian Watson and Matthew Golden both get a lift behind him, 1.14x. On the other side, Jahmyr Gibbs gets a modest 1.06x against Green Bay.
+**Spread: DET -3.0, Over/Under: 53.5.** Detroit is favored at home in the week's highest-scoring projected game. **Jordan Love** carries the standout number here, a 1.24x matchup against a Lions defense that's the single most generous number at quarterback in the entire league right now. **Christian Watson** and **Matthew Golden** both get a lift behind him, 1.14x. On the other side, **Jahmyr Gibbs** gets a modest 1.06x against Green Bay.
 
 ## The second-highest total: CIN @ BAL
 
-**Spread: BAL -3.0, Over/Under: 51.5.** Baltimore's favored at home, and its offense is where this game's real signal sits. Mark Andrews grades out at 1.35x, the top tight end number on the board this week. Lamar Jackson (1.13x) and Derrick Henry (1.08x) both carry plus matchups behind him. Baltimore's own DST is worth a look too, at 1.07x. Cincinnati's receivers, Ja'Marr Chase and Tee Higgins, sit closer to neutral at 1.03x.
+**Spread: BAL -3.0, Over/Under: 51.5.** Baltimore's favored at home, and its offense is where this game's real signal sits. **Mark Andrews** grades out at 1.35x, the top tight end number on the board this week. **Lamar Jackson** (1.13x) and **Derrick Henry** (1.08x) both carry plus matchups behind him. Baltimore's own DST is worth a look too, at 1.07x. Cincinnati's receivers, **Ja'Marr Chase** and **Tee Higgins**, sit closer to neutral at 1.03x.
 
 ## A road favorite in a near-even total: SF @ ATL
 
-**Spread: SF -3.5, Over/Under: 50.5.** San Francisco's favored on the road. Brock Purdy gets the best individual number in this game, 1.11x, with the 49ers' own DST right behind him at 1.09x against an Atlanta offense that's given up its share this season. Mike Evans and Deebo Samuel Sr. sit at a milder 1.05x. Atlanta's side is quieter: Bijan Robinson at 1.04x, Drake London barely above neutral at 1.01x.
+**Spread: SF -3.5, Over/Under: 50.5.** San Francisco's favored on the road. **Brock Purdy** gets the best individual number in this game, 1.11x, with the 49ers' own DST right behind him at 1.09x against an Atlanta offense that's given up its share this season. **Mike Evans** and **Deebo Samuel Sr.** sit at a milder 1.05x. Atlanta's side is quieter: **Bijan Robinson** at 1.04x, **Drake London** barely above neutral at 1.01x.
 
 ## The fourth-highest total: LAR @ LV
 
-**Spread: LAR -4.5, Over/Under: 47.5.** The Rams are road favorites. Their own DST carries the headline number in this one, 1.34x against a Raiders offense that's leaked points to defenses all year. Matthew Stafford and Kyren Williams both sit at a plain 1.02x. On Las Vegas's side, Kirk Cousins gets a 1.08x, with Tre Tucker and Brock Bowers both a touch above neutral at 1.04x.
+**Spread: LAR -4.5, Over/Under: 47.5.** The Rams are road favorites. Their own DST carries the headline number in this one, 1.34x against a Raiders offense that's leaked points to defenses all year. **Matthew Stafford** and **Kyren Williams** both sit at a plain 1.02x. On Las Vegas's side, **Kirk Cousins** gets a 1.08x, with **Tre Tucker** and **Brock Bowers** both a touch above neutral at 1.04x.
 
 ## The full DVP board: every team, every skill position
 
