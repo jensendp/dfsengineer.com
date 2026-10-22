@@ -1,6 +1,6 @@
 {
  "summary": {
-  "generated_at": "2026-10-22T13:01:45+00:00",
+  "generated_at": "2026-10-22T15:31:44+00:00",
   "since": null,
   "until": null,
   "season_types": [
@@ -19,30 +19,30 @@
   "points": {
    "n": 488,
    "model": {
-    "mae": 8.663782373049147,
-    "bias": 3.5595706382474988,
-    "corr": 0.6928352987782755
+    "mae": 8.680897423311487,
+    "bias": 3.5636689989032364,
+    "corr": 0.6934199026560285
    },
    "dk_fppg": {
-    "mae": 7.743852459016393,
-    "bias": 2.9625,
-    "corr": 0.7656563439203206
+    "mae": 7.734631147540983,
+    "bias": 2.966598360655738,
+    "corr": 0.7665188348916496
    },
    "no_absence_logic": {
-    "mae": 8.438796339661707,
-    "bias": 2.7494836328137393,
-    "corr": 0.6963597553185864
+    "mae": 8.456214372448592,
+    "bias": 2.7535819934694774,
+    "corr": 0.6969576009401603
    }
   },
   "minutes": {
    "n": 488,
-   "model_mae": 6.524315096539153,
-   "baseline_mae": 6.273533965816175
+   "model_mae": 6.51202001457194,
+   "baseline_mae": 6.2612388838489625
   },
   "range": {
    "n": 488,
    "target": 0.8,
-   "coverage": 0.7459016393442623
+   "coverage": 0.7418032786885246
   },
   "availability": {
    "players_projected_20_plus": 359,
@@ -68,23 +68,23 @@
    "dk_fppg": {
     "picks": 60,
     "hit_rate": 0.4666666666666667,
-    "avg_actual": 21.170833333333334
+    "avg_actual": 21.070833333333333
    }
   },
   "nightly": [
    {
     "date": "2026-10-20",
     "players_played": 104,
-    "model_mae": 7.094651542936394,
-    "dk_mae": 7.123076923076923,
+    "model_mae": 7.131691394167372,
+    "dk_mae": 7.036538461538461,
     "value_picks": 20,
     "value_hit_rate": 0.45
    },
    {
     "date": "2026-10-21",
     "players_played": 384,
-    "model_mae": 9.088755306204684,
-    "dk_mae": 7.911979166666666,
+    "model_mae": 9.100474056204684,
+    "dk_mae": 7.923697916666666,
     "value_picks": 40,
     "value_hit_rate": 0.175
    }
@@ -204,7 +204,7 @@
    "dk_fppg": 14.5,
    "played": 1,
    "actual_min": 22.0,
-   "actual_fpts": 30.75,
+   "actual_fpts": 29.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T01:22:58+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -221,7 +221,7 @@
    "dk_fppg": 17.2,
    "played": 1,
    "actual_min": 25.0,
-   "actual_fpts": 24.25,
+   "actual_fpts": 21.0,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T01:22:58+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -1649,7 +1649,7 @@
    "dk_fppg": 14.5,
    "played": 1,
    "actual_min": 22.0,
-   "actual_fpts": 30.75,
+   "actual_fpts": 29.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T01:23:00+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -1666,7 +1666,7 @@
    "dk_fppg": 17.2,
    "played": 1,
    "actual_min": 25.0,
-   "actual_fpts": 24.25,
+   "actual_fpts": 21.0,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T01:23:00+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -2668,7 +2668,7 @@
    "ceil_fpts": 59.07922789350694,
    "dk_fppg": 40.5,
    "played": 1,
-   "actual_min": 28.0,
+   "actual_min": 29.0,
    "actual_fpts": 38.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
@@ -2821,7 +2821,7 @@
    "ceil_fpts": 40.75304102717278,
    "dk_fppg": 28.4,
    "played": 1,
-   "actual_min": 28.0,
+   "actual_min": 29.0,
    "actual_fpts": 34.0,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
@@ -3365,7 +3365,7 @@
    "ceil_fpts": 30.73297194081087,
    "dk_fppg": 10.6,
    "played": 1,
-   "actual_min": 19.0,
+   "actual_min": 20.0,
    "actual_fpts": 13.25,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
@@ -4794,7 +4794,7 @@
    "dk_fppg": 22.9,
    "played": 1,
    "actual_min": 30.0,
-   "actual_fpts": 25.5,
+   "actual_fpts": 27.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -6103,7 +6103,7 @@
    "dk_fppg": 35.0,
    "played": 1,
    "actual_min": 36.0,
-   "actual_fpts": 24.0,
+   "actual_fpts": 25.25,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -6137,7 +6137,7 @@
    "dk_fppg": 29.5,
    "played": 1,
    "actual_min": 29.0,
-   "actual_fpts": 33.25,
+   "actual_fpts": 31.25,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -6154,7 +6154,7 @@
    "dk_fppg": 20.9,
    "played": 1,
    "actual_min": 35.0,
-   "actual_fpts": 33.5,
+   "actual_fpts": 31.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -6188,7 +6188,7 @@
    "dk_fppg": 25.1,
    "played": 1,
    "actual_min": 34.0,
-   "actual_fpts": 34.0,
+   "actual_fpts": 39.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:47+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -7038,7 +7038,7 @@
    "dk_fppg": 10.4,
    "played": 1,
    "actual_min": 24.0,
-   "actual_fpts": 24.5,
+   "actual_fpts": 23.25,
    "dnp_reason": null,
    "predicted_at": "2026-10-22T00:21:26+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -7225,7 +7225,7 @@
    "dk_fppg": 22.3,
    "played": 1,
    "actual_min": 26.0,
-   "actual_fpts": 19.25,
+   "actual_fpts": 18.0,
    "dnp_reason": null,
    "predicted_at": "2026-10-22T00:21:26+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -7260,7 +7260,7 @@
    "played": 0,
    "actual_min": null,
    "actual_fpts": null,
-   "dnp_reason": "COACH'S DECISION",
+   "dnp_reason": "RIGHT CALF",
    "predicted_at": "2026-10-21T23:50:38+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
    "player": "Steven Adams"
@@ -7360,7 +7360,7 @@
    "ceil_fpts": 59.07922789350694,
    "dk_fppg": 40.5,
    "played": 1,
-   "actual_min": 28.0,
+   "actual_min": 29.0,
    "actual_fpts": 38.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
@@ -7394,7 +7394,7 @@
    "ceil_fpts": 40.75304102717278,
    "dk_fppg": 28.4,
    "played": 1,
-   "actual_min": 28.0,
+   "actual_min": 29.0,
    "actual_fpts": 34.0,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
@@ -7479,7 +7479,7 @@
    "ceil_fpts": 30.73297194081087,
    "dk_fppg": 10.6,
    "played": 1,
-   "actual_min": 19.0,
+   "actual_min": 20.0,
    "actual_fpts": 13.25,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
@@ -7769,7 +7769,7 @@
    "dk_fppg": 22.9,
    "played": 1,
    "actual_min": 30.0,
-   "actual_fpts": 25.5,
+   "actual_fpts": 27.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -8211,7 +8211,7 @@
    "dk_fppg": 35.0,
    "played": 1,
    "actual_min": 36.0,
-   "actual_fpts": 24.0,
+   "actual_fpts": 25.25,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -8245,7 +8245,7 @@
    "dk_fppg": 29.5,
    "played": 1,
    "actual_min": 29.0,
-   "actual_fpts": 33.25,
+   "actual_fpts": 31.25,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -8262,7 +8262,7 @@
    "dk_fppg": 20.9,
    "played": 1,
    "actual_min": 35.0,
-   "actual_fpts": 33.5,
+   "actual_fpts": 31.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
@@ -8296,7 +8296,7 @@
    "dk_fppg": 25.1,
    "played": 1,
    "actual_min": 34.0,
-   "actual_fpts": 34.0,
+   "actual_fpts": 39.5,
    "dnp_reason": null,
    "predicted_at": "2026-10-21T23:24:49+00:00",
    "model_version": "v1 (2026-10-07): EWMA minutes + absence-band correction x 30-game points/minute",
