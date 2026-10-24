@@ -1,5 +1,5 @@
 ---
-title: "NFL DFS Week 7 Signals: What the Data Looked Like Before Kickoff"
+title: "NFL DFS Week 7 Signals: Pre-Kickoff Snapshot"
 description: "A pre-game snapshot of the Week 7 board: model and public projections, and where the sources agreed and split. A record to be graded."
 pubDate: "2026-10-23T13:33:01"
 dateModified: "2026-10-23T13:33:01"

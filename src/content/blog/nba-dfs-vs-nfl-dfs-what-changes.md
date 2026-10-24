@@ -1,5 +1,5 @@
 ---
-title: "NBA DFS vs NFL DFS: What Changes and What Carries Over (2026-27)"
+title: "NBA DFS vs NFL DFS: What Changes (2026-27)"
 description: "NBA and NFL DFS compared with measured data: how much scores vary, whether teammates' scores move together, roster rules, and where each sport's edge sits."
 pubDate: '2026-10-13T09:10:00'
 tags: ["NBA DFS","NFL DFS","NBA vs NFL DFS","DFS strategy","DFS stacking"]

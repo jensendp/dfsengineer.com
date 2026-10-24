@@ -1,5 +1,5 @@
 ---
-title: "NFL DFS Matchup Analysis — Week 3, 2026: Reading This Week's Real Lines"
+title: "NFL DFS Matchup Analysis, Week 3: This Week's Lines"
 description: "This week's real Vegas lines and position-level matchup reads for NFL Week 3, 2026 — which games favor which positions, and why, not just a list of spreads."
 pubDate: "2026-09-23T00:00:00"
 dateModified: "2026-09-23T12:00:00"

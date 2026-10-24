@@ -1,6 +1,6 @@
 ---
-title: "NBA DFS: The Complete Guide to Rules, Scoring, Strategy and Late Swap (2026-27)"
-description: "How NBA daily fantasy works on DraftKings: roster rules, scoring with a worked example, contest types, strategy backed by measured data, and how late swap fits in."
+title: "NBA DFS: Rules, Scoring and Strategy Guide (2026-27)"
+description: "How NBA daily fantasy works on DraftKings: roster rules, scoring with a worked example, contest types, and strategy backed by measured data."
 pubDate: '2026-10-13T09:30:00'
 tags: ["NBA DFS","NBA DFS strategy","DraftKings NBA scoring","NBA DFS late swap","how to play NBA DFS"]
 pillar: "NBA DFS Strategy"

@@ -1,6 +1,6 @@
 ---
 title: "NFL DFS Matchup Analysis: How to Read a Matchup"
-description: "What actually makes a matchup 'good' for DFS — points allowed by position, pace, game script, and how to combine them instead of reading one number in isolation."
+description: "What actually makes a matchup 'good' for DFS: points allowed by position, pace, game script, and how to combine them instead of reading one number alone."
 pubDate: '2026-08-26T00:00:00'
 tags: ["Matchups", "Strategy", "NFL DFS"]
 author: "DFS Engineer Playbook"

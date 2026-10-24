@@ -1,5 +1,5 @@
 ---
-title: "NBA DFS Minutes and Injuries: What Happens When a Starter Sits (2025-26 Data)"
+title: "NBA DFS Minutes and Injuries: When a Starter Sits (2025-26)"
 description: "Measured across 1,322 NBA games: how many extra minutes bench and rotation players get when teammates sit, how often it happens, and how reliable the bump is."
 pubDate: '2026-10-13T09:00:00'
 tags: ["NBA DFS","NBA DFS injuries","NBA DFS minutes","injury pivots","late swap"]

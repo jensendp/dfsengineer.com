@@ -1,5 +1,5 @@
 ---
-title: "NBA DFS Ownership Projections and Leverage: A Guide (2026-27)"
+title: "NBA DFS Ownership Projections and Leverage (2026-27)"
 description: "What NBA DFS ownership projections measure, what drives them, how to turn them into leverage in tournaments, and how to check your own reads afterward."
 pubDate: '2026-10-13T09:20:00'
 tags: ["NBA DFS ownership","NBA DFS ownership projections","DFS leverage strategy","NBA tournament strategy","NBA DFS GPP"]

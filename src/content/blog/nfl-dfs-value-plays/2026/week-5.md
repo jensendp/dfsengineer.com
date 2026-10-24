@@ -1,5 +1,5 @@
 ---
-title: "NFL DFS Value Plays — Week 5, 2026: The Board and the Reasoning"
+title: "NFL DFS Value Plays, Week 5: Board and Reasoning"
 description: "This week's real DraftKings value board for NFL Week 5, 2026 — salaries, projections, and the reasoning behind each pick, not just a ranked list."
 pubDate: "2026-10-08T00:00:00"
 dateModified: "2026-10-08T00:00:00"

@@ -37,6 +37,12 @@ const breadcrumbSchema = {
       <p class="eyebrow">NBA · 2026-27 season{started ? '' : ' · starts Oct 20'}</p>
       <h1>NBA DFS</h1>
       <p class="lede">Nightly slates from October to April. Learn the format now; the model's record starts when the games do.</p>
+      <p class="lede">
+        NBA DFS runs on a different clock than NFL: games every night instead of once a week, and
+        a lineup built around minutes and matchups rather than a full slate of injury news. The
+        guides below cover how scoring, ownership, and projections work; the nightly posts and
+        scorecard track how the model performs once the games start.
+      </p>
       <div class="subnav">
         <a href="#tonight">{started ? 'Latest' : 'Tonight'}</a>
         <a href="#scorecard">Scorecard</a>
@@ -78,7 +84,7 @@ const breadcrumbSchema = {
       <h2 class="section-label">Guides</h2>
       <ul class="start-grid">
         {guides.map((p) => (
-          <li><a class="post-card" href={`/blog/${p.slug}/`}><span class="kicker">Guide</span><h3>{p.data.title}</h3></a></li>
+          <li><a class="post-card" href={`/blog/${p.slug}/`}><span class="kicker">Guide</span><h3>{p.data.title}</h3><p>{p.data.description}</p></a></li>
         ))}
       </ul>
     </div>

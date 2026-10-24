@@ -1,6 +1,6 @@
 ---
-title: "NBA DFS Projections: How They Are Made and How We Grade Them (2026-27)"
-description: "How our NBA DFS projections work: points per minute times expected minutes, the 80% range, what backtests on 2025-26 showed, the known biases, and how every projection is graded in public."
+title: "NBA DFS Projections: How They're Made and Graded (2026-27)"
+description: "How our NBA DFS projections work: points per minute times expected minutes, the 80% range, what backtests showed, and how every projection is graded in public."
 pubDate: '2026-10-14T11:22:00'
 tags: ["NBA DFS projections","NBA DFS","NBA fantasy projections","NBA DFS model","NBA DFS minutes"]
 pillar: "NBA DFS Projections"

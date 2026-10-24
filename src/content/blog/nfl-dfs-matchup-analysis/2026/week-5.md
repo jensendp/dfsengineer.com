@@ -1,5 +1,5 @@
 ---
-title: "NFL DFS Matchup Analysis — Week 5, 2026: Reading This Week's Real Lines"
+title: "NFL DFS Matchup Analysis, Week 5: This Week's Lines"
 description: "This week's real Vegas lines and position-level matchup reads for NFL Week 5, 2026 — which games favor which positions, and why, not just a list of spreads."
 pubDate: "2026-10-07T00:00:00"
 dateModified: "2026-10-08T00:00:00"

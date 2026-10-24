@@ -1,5 +1,5 @@
 ﻿---
-title: "NFL DFS Projections: How They're Built and How to Evaluate Them"
+title: "NFL DFS Projections: How They're Built and Evaluated"
 description: "What NFL DFS projections actually measure, how opportunity and efficiency data combine to build them, and how to judge a projection source before you trust it."
 pubDate: '2026-08-27T14:30:00'
 tags: ["NFL DFS projections", "DFS projections", "fantasy football projections", "daily fantasy football strategy"]

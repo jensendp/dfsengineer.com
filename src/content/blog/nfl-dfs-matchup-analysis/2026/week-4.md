@@ -1,5 +1,5 @@
 ---
-title: "NFL DFS Matchup Analysis — Week 4, 2026: Reading This Week's Real Lines"
+title: "NFL DFS Matchup Analysis, Week 4: This Week's Lines"
 description: "This week's real Vegas lines and position-level matchup reads for NFL Week 4, 2026 — which games favor which positions, and why, not just a list of spreads."
 pubDate: "2026-09-30T00:00:00"
 dateModified: "2026-10-01T16:00:00"
