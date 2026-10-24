@@ -1,6 +1,6 @@
 ---
-title: "NFL DFS Ownership Projections: Full Leverage Guide (2026)"
-description: "NFL DFS ownership projections explained with real numbers, worked examples, and leverage strategies. Build a process that uses ownership data to win."
+title: "NFL DFS Ownership Projections: Leverage Guide (2026)"
+description: "How ownership projections are built, the error bands that vary by source, and how to turn a 22% projection landing at 9% into leverage."
 pubDate: '2026-08-28T12:05:17'
 tags: ["NFL DFS ownership","DFS leverage strategy","DFS ownership projections","NFL tournament strategy"]
 pillar: "NFL DFS Ownership & Leverage"

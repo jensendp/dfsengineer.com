@@ -1,6 +1,6 @@
 ---
-title: "NFL DFS Showdown Strategy Guide (2026) | DFS Engineer"
-description: "Complete NFL DFS Showdown strategy guide for 2026. Captain selection, correlation logic, roster construction, and worked examples for single-game slates."
+title: "NFL DFS Showdown Strategy: Captain Math and Builds"
+description: "DraftKings vs FanDuel Showdown rules, captain multiplier math, and the roster builds that cash with a 50-player pool instead of 200+."
 pubDate: '2026-08-29T12:05:36'
 tags: ["NFL DFS Showdown","Single-Game DFS Strategy","Captain Selection","Showdown Roster Construction"]
 pillar: "NFL DFS Single-Game & Showdown"
