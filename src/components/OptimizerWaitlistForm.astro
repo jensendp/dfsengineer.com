@@ -1,0 +1,136 @@
+---
+interface Props {
+  sport: 'nfl' | 'nba';
+}
+const { sport } = Astro.props;
+const formId = `optimizer-waitlist-${sport}`;
+---
+<div class="waitlist-card">
+  <p class="waitlist-kicker">In development &middot; no ETA yet</p>
+  <p class="waitlist-copy">
+    We're building a {sport.toUpperCase()} DFS lineup optimizer. Leave your email and we'll
+    send one message when it's ready to try &mdash; no spam, no other list.
+  </p>
+  <form id={formId} class="waitlist-form" data-sport={sport}>
+    <label class="sr-only" for={`${formId}-email`}>Email address</label>
+    <input
+      id={`${formId}-email`}
+      type="email"
+      name="email"
+      placeholder="you@email.com"
+      required
+      autocomplete="email"
+    />
+    <button type="submit" class="btn btn-primary">Notify me</button>
+  </form>
+  <p class="waitlist-status" data-role="status" role="status" aria-live="polite"></p>
+</div>
+
+<script>
+  // Shared handler: every OptimizerWaitlistForm instance on the page gets
+  // wired up the same way, posting to the one server-rendered API route.
+  document.querySelectorAll<HTMLFormElement>('form.waitlist-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusEl = form.nextElementSibling as HTMLElement | null;
+      const button = form.querySelector('button') as HTMLButtonElement;
+      const input = form.querySelector('input[name="email"]') as HTMLInputElement;
+      const email = input.value.trim();
+      const sport = form.dataset.sport ?? '';
+
+      button.disabled = true;
+      button.textContent = 'Submitting…';
+      if (statusEl) { statusEl.textContent = ''; statusEl.className = 'waitlist-status'; }
+
+      try {
+        const res = await fetch('/api/optimizer-waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, sport }),
+        });
+        const data = await res.json();
+
+        if (res.ok && data.ok) {
+          form.hidden = true;
+          if (statusEl) {
+            statusEl.textContent = "You're on the list. We'll email you when it's ready.";
+            statusEl.className = 'waitlist-status success';
+          }
+        } else {
+          throw new Error(data.error || 'Something went wrong.');
+        }
+      } catch (err) {
+        if (statusEl) {
+          statusEl.textContent = err instanceof Error ? err.message : 'Something went wrong.';
+          statusEl.className = 'waitlist-status error';
+        }
+        button.disabled = false;
+        button.textContent = 'Notify me';
+      }
+    });
+  });
+</script>
+
+<style>
+  .waitlist-card {
+    background: var(--color-carbon);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    margin: var(--space-8) 0;
+  }
+  .waitlist-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-signal);
+    margin: 0 0 var(--space-2);
+  }
+  .waitlist-copy {
+    color: var(--color-fog);
+    margin: 0 0 var(--space-4);
+    max-width: 560px;
+  }
+  .waitlist-form {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .waitlist-form input[type='email'] {
+    flex: 1 1 260px;
+    min-width: 0;
+    background: var(--color-void);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-chalk);
+    font-family: var(--font-body);
+    font-size: 15px;
+  }
+  .waitlist-form input[type='email']:focus {
+    outline: none;
+    border-color: var(--color-signal);
+  }
+  .waitlist-form button {
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .waitlist-form button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .waitlist-status {
+    margin: var(--space-3) 0 0;
+    font-size: 14px;
+  }
+  .waitlist-status.success { color: var(--color-signal); }
+  .waitlist-status.error { color: var(--color-alert); }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+</style>

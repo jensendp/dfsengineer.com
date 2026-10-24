@@ -9,6 +9,8 @@ author: "DFS Engineer Playbook"
 draft: false
 ---
 
+import OptimizerWaitlistForm from '../../components/OptimizerWaitlistForm.astro';
+
 Most NFL DFS optimizer tools do the same thing: take projections, apply salary constraints, spit out lineups. The difference between winning and losing isn't which optimizer you use — it's what you feed it and how you configure it.
 
 This guide covers the full workflow, from raw projections through final lineup export. No "top picks this week" lists. No magic buttons.
@@ -120,6 +122,8 @@ Here's the honest filter. If you're entering one or two lineups in a single-entr
 
 > **Warning:** The most common mistake with paid optimizers isn't overpaying — it's under-configuring. If you're paying for a tool but running it with default projections, no stacking rules, and 100% exposure on every player, you're getting the same output a free tool would give you. The subscription buys you levers. Pull them.
 
+<OptimizerWaitlistForm sport="nfl" />
+
 ## Building a Weekly NFL DFS Optimizer Workflow From Scratch
 
 A repeatable process beats inspiration every time. Here's a concrete weekly timeline. If you're still getting comfortable with the [basic mechanics of NFL DFS](https://www.dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples), work through that first — the workflow below assumes you understand roster construction, contest types, and scoring.
@@ -163,7 +167,7 @@ The edge is upstream. It's in how you build and weight your projections. It's in
 
 If you took one thing from this guide: treat your optimizer as infrastructure. The strategy lives in the inputs and configuration you layer on top. Track your projection accuracy across positions week over week. Log which weighting profile you used and why. Review whether your ownership leverage actually produced differentiated lineups or just noise. That feedback loop, compounded over a full season, is what separates grinders from casual users clicking "optimize."
 
-For deeper dives into specific pieces of this workflow, check out our [NFL DFS Tools & Optimizers](https://www.dfsengineer.com) hub, including standalone guides on projection building, stacking logic, and platform-specific configuration.
+For deeper dives into specific pieces of this workflow, check out the [NFL DFS hub](https://www.dfsengineer.com/nfl/), including standalone guides on projection building, stacking logic, and platform-specific configuration.
 
 ## FAQ
 
