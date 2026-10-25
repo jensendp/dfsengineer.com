@@ -3,6 +3,7 @@
 // never as a placeholder number (same rule the home page followed before
 // these were moved out of index.astro).
 import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export type Post = CollectionEntry<'blog'>;
@@ -35,7 +36,7 @@ export const dateFmt = (iso: string) =>
 type AccuracyRow = { profile: string; position: string; n: number; mae: number; corr: number | null };
 export function loadAccuracy(): { cards: { label: string; value: string }[]; generatedAt: string | null } {
   try {
-    const raw = readFileSync(new URL('../../data/dfs-local-export.json', import.meta.url), 'utf-8');
+    const raw = readFileSync(resolve(process.cwd(), 'data/dfs-local-export.json'), 'utf-8');
     const exportData = JSON.parse(raw);
     const rows: AccuracyRow[] = exportData?.model_accuracy?.by_profile_position ?? [];
     const defaults = rows.filter((r) => r.profile === 'default' && r.corr !== null);
@@ -56,7 +57,7 @@ export function loadSlate(): {
   name: string | null; numGames: number; highestTotal: SlateHighlight; biggestSpread: SlateHighlight;
 } | null {
   try {
-    const raw = readFileSync(new URL('../../data/slate-snapshot.json', import.meta.url), 'utf-8');
+    const raw = readFileSync(resolve(process.cwd(), 'data/slate-snapshot.json'), 'utf-8');
     const snap = JSON.parse(raw);
     if (!(snap?.slate?.num_games > 0)) return null;
     return {

@@ -3,6 +3,8 @@
 // Read at build time, same pattern as the NFL data in data/. Never fabricates: a missing or unreadable file is
 // treated as an empty record, which the page renders as the "season hasn't started" state.
 import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 export interface Bucket { mae: number | null; bias: number | null; corr: number | null }
 export interface Hit { picks: number; hit_rate: number | null; avg_actual: number | null }
@@ -30,7 +32,9 @@ export interface Summary {
 }
 export interface NbaRecord { summary: Summary; rows: unknown[]; note: string }
 
-export const RECORD_URL = new URL('../../data/nba/scorecard.json', import.meta.url);
+// Resolved from the project root, not import.meta.url: with the Vercel adapter the prerender step runs from a bundled
+// copy of this module, where a path relative to import.meta.url no longer reaches data/.
+export const RECORD_URL = pathToFileURL(resolve(process.cwd(), 'data/nba/scorecard.json'));
 
 export function loadRecord(): NbaRecord | null {
   // NBA_SCORECARD_FILE lets you preview the page against another export without touching data/nba/.
