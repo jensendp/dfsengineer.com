@@ -14,5 +14,12 @@ export default defineConfig({
   // mdx lets a handful of blog posts (the ones that embed a live
   // component, like the optimizer waitlist form) use .mdx instead of
   // .md. Existing .md posts are untouched.
-  integrations: [sitemap(), mdx()],
+  integrations: [
+    sitemap({
+      // /tools/* is unlisted beta work (gated behind a cookie, noindex'd
+      // on the page itself too) — keep it out of the sitemap as well.
+      filter: (page) => !page.includes('/tools/'),
+    }),
+    mdx(),
+  ],
 });

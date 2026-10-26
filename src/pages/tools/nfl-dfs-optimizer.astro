@@ -1,0 +1,879 @@
+---
+// Unlisted (no nav link, excluded from sitemap, noindex) beta of the NFL
+// optimizer. Access is gated by a cookie set via /tools/unlock?key=... —
+// see src/pages/tools/unlock.ts. OPTIMIZER_ENABLED flips the gate off for
+// everyone once this is ready for a real public launch; no code changes
+// needed to go from "beta testers only" to "public" at that point.
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import OptimizerWaitlistForm from '../../components/OptimizerWaitlistForm.astro';
+
+const COOKIE_NAME = 'optimizer_beta';
+const secret = import.meta.env.OPTIMIZER_UNLOCK_SECRET;
+const publicLaunch = import.meta.env.OPTIMIZER_ENABLED === 'true';
+
+const hasValidCookie = Boolean(secret) && Astro.cookies.get(COOKIE_NAME)?.value === secret;
+const unlocked = publicLaunch || hasValidCookie;
+
+const title = 'NFL DFS Lineup Optimizer (Beta) | DFS Engineer';
+const description = 'Build an optimal DraftKings NFL lineup from a blended projection model, solved entirely in your browser.';
+const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString();
+---
+
+<BaseLayout {title} {description} {canonicalURL} robots="noindex, nofollow">
+  {unlocked ? (
+    <main class="tool-shell">
+      <h1>NFL DFS Lineup Optimizer <span class="beta-tag">Beta</span></h1>
+      <p class="tool-note">
+        This is an early beta &mdash; data freshness and solver output are still being validated.
+        Not yet linked from the site; please don't share this URL publicly yet.
+      </p>
+
+      <div id="pool-status" class="pool-status" data-state="loading">
+        <span class="pool-status-dot" aria-hidden="true"></span>
+        <span id="pool-status-text">Loading player pool&hellip;</span>
+        <button id="pool-retry-btn" class="btn btn-secondary pool-retry" hidden>Retry</button>
+      </div>
+
+      <details class="pool-browser">
+        <summary>Lock / exclude players (optional)</summary>
+        <div class="pool-controls">
+          <input id="pool-search" type="text" placeholder="Search players…" class="pool-search" />
+          <div id="pool-position-filter" class="pool-position-filter" role="group" aria-label="Filter by position">
+            <button type="button" class="pos-filter-btn" data-pos="ALL" aria-pressed="true">All</button>
+            <button type="button" class="pos-filter-btn" data-pos="QB" aria-pressed="false">QB</button>
+            <button type="button" class="pos-filter-btn" data-pos="RB" aria-pressed="false">RB</button>
+            <button type="button" class="pos-filter-btn" data-pos="WR" aria-pressed="false">WR</button>
+            <button type="button" class="pos-filter-btn" data-pos="TE" aria-pressed="false">TE</button>
+            <button type="button" class="pos-filter-btn" data-pos="DST" aria-pressed="false">DST</button>
+          </div>
+        </div>
+        <div class="pool-table-wrap">
+          <table class="pool-table">
+            <colgroup>
+              <col class="pg-pos" />
+              <col class="pg-name" />
+              <col class="pg-salary" />
+              <col class="pg-proj" />
+              <col class="pg-lock" />
+              <col class="pg-excl" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th data-sort="position">Pos</th>
+                <th data-sort="name">Player</th>
+                <th class="col-num" data-sort="salary">Salary</th>
+                <th class="col-num" data-sort="projection">Proj</th>
+                <th>Lock</th>
+                <th>Exclude</th>
+              </tr>
+            </thead>
+            <tbody id="pool-list"></tbody>
+          </table>
+        </div>
+      </details>
+
+      <div class="tool-actions">
+        <button id="build-btn" class="btn btn-primary" disabled>Build Optimal Lineup</button>
+        <label class="lineup-count-label" for="lineup-count">
+          Lineups
+          <input id="lineup-count" type="number" min="1" max="20" value="1" class="lineup-count-input" />
+        </label>
+        <span id="solver-status" class="solver-status" role="status" aria-live="polite"></span>
+      </div>
+
+      <div id="lineup-output" class="lineup-output">
+        <p class="empty-state">Your optimal lineup will appear here once the pool loads.</p>
+      </div>
+    </main>
+  ) : (
+    <main class="tool-shell">
+      <h1>NFL DFS Lineup Optimizer</h1>
+      <OptimizerWaitlistForm sport="nfl" />
+    </main>
+  )}
+</BaseLayout>
+
+{/* Astro only bundles <script> as a module when it's at the template's
+    top level, not inside a conditional JSX expression — so this always
+    renders, and the IIFE below no-ops when the gated markup isn't present
+    (the locked/waitlist view). */}
+<script>
+  import { buildMultipleLineups, type OptimizerPool, type OptimizerPlayer, type SolveResult } from '../../lib/optimizer/solve';
+
+  (function initOptimizer() {
+    const poolStatusEl = document.getElementById('pool-status');
+    const poolStatusTextEl = document.getElementById('pool-status-text');
+    const poolRetryBtn = document.getElementById('pool-retry-btn') as HTMLButtonElement | null;
+    const buildBtn = document.getElementById('build-btn') as HTMLButtonElement | null;
+    const lineupCountInput = document.getElementById('lineup-count') as HTMLInputElement | null;
+    const statusEl = document.getElementById('solver-status');
+    const outputEl = document.getElementById('lineup-output');
+    const poolSearchEl = document.getElementById('pool-search') as HTMLInputElement | null;
+    const poolListEl = document.getElementById('pool-list');
+    const poolPositionFilterEl = document.getElementById('pool-position-filter');
+    const poolTableWrapEl = document.querySelector('.pool-table-wrap');
+    if (
+      !poolStatusEl || !poolStatusTextEl || !poolRetryBtn || !buildBtn || !lineupCountInput ||
+      !statusEl || !outputEl || !poolSearchEl || !poolListEl || !poolPositionFilterEl || !poolTableWrapEl
+    ) {
+      return; // locked/waitlist view
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let pool: OptimizerPool | null = null;
+    let lastLineups: Array<Array<[string, OptimizerPlayer | undefined]>> = [];
+    const lockedIds = new Set<number>();
+    const excludedIds = new Set<number>();
+
+    type SortKey = 'position' | 'name' | 'salary' | 'projection';
+    let positionFilter = 'ALL';
+    let sortKey: SortKey = 'projection';
+    let sortDir: 'asc' | 'desc' = 'desc';
+
+    const DK_SLOT_HEADER = ['QB', 'RB', 'RB', 'WR', 'WR', 'WR', 'TE', 'FLEX', 'DST'];
+
+    function downloadLineupCsv() {
+      const rows = lastLineups.map((slotAssignments) =>
+        slotAssignments.map(([, p]) => (p ? `${p.name} (${p.dk_id})` : '')).join(',')
+      );
+      const csv = `${DK_SLOT_HEADER.join(',')}\n${rows.join('\n')}\n`;
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = pool ? `dfsengineer-${pool.season}-week-${pool.week}-lineups.csv` : 'dfsengineer-lineups.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    const SORT_LABELS: Record<SortKey, string> = {
+      position: 'Pos', name: 'Player', salary: 'Salary', projection: 'Proj',
+    };
+
+    function renderPoolList() {
+      if (!pool) return;
+      const needle = poolSearchEl!.value.trim().toLowerCase();
+
+      let matches = pool.players;
+      if (positionFilter !== 'ALL') matches = matches.filter((p) => p.position === positionFilter);
+      if (needle) matches = matches.filter((p) => p.name.toLowerCase().includes(needle));
+
+      const sorted = [...matches].sort((a, b) => {
+        let cmp: number;
+        if (sortKey === 'name' || sortKey === 'position') cmp = a[sortKey].localeCompare(b[sortKey]);
+        else cmp = a[sortKey] - b[sortKey];
+        return sortDir === 'asc' ? cmp : -cmp;
+      });
+
+      poolListEl!.innerHTML = sorted.length > 0
+        ? sorted
+            .map((p) => {
+              const state = lockedIds.has(p.player_id) ? 'locked' : excludedIds.has(p.player_id) ? 'excluded' : 'none';
+              return `
+                <tr data-player-id="${p.player_id}" data-state="${state}">
+                  <td><span class="position-pill">${p.position}</span></td>
+                  <td class="pool-row-name">${p.name} <span class="pool-row-team">${p.team}</span></td>
+                  <td class="col-num">${formatSalary(p.salary)}</td>
+                  <td class="col-num">${p.projection.toFixed(1)}</td>
+                  <td><button class="btn btn-secondary pool-row-btn" data-action="lock">${state === 'locked' ? 'On' : 'Lock'}</button></td>
+                  <td><button class="btn btn-secondary pool-row-btn" data-action="exclude">${state === 'excluded' ? 'On' : 'Exclude'}</button></td>
+                </tr>
+              `;
+            })
+            .join('')
+        : '<tr><td colspan="6" class="empty-state">No players match these filters.</td></tr>';
+
+      // Reflect current sort in the header (▲/▼ next to the active column).
+      poolTableWrapEl!.querySelectorAll('th[data-sort]').forEach((th) => {
+        const key = (th as HTMLElement).dataset.sort as SortKey;
+        const label = SORT_LABELS[key];
+        th.textContent = key === sortKey ? `${label} ${sortDir === 'asc' ? '▲' : '▼'}` : label;
+      });
+    }
+
+    poolListEl.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.pool-row-btn') as HTMLButtonElement | null;
+      if (!btn) return;
+      const row = btn.closest('tr') as HTMLElement;
+      const id = Number(row.dataset.playerId);
+      const action = btn.dataset.action;
+
+      if (action === 'lock') {
+        if (lockedIds.has(id)) lockedIds.delete(id);
+        else { lockedIds.add(id); excludedIds.delete(id); }
+      } else if (action === 'exclude') {
+        if (excludedIds.has(id)) excludedIds.delete(id);
+        else { excludedIds.add(id); lockedIds.delete(id); }
+      }
+      renderPoolList();
+    });
+
+    poolSearchEl.addEventListener('input', () => renderPoolList());
+
+    poolPositionFilterEl.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.pos-filter-btn') as HTMLButtonElement | null;
+      if (!btn) return;
+      positionFilter = btn.dataset.pos!;
+      poolPositionFilterEl!.querySelectorAll('.pos-filter-btn').forEach((b) => {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      renderPoolList();
+    });
+
+    poolTableWrapEl.addEventListener('click', (e) => {
+      const th = (e.target as HTMLElement).closest('th[data-sort]') as HTMLElement | null;
+      if (!th) return;
+      const key = th.dataset.sort as SortKey;
+      if (sortKey === key) {
+        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortKey = key;
+        sortDir = key === 'name' || key === 'position' ? 'asc' : 'desc';
+      }
+      renderPoolList();
+    });
+
+    function formatSalary(salary: number): string {
+      // "$6.6K" instead of "$6,600" — shorter so it never needs truncating
+      // in a narrow table cell, and a standard DFS-tool convention anyway.
+      return `$${(salary / 1000).toFixed(1)}K`;
+    }
+
+    function timeAgo(iso: string): string {
+      const ms = Date.now() - new Date(iso).getTime();
+      const hours = Math.floor(ms / (1000 * 60 * 60));
+      if (hours < 1) return 'less than an hour ago';
+      if (hours === 1) return '1 hour ago';
+      if (hours < 48) return `${hours} hours ago`;
+      return `${Math.floor(hours / 24)} days ago`;
+    }
+
+    async function loadPool() {
+      poolStatusEl!.dataset.state = 'loading';
+      poolStatusTextEl!.textContent = 'Loading player pool…';
+      poolRetryBtn!.hidden = true;
+      buildBtn!.disabled = true;
+
+      try {
+        const res = await fetch('/data/nfl-optimizer-pool.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (!data || !Array.isArray(data.players) || data.players.length === 0) {
+          throw new Error('empty pool');
+        }
+        pool = data;
+        poolStatusEl!.dataset.state = 'ready';
+        poolStatusTextEl!.textContent =
+          `${pool!.slate_name} — data as of ${timeAgo(pool!.generated_at)} ` +
+          `(${pool!.players.length} players, blended projection model)`;
+        buildBtn!.disabled = false;
+        renderPoolList();
+      } catch (err) {
+        poolStatusEl!.dataset.state = 'error';
+        poolStatusTextEl!.textContent = "Couldn't load the player pool.";
+        poolRetryBtn!.hidden = false;
+        console.error('optimizer pool load failed', err);
+      }
+    }
+
+    function positionPill(position: string): string {
+      return `<span class="position-pill">${position}</span>`;
+    }
+
+    function playerRow(slot: string, p: OptimizerPlayer): string {
+      return `<tr>
+        <td>${positionPill(slot)}</td>
+        <td>${p.name}</td>
+        <td class="col-matchup">${p.team} vs ${p.opponent}</td>
+        <td class="col-num">${formatSalary(p.salary)}</td>
+        <td class="col-num">${p.projection.toFixed(1)}</td>
+      </tr>`;
+    }
+
+    function animateValue(el: Element, from: number, to: number, format: (n: number) => string) {
+      if (prefersReducedMotion) {
+        el.textContent = format(to);
+        return;
+      }
+      const duration = 300;
+      const start = performance.now();
+      function tick(now: number) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        el.textContent = format(from + (to - from) * eased);
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function slotAssignmentsFor(result: SolveResult): Array<[string, OptimizerPlayer | undefined]> {
+      const byPosition: Record<string, OptimizerPlayer[]> = { QB: [], RB: [], WR: [], TE: [], DST: [] };
+      for (const p of result.lineup) byPosition[p.position].push(p);
+      return [
+        ['QB', byPosition.QB[0]],
+        ['RB', byPosition.RB[0]],
+        ['RB', byPosition.RB[1]],
+        ['WR', byPosition.WR[0]],
+        ['WR', byPosition.WR[1]],
+        ['WR', byPosition.WR[2]],
+        ['TE', byPosition.TE[0]],
+        ['FLEX', [...byPosition.RB.slice(2), ...byPosition.WR.slice(3), ...byPosition.TE.slice(1)][0]],
+        ['DST', byPosition.DST[0]],
+      ];
+    }
+
+    function lineupCardHtml(result: SolveResult, index: number): string {
+      const slotAssignments = slotAssignmentsFor(result);
+      const rows = slotAssignments
+        .filter(([, p]) => Boolean(p))
+        .map(([slot, p]) => playerRow(slot, p as OptimizerPlayer))
+        .join('');
+      const remaining = pool!.salary_cap - result.totalSalary;
+
+      return `
+        <div class="totals-row">
+          <div class="stat-card">
+            <span class="stat-label">Salary used</span>
+            <span class="stat-value" data-salary-for="${index}">$0</span>
+            <span class="stat-sub">$${remaining.toLocaleString()} remaining of $${pool!.salary_cap.toLocaleString()}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Projected</span>
+            <span class="stat-value up" data-proj-for="${index}">0.0</span>
+            <span class="stat-sub">points, blended projection</span>
+          </div>
+        </div>
+        <div class="lineup-card">
+          <table class="lineup-table">
+            <colgroup>
+              <col class="cg-slot" />
+              <col class="cg-player" />
+              <col class="cg-matchup" />
+              <col class="cg-salary" />
+              <col class="cg-proj" />
+            </colgroup>
+            <thead><tr><th>Slot</th><th>Player</th><th class="col-matchup">Matchup</th><th class="col-num">Salary</th><th class="col-num">Proj</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderLineups(results: SolveResult[]) {
+      if (results.length === 0) {
+        outputEl!.innerHTML =
+          '<p class="empty-state state-error">No valid lineup found under the salary cap, roster, ' +
+          'and lock/exclude rules. Try clearing a lock/exclude or asking for fewer lineups.</p>';
+        return;
+      }
+
+      lastLineups = results.map(slotAssignmentsFor);
+
+      const cards = results
+        .map(
+          (result, i) => `
+            ${results.length > 1 ? `<h2 class="lineup-heading">Lineup ${i + 1}</h2>` : ''}
+            ${lineupCardHtml(result, i)}
+          `
+        )
+        .join('');
+
+      outputEl!.innerHTML = `
+        ${cards}
+        <div class="lineup-actions">
+          <button id="csv-btn" class="btn btn-secondary">Download DK CSV</button>
+          <span class="csv-note">
+            ${results.length > 1 ? `${results.length} lineups, one row each — ` : ''}
+            Paste these cells into DraftKings' own lineup upload template.
+          </span>
+        </div>
+      `;
+
+      document.getElementById('csv-btn')!.addEventListener('click', downloadLineupCsv);
+
+      results.forEach((result, i) => {
+        const salaryEl = document.querySelector(`[data-salary-for="${i}"]`)!;
+        const projEl = document.querySelector(`[data-proj-for="${i}"]`)!;
+        animateValue(salaryEl, 0, result.totalSalary, (n) => `$${Math.round(n).toLocaleString()}`);
+        animateValue(projEl, 0, result.totalProjection, (n) => n.toFixed(1));
+      });
+    }
+
+    buildBtn.addEventListener('click', () => {
+      if (!pool) return;
+      const count = Math.min(20, Math.max(1, Number(lineupCountInput.value) || 1));
+      buildBtn.disabled = true;
+      buildBtn.textContent = 'Solving…';
+      statusEl!.textContent = '';
+      // Yield a frame so the "Solving..." label actually paints before the
+      // (synchronous, usually sub-second) solve blocks the main thread.
+      requestAnimationFrame(() => {
+        const results = buildMultipleLineups(
+          pool!.players,
+          { salaryCap: pool!.salary_cap, lockedIds, excludedIds },
+          count
+        );
+        if (results.length > 0 && results.length < count) {
+          statusEl!.textContent =
+            `Only ${results.length} of ${count} requested lineups are distinct under these rules.`;
+        }
+        renderLineups(results);
+        buildBtn.disabled = false;
+        buildBtn.textContent = 'Build Optimal Lineup';
+      });
+    });
+
+    poolRetryBtn.addEventListener('click', () => loadPool());
+
+    loadPool();
+  })();
+</script>
+
+{/* is:global: Astro scopes a component's <style> block to elements present
+    in its template at build time, by compiling each selector with a
+    [data-astro-cid-*] attribute match. The lineup table/pills/cards are
+    built client-side via innerHTML after the page loads, so they never
+    carry that attribute — every rule below was silently matching nothing,
+    which is why the table rendered as bare unstyled HTML. */}
+<style is:global>
+  .tool-shell {
+    /* Wider than the 860px article-prose column (see DESIGN.md) — this is a
+       dashboard surface built around a data table, not long-form reading. */
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+    /* Safety net: sub-pixel rounding across a fixed-layout table's column
+       widths can push it 1-2px past the viewport on some phones even when
+       every column adds up on paper — clip rather than let that spawn a
+       page-level horizontal scrollbar. */
+    overflow-x: hidden;
+  }
+  .beta-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-signal);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: 2px 8px;
+    margin-left: var(--space-3);
+    vertical-align: middle;
+  }
+  .tool-note {
+    color: var(--color-fog);
+  }
+
+  /* Status strip — reads as an instrument-panel readout: a state dot plus
+     a mono line, not a plain paragraph. */
+  .pool-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--color-carbon);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    margin: var(--space-6) 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-fog);
+  }
+  .pool-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-fog);
+  }
+  .pool-status[data-state='loading'] .pool-status-dot {
+    background: var(--color-fog);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  .pool-status[data-state='ready'] .pool-status-dot {
+    background: var(--color-signal);
+  }
+  .pool-status[data-state='error'] .pool-status-dot {
+    background: var(--color-alert);
+  }
+  .pool-status[data-state='error'] #pool-status-text {
+    color: var(--color-alert);
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pool-status-dot { animation: none !important; }
+  }
+  .pool-retry {
+    margin-left: auto;
+    padding: var(--space-1) var(--space-3);
+    font-size: 12px;
+  }
+
+  .pool-browser {
+    background: var(--color-carbon);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .pool-browser summary {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-fog);
+    cursor: pointer;
+  }
+  .pool-browser[open] summary {
+    margin-bottom: var(--space-3);
+    color: var(--color-chalk);
+  }
+  .pool-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  .pool-search {
+    flex: 1 1 200px;
+    min-width: 0;
+    background: var(--color-void);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-chalk);
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+  .pool-search:focus {
+    outline: none;
+    border-color: var(--color-signal);
+  }
+  .pool-position-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  .pos-filter-btn {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: var(--space-1) var(--space-3);
+    background: transparent;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    color: var(--color-fog);
+    cursor: pointer;
+  }
+  .pos-filter-btn[aria-pressed='true'] {
+    border-color: var(--color-signal);
+    color: var(--color-signal);
+  }
+  .pool-table-wrap {
+    /* Fixed height, not max-height — a search/filter that narrows the
+       list to 1-2 rows would otherwise shrink this box and make the
+       whole page jump as you type. Reserving the space up front keeps
+       the page layout stable regardless of result count. */
+    height: 360px;
+    overflow-y: auto;
+    /* Reserve room for the vertical scrollbar instead of letting it overlay
+       the last column — a fixed-layout table's width:100% doesn't always
+       reliably shrink around a scrollbar once one appears (real case:
+       Excl. header/button clipped right where the scrollbar track sits).
+       scrollbar-gutter handles this properly in browsers that support it;
+       the padding is a safe fallback for ones that don't. */
+    scrollbar-gutter: stable;
+    padding-right: var(--space-3);
+    /* Setting overflow-y alone makes some browsers implicitly treat
+       overflow-x as 'auto' too (CSS Overflow spec quirk) — without this,
+       any cell content a pixel wider than its fixed column (e.g. the
+       "EXCL." header) silently grew its own horizontal scrollbar. */
+    overflow-x: hidden;
+  }
+  .pool-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .pg-pos { width: 44px; }
+  /* Player stays the one flexible column (table-layout:fixed deterministically
+     gives it whatever's left of the table's 100% width) — the other columns
+     were widened instead of capping Player itself, so it fills the table
+     without dominating it. */
+  .pg-name { width: auto; }
+  .pg-salary { width: 72px; }
+  .pg-proj { width: 56px; }
+  .pg-lock { width: 64px; }
+  .pg-excl { width: 100px; }
+  .pool-table th {
+    position: sticky;
+    top: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-fog);
+    text-align: left;
+    padding: var(--space-2);
+    background: var(--color-carbon);
+    border-bottom: 1px solid var(--color-hairline);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+  .pool-table th[data-sort] {
+    cursor: pointer;
+  }
+  .pool-table th[data-sort]:hover {
+    color: var(--color-chalk);
+  }
+  .pool-table th.col-num,
+  .pool-table td.col-num {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .pool-table td {
+    padding: var(--space-2);
+    border-bottom: 1px solid var(--color-hairline);
+    font-size: 13px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .pool-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .pool-row-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .pool-row-team {
+    color: var(--color-fog);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .pool-row-btn {
+    padding: var(--space-1) var(--space-2);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .pool-table tbody tr[data-state='locked'] {
+    background: rgba(126, 217, 87, 0.06);
+  }
+  .pool-table tbody tr[data-state='locked'] [data-action='lock'] {
+    border-color: var(--color-signal);
+    color: var(--color-signal);
+  }
+  .pool-table tbody tr[data-state='excluded'] {
+    background: rgba(255, 171, 92, 0.06);
+  }
+  .pool-table tbody tr[data-state='excluded'] [data-action='exclude'] {
+    border-color: var(--color-alert);
+    color: var(--color-alert);
+  }
+
+  .tool-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .lineup-count-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-fog);
+  }
+  .lineup-count-input {
+    width: 56px;
+    background: var(--color-carbon);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-1) var(--space-2);
+    color: var(--color-chalk);
+    font-family: var(--font-mono);
+  }
+  .lineup-heading {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-chalk);
+    margin: var(--space-6) 0 var(--space-3);
+  }
+  .lineup-heading:first-child {
+    margin-top: 0;
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .solver-status {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-fog);
+  }
+
+  .lineup-output {
+    min-height: 80px;
+  }
+  .empty-state {
+    color: var(--color-fog);
+    font-size: 15px;
+    border: 1px dashed var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    text-align: center;
+  }
+  .empty-state.state-error {
+    color: var(--color-alert);
+    border-color: var(--color-alert);
+  }
+
+  .totals-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .stat-sub {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-fog);
+    margin-top: var(--space-1);
+  }
+
+  .lineup-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .csv-note {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-fog);
+  }
+  .lineup-card {
+    background: var(--color-carbon);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .lineup-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .cg-slot { width: 80px; }
+  .cg-player { width: auto; }
+  .cg-matchup { width: 140px; }
+  .cg-salary { width: 100px; }
+  .cg-proj { width: 70px; }
+
+  /* Below ~560px, Slot/Player/Salary/Proj alone already fill the viewport
+     comfortably — drop Matchup rather than force horizontal scroll (real
+     mobile test: at full 5 columns the table overflowed the viewport). */
+  @media (max-width: 560px) {
+    .cg-matchup { display: none; }
+    .col-matchup { display: none; }
+    .cg-slot { width: 44px; }
+    .cg-salary { width: 60px; }
+    .cg-proj { width: 42px; }
+    .lineup-table th,
+    .lineup-table td {
+      padding: var(--space-1) var(--space-2);
+      font-size: 13px;
+    }
+    .pg-pos { width: 36px; }
+    .pg-salary { width: 52px; }
+    .pg-proj { width: 40px; }
+    .pg-lock { width: 56px; }
+    .pg-excl { width: 76px; }
+    .pool-table th,
+    .pool-table td {
+      padding: var(--space-1);
+      font-size: 12px;
+    }
+    .pool-row-btn {
+      padding: 2px 4px;
+      font-size: 10px;
+    }
+    .position-pill {
+      min-width: 28px;
+      padding: 2px 4px;
+      font-size: 10px;
+    }
+  }
+  .lineup-table th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-fog);
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--color-hairline);
+    white-space: nowrap;
+  }
+  .lineup-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-hairline);
+    font-size: 15px;
+    line-height: 1.4;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lineup-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .lineup-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .lineup-table tbody tr:hover {
+    background: rgba(126, 217, 87, 0.06);
+  }
+  .col-matchup {
+    color: var(--color-fog);
+    font-size: 13px;
+  }
+  .col-num,
+  .lineup-table td.col-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    /* Never ellipsis-truncate a number — a clipped "22…" reads as a
+       different, wrong number rather than an obviously-cut string. */
+    overflow: visible;
+    text-overflow: clip;
+  }
+  .position-pill {
+    display: inline-block;
+    min-width: 38px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: var(--color-field);
+    border: 1px solid var(--color-hairline);
+    color: var(--color-chalk);
+    border-radius: var(--radius);
+    padding: 3px 8px;
+  }
+</style>
