@@ -33,8 +33,9 @@ const formId = `optimizer-waitlist-${sport}`;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const statusEl = form.nextElementSibling as HTMLElement | null;
-      const button = form.querySelector('button') as HTMLButtonElement;
-      const input = form.querySelector('input[name="email"]') as HTMLInputElement;
+      const button = form.querySelector<HTMLButtonElement>('button');
+      const input = form.querySelector<HTMLInputElement>('input[name="email"]');
+      if (!button || !input) return;
       const email = input.value.trim();
       const sport = form.dataset.sport ?? '';
 
@@ -96,6 +97,14 @@ const formId = `optimizer-waitlist-${sport}`;
     display: flex;
     gap: var(--space-3);
     flex-wrap: wrap;
+  }
+  /* Without this, the browser's default [hidden]{display:none} and the
+     rule above tie on specificity (one attribute selector vs. one class),
+     and author CSS wins that tie — so form.hidden = true in the script
+     below would do nothing and the form (stuck on "Submitting…") would
+     stay visible forever even after a successful signup. */
+  .waitlist-form[hidden] {
+    display: none;
   }
   .waitlist-form input[type='email'] {
     flex: 1 1 260px;
