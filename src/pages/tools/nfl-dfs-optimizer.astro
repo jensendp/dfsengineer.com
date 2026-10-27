@@ -168,12 +168,8 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
     }
 
     function valueCell(p: OptimizerPlayer): string {
-      // value_score alone (pts per $1k salary) reads as just another number —
-      // the explicit "2x" badge is what actually flags a player clearing the
-      // standard double-your-salary GPP benchmark, color highlight alone
-      // wasn't noticeable enough.
-      const badge = p.projected_2x ? ' <span class="value-2x-badge" title="Clears the 2x-salary benchmark">2x</span>' : '';
-      return `<span class="${p.projected_2x ? 'value-2x' : ''}">${p.value_score.toFixed(2)}</span>${badge}`;
+      const title = p.projected_2x ? 'Clears the 2x-salary benchmark' : '';
+      return `<span class="${p.projected_2x ? 'value-2x' : ''}" title="${title}">${p.value_score.toFixed(2)}</span>`;
     }
 
     function renderPoolList() {
@@ -756,18 +752,6 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
   .value-2x {
     color: var(--color-signal);
     font-weight: 600;
-  }
-  .value-2x-badge {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--color-void);
-    background: var(--color-signal);
-    border-radius: var(--radius);
-    padding: 1px 4px;
-    vertical-align: middle;
   }
 
   .tool-actions {
