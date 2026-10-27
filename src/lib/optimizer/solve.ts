@@ -21,6 +21,7 @@ export interface OptimizerPlayer {
   ceiling: number | null;
   game_over_under: number | null;
   game_spread: number | null;
+  injury_status: 'Questionable' | 'Doubtful' | 'Out' | null;
 }
 
 export interface OptimizerPool {
