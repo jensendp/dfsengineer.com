@@ -60,6 +60,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
               <col class="pg-status" />
               <col class="pg-salary" />
               <col class="pg-proj" />
+              <col class="pg-value" />
               <col class="pg-lock" />
               <col class="pg-excl" />
             </colgroup>
@@ -70,6 +71,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
                 <th>Status</th>
                 <th class="col-num" data-sort="salary">Salary</th>
                 <th class="col-num" data-sort="projection">Proj</th>
+                <th class="col-num" data-sort="value_score" title="Points per $1k salary; highlighted when the projection clears the standard 2x-salary GPP benchmark">Value</th>
                 <th>Lock</th>
                 <th>Exclude</th>
               </tr>
@@ -134,7 +136,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
     const lockedIds = new Set<number>();
     const excludedIds = new Set<number>();
 
-    type SortKey = 'position' | 'name' | 'salary' | 'projection';
+    type SortKey = 'position' | 'name' | 'salary' | 'projection' | 'value_score';
     let positionFilter = 'ALL';
     let sortKey: SortKey = 'projection';
     let sortDir: 'asc' | 'desc' = 'desc';
@@ -156,7 +158,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
     }
 
     const SORT_LABELS: Record<SortKey, string> = {
-      position: 'Pos', name: 'Player', salary: 'Salary', projection: 'Proj',
+      position: 'Pos', name: 'Player', salary: 'Salary', projection: 'Proj', value_score: 'Value',
     };
 
     function statusPill(status: OptimizerPlayer['injury_status']): string {
@@ -191,13 +193,14 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
                   <td>${statusPill(p.injury_status)}</td>
                   <td class="col-num">${formatSalary(p.salary)}</td>
                   <td class="col-num">${p.projection.toFixed(1)}</td>
+                  <td class="col-num"><span class="${p.projected_2x ? 'value-2x' : ''}" title="${p.projected_2x ? 'Clears the 2x-salary benchmark' : ''}">${p.value_score.toFixed(2)}</span></td>
                   <td><button class="btn btn-secondary pool-row-btn" data-action="lock">${state === 'locked' ? 'On' : 'Lock'}</button></td>
                   <td><button class="btn btn-secondary pool-row-btn" data-action="exclude">${state === 'excluded' ? 'On' : 'Exclude'}</button></td>
                 </tr>
               `;
             })
             .join('')
-        : '<tr><td colspan="7" class="empty-state">No players match these filters.</td></tr>';
+        : '<tr><td colspan="8" class="empty-state">No players match these filters.</td></tr>';
 
       // Reflect current sort in the header (▲/▼ next to the active column).
       poolTableWrapEl!.querySelectorAll('th[data-sort]').forEach((th) => {
@@ -632,6 +635,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
   .pg-status { width: 56px; }
   .pg-salary { width: 72px; }
   .pg-proj { width: 56px; }
+  .pg-value { width: 56px; }
   .pg-lock { width: 64px; }
   .pg-excl { width: 100px; }
   .pool-table th {
@@ -733,6 +737,14 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
     color: var(--color-void);
     background: var(--color-alert);
     border: 1px solid var(--color-alert);
+  }
+
+  /* Value (pts per $1k salary) highlighted when the projection clears the
+     standard "2x salary" GPP benchmark — reuses --color-signal, the same
+     token the rest of the tool uses for "good". */
+  .value-2x {
+    color: var(--color-signal);
+    font-weight: 600;
   }
 
   .tool-actions {
@@ -860,6 +872,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
     .pg-status { width: 36px; }
     .pg-salary { width: 52px; }
     .pg-proj { width: 40px; }
+    .pg-value { width: 40px; }
     .pg-lock { width: 56px; }
     .pg-excl { width: 76px; }
     .pool-table th,
