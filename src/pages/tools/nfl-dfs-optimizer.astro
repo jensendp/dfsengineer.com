@@ -167,6 +167,15 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
       return `<span class="status-pill status-${abbr.toLowerCase()}" title="${status}">${abbr}</span>`;
     }
 
+    function valueCell(p: OptimizerPlayer): string {
+      // value_score alone (pts per $1k salary) reads as just another number —
+      // the explicit "2x" badge is what actually flags a player clearing the
+      // standard double-your-salary GPP benchmark, color highlight alone
+      // wasn't noticeable enough.
+      const badge = p.projected_2x ? ' <span class="value-2x-badge" title="Clears the 2x-salary benchmark">2x</span>' : '';
+      return `<span class="${p.projected_2x ? 'value-2x' : ''}">${p.value_score.toFixed(2)}</span>${badge}`;
+    }
+
     function renderPoolList() {
       if (!pool) return;
       const needle = poolSearchEl!.value.trim().toLowerCase();
@@ -193,7 +202,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
                   <td>${statusPill(p.injury_status)}</td>
                   <td class="col-num">${formatSalary(p.salary)}</td>
                   <td class="col-num">${p.projection.toFixed(1)}</td>
-                  <td class="col-num"><span class="${p.projected_2x ? 'value-2x' : ''}" title="${p.projected_2x ? 'Clears the 2x-salary benchmark' : ''}">${p.value_score.toFixed(2)}</span></td>
+                  <td class="col-num">${valueCell(p)}</td>
                   <td><button class="btn btn-secondary pool-row-btn" data-action="lock">${state === 'locked' ? 'On' : 'Lock'}</button></td>
                   <td><button class="btn btn-secondary pool-row-btn" data-action="exclude">${state === 'excluded' ? 'On' : 'Exclude'}</button></td>
                 </tr>
@@ -317,6 +326,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
         <td class="col-matchup">${p.team} vs ${p.opponent}</td>
         <td class="col-num">${formatSalary(p.salary)}</td>
         <td class="col-num">${p.projection.toFixed(1)}</td>
+        <td class="col-num col-value">${valueCell(p)}</td>
       </tr>`;
     }
 
@@ -381,8 +391,9 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
               <col class="cg-matchup" />
               <col class="cg-salary" />
               <col class="cg-proj" />
+              <col class="cg-value" />
             </colgroup>
-            <thead><tr><th>Slot</th><th>Player</th><th class="col-matchup">Matchup</th><th class="col-num">Salary</th><th class="col-num">Proj</th></tr></thead>
+            <thead><tr><th>Slot</th><th>Player</th><th class="col-matchup">Matchup</th><th class="col-num">Salary</th><th class="col-num">Proj</th><th class="col-num col-value">Value</th></tr></thead>
             <tbody>${rows}</tbody>
           </table>
         </div>
@@ -746,6 +757,18 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
     color: var(--color-signal);
     font-weight: 600;
   }
+  .value-2x-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-void);
+    background: var(--color-signal);
+    border-radius: var(--radius);
+    padding: 1px 4px;
+    vertical-align: middle;
+  }
 
   .tool-actions {
     display: flex;
@@ -853,6 +876,7 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
   .cg-matchup { width: 140px; }
   .cg-salary { width: 100px; }
   .cg-proj { width: 70px; }
+  .cg-value { width: 70px; }
 
   /* Below ~560px, Slot/Player/Salary/Proj alone already fill the viewport
      comfortably — drop Matchup rather than force horizontal scroll (real
@@ -860,6 +884,8 @@ const canonicalURL = new URL('/tools/nfl-dfs-optimizer/', Astro.site).toString()
   @media (max-width: 560px) {
     .cg-matchup { display: none; }
     .col-matchup { display: none; }
+    .cg-value { display: none; }
+    .col-value { display: none; }
     .cg-slot { width: 44px; }
     .cg-salary { width: 60px; }
     .cg-proj { width: 42px; }
