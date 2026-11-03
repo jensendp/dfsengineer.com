@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-27T13:13:40.152011+00:00",
+  "generated_at": "2026-11-03T15:36:44.195981+00:00",
   "scope_note": "Game-level market facts only (matchups, Vegas lines) \u2014 never player-level data. Safe to show for the current/upcoming slate, unlike the retrospective-only content-grounding export.",
   "slate": {
     "season": 2026,
-    "week": 8,
-    "slate_name": "Week 8 Main Slate",
+    "week": 9,
+    "slate_name": "Week 9 Main Slate",
     "num_games": 11
   },
   "highlights": {
     "highest_total": {
-      "matchup": "ARI @ DAL",
-      "over_under": 54.5
+      "matchup": "DAL @ IND",
+      "over_under": 51.5
     },
     "biggest_spread": {
-      "matchup": "TEN @ CIN",
-      "spread": 10.0
+      "matchup": "ARI @ SEA",
+      "spread": 10.5
     }
   }
 }
