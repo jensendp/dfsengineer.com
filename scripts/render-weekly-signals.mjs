@@ -175,7 +175,7 @@ ${retro ? `Not after publication. Week ${week}'s board was rebuilt after the gam
 `;
 
 const front = `---
-title: "NFL DFS Week ${week} Signals: What the Data Looked Like Before Kickoff"
+title: "NFL DFS Week ${week} Signals: Pre-Kickoff Snapshot"
 description: "A pre-game snapshot of the Week ${week} board: model and public projections, and where the sources agreed and split. A record to be graded."
 pubDate: "${iso}"
 dateModified: "${iso}"
