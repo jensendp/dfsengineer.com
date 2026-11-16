@@ -2,6 +2,7 @@
 title: "NFL DFS Terminology: 40+ Terms with Real Examples"
 description: "Master NFL DFS terminology with 40+ terms explained through real numbers and worked examples. The only glossary built for serious DFS players."
 pubDate: '2026-08-25T18:40:24'
+dateModified: '2026-11-16T09:00:00'
 tags: ["NFL DFS terminology","DFS glossary","NFL DFS beginners","daily fantasy sports terms"]
 pillar: "NFL DFS Beginner's Guide"
 contentType: "Spoke"
@@ -26,7 +27,7 @@ Daily fantasy sports (DFS) is simple at the surface: pick players who fit under 
 | **Salary Cap** | $50,000 | $60,000 |
 | **Roster Slots** | 9 (QB, RB, RB, WR, WR, WR, TE, FLEX, DST) | 9 (QB, RB, RB, WR, WR, WR, TE, FLEX, DEF) |
 | **PPR Format** | Full PPR (1.0 per reception) | Half PPR (0.5 per reception) |
-| **Passing TD Points** | 6 | 4 |
+| **Passing TD Points** | 4 | 4 |
 | **Rushing/Receiving TD** | 6 | 6 |
 | **300-Yard Passing Bonus** | 3 | None |
 
@@ -34,23 +35,23 @@ Daily fantasy sports (DFS) is simple at the surface: pick players who fit under 
 
 Every contest charges an **entry fee** (the buy-in). The platform keeps a cut called the **rake**, typically 10–15%. A $20 entry on a $20,000 GPP means roughly $2–$3 of your buy-in never reaches the prize pool. Your expected value starts negative by that percentage, so your edge must overcome the rake before you profit.
 
-Here's a quick scored example: say your DraftKings QB throws for 280 yards and 3 TDs. That's 11.2 passing-yard points (280 × 0.04) plus 18.0 TD points (3 × 6) = 29.2 points from one slot. Your full roster might total 160 points across all nine positions — understanding how each slot contributes is the first piece of NFL DFS terminology that actually drives decisions.
+Here's a quick scored example: say your DraftKings QB throws for 280 yards and 3 TDs. That's 11.2 passing-yard points (280 × 0.04) plus 12.0 TD points (3 × 4) = 23.2 points from one slot. Your full roster might total 160 points across all nine positions — understanding how each slot contributes is the first piece of NFL DFS terminology that actually drives decisions.
 
 ```
 Worked Example: Scoring a DraftKings QB
 
 Passing yards:   280 × 0.04        = 11.2 pts
-Passing TDs:       3 × 6           = 18.0 pts
+Passing TDs:       3 × 4           = 12.0 pts
 Completions:      22 × 0 (no pts)  =  0.0 pts
 Interceptions:     1 × (-1)        = -1.0 pts
                                     --------
-Total:                               28.2 pts
+Total:                               22.2 pts
 
 Now add a 40-yard rushing TD:
 Rushing yards:    40 × 0.1          =  4.0 pts
 Rushing TD:        1 × 6            =  6.0 pts
                                     --------
-Grand Total:                         38.2 pts
+Grand Total:                         32.2 pts
 ```
 
 ## Contest Type Terminology Every NFL DFS Player Must Know

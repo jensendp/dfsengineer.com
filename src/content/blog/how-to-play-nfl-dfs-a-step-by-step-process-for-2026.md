@@ -2,6 +2,7 @@
 title: "How to Play NFL DFS: A Step-by-Step Process for 2026"
 description: "Learn how to play NFL DFS with a real, data-driven process. Covers contest selection, roster construction, ownership leverage, and bankroll management."
 pubDate: '2026-08-25T15:20:52'
+dateModified: '2026-11-16T09:00:00'
 tags: ["NFL DFS","daily fantasy football","DFS strategy","DFS beginners"]
 pillar: "NFL DFS Beginner's Guide"
 contentType: "Spoke"
@@ -24,15 +25,15 @@ DraftKings and FanDuel run on the same core mechanic — you draft a roster unde
 
 DraftKings gives you $50,000 in salary and nine roster spots: QB, RB, RB, WR, WR, WR, TE, FLEX, DST. FanDuel uses $60,000 across the same nine-slot structure: QB, RB, RB, WR, WR, WR, TE, FLEX, DEF. The slot count matches — the real differentiation comes from the scoring-rate gaps below, not roster size. The FLEX spot accepts RB, WR, or TE, so your choice there defines whether you're going RB-heavy or loading up on pass-catchers.
 
-Scoring diverges in ways that directly shape roster construction. DraftKings uses full PPR (1 point per reception) and awards 6 points per passing touchdown. FanDuel uses half PPR (0.5 per reception) and awards only 4 points per passing touchdown. A running back who catches 5 passes scores 5 receiving points on DraftKings but only 2.5 on FanDuel. That gap makes high-volume pass-catching backs significantly more valuable on DraftKings relative to their salary. The passing TD difference also matters: a three-touchdown passing day is worth 18 points on DraftKings but only 12 on FanDuel, which compresses the gap between elite and mid-tier quarterbacks on FanDuel slates.
+Scoring diverges in ways that directly shape roster construction. DraftKings uses full PPR (1 point per reception) and adds a 3-point bonus at 300 passing yards or 100 rushing or receiving yards. FanDuel uses half PPR (0.5 per reception) with no yardage bonuses. Passing touchdowns are worth 4 points on both. A running back who catches 5 passes scores 5 receiving points on DraftKings but only 2.5 on FanDuel. That gap makes high-volume pass-catching backs significantly more valuable on DraftKings relative to their salary. The bonuses matter too: a quarterback who throws for 300 yards earns 3 extra points on DraftKings and nothing extra on FanDuel, which gives DraftKings quarterbacks a bit more ceiling.
 
 | | DraftKings | FanDuel |
 |---|---|---|
 | **Salary Cap** | $50,000 | $60,000 |
 | **Roster Spots** | 9 (QB, 2RB, 3WR, TE, FLEX, DST) | 9 (QB, 2RB, 3WR, TE, FLEX, DEF) |
 | **PPR Scoring** | Full (1.0 per reception) | Half (0.5 per reception) |
-| **Passing TD** | 6 points | 4 points |
-| **Key Implication** | Pass-catching RBs and QBs gain extra value | Gap between elite and mid-tier QBs compresses |
+| **Passing TD** | 4 points | 4 points |
+| **Key Implication** | Pass-catching RBs gain extra value, plus 300/100-yard bonuses | Steady volume wins, with no bonus thresholds |
 
 Setting up an account takes minutes — deposit via bank transfer, PayPal, or card. The real constraint is legality. Paid DFS remains unavailable in several states, including Washington, Idaho, and Montana. Check your state before depositing.
 

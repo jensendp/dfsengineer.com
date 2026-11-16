@@ -2,6 +2,7 @@
 title: "NFL DFS Sleepers: A Data-Driven Research Process (2026)"
 description: "Find NFL DFS sleepers using a repeatable, data-driven process. Salary analysis, ownership leverage, and worked examples for the 2026 season."
 pubDate: '2026-09-01T12:04:18'
+dateModified: '2026-11-16T09:00:00'
 tags: ["NFL DFS sleepers","DFS player research","ownership leverage","salary value analysis"]
 pillar: "NFL DFS Player Research"
 contentType: "Pillar"
@@ -177,7 +178,7 @@ There's no honest answer to this question in June that still holds in November. 
 
 ### Does Sleeper have DFS?
 
-Sleeper is a season-long fantasy and social platform. It doesn't host daily fantasy salary-cap contests the way DraftKings and FanDuel do. If you're looking to play single-slate lineups with salary constraints, those two are the primary options. For a full explanation of how DFS platforms work, see our [guide to NFL DFS mechanics, scoring, and real examples](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples). The research process in this guide applies to both — just adjust your salary screening thresholds to account for the different salary caps ($50,000 on DraftKings, $60,000 on FanDuel) and [scoring differences](https://dfsengineer.com/blog/nfl-dfs-scoring-explained-draftkings-fanduel-more) (full PPR on DraftKings, half PPR on FanDuel; 6-point passing TDs on DraftKings versus 4 on FanDuel).
+Sleeper is a season-long fantasy and social platform. It doesn't host daily fantasy salary-cap contests the way DraftKings and FanDuel do. If you're looking to play single-slate lineups with salary constraints, those two are the primary options. For a full explanation of how DFS platforms work, see our [guide to NFL DFS mechanics, scoring, and real examples](https://dfsengineer.com/blog/how-nfl-dfs-works-mechanics-scoring-real-examples). The research process in this guide applies to both — just adjust your salary screening thresholds to account for the different salary caps ($50,000 on DraftKings, $60,000 on FanDuel) and [scoring differences](https://dfsengineer.com/blog/nfl-dfs-scoring-explained-draftkings-fanduel-more) (full PPR and yardage bonuses on DraftKings, half PPR and no bonuses on FanDuel).
 
 ### Who are the best fantasy dynasty sleepers for 2026?
 

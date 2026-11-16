@@ -2,6 +2,7 @@
 title: "NFL DFS Beginner's Guide: Build Your First Lineup (2026)"
 description: "NFL DFS beginner's guide with real salary cap math, scoring breakdowns, and worked lineup examples. A complete process for building your first lineup in 2026."
 pubDate: '2026-08-25T14:11:02'
+dateModified: '2026-11-16T09:00:00'
 tags: ["NFL DFS beginner's guide","daily fantasy football","DFS lineup building","DFS contest types"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -23,7 +24,7 @@ Daily fantasy football is a single-week contest. You draft a roster under a fixe
 
 That "start fresh" part is the fundamental break from season-long fantasy. There are no trades, no waiver wire claims, no roster spots wasted on a running back who got hurt in Week 3. Every decision exists in isolation. You drafted a bust last Sunday? Irrelevant. There's no sunk cost dragging your roster down for 14 more weeks.
 
-The platforms matter more than beginners expect. DraftKings rosters carry six skill positions plus a FLEX spot, use full-PPR scoring, and award 6 points per passing touchdown. FanDuel uses nine roster slots, half-PPR, and 4-point passing touchdowns. That gap — 6-point vs. 4-point passing TDs — directly changes how much salary you should spend on quarterbacks. A three-touchdown game on DraftKings generates 6 extra points over FanDuel, which is why QB stacking hits harder there.
+The platforms matter more than beginners expect. DraftKings rosters carry six skill positions plus a FLEX spot, use full-PPR scoring, and award 4 points per passing touchdown plus 3-point bonuses at 300 passing yards and 100 rushing or receiving yards. FanDuel uses nine roster slots, half-PPR, and no bonuses, with the same 4-point passing touchdowns. Those gaps, reception value and yardage bonuses, change how you value pass-catchers and quarterbacks who sit near a yardage threshold.
 
 The next section walks through those differences with exact point totals so you can see the math yourself.
 
@@ -31,20 +32,20 @@ The next section walks through those differences with exact point totals so you 
 
 The scoring difference between platforms isn't trivial. It changes who you draft and how you build.
 
-Here's the same QB performance scored on both sites — 280 passing yards, 2 passing TDs, 1 INT:
+Here's the same QB performance scored on both sites — 310 passing yards, 2 passing TDs, 1 INT:
 
-**DraftKings:** 280 × 0.04 (11.2) + 2 × 6 (12) − 1 × 1 (−1) = **22.2 points**
+**DraftKings:** 310 × 0.04 (12.4) + 2 × 4 (8) − 1 × 1 (−1) + 3 (300-yard bonus) = **22.4 points**
 
-**FanDuel:** 280 × 0.04 (11.2) + 2 × 4 (8) − 1 × 1 (−1) = **18.2 points**
+**FanDuel:** 310 × 0.04 (12.4) + 2 × 4 (8) − 1 × 1 (−1) = **19.4 points**
 
-Four points from one stat line. Scale it up to a 3-TD game and the DraftKings score pulls further ahead. This is why QB is the premier position on DraftKings — the ceiling is structurally higher, which makes QB the natural anchor for lineup construction. On FanDuel, QBs score closer to other positions, so paying up at QB carries less inherent edge.
+Three points from one stat line, and all of it comes from the 300-yard bonus. Drop the same quarterback to 290 yards and both platforms score him identically. Passing touchdowns are worth 4 points on both sites, so the difference is the bonus threshold, not the quarterback position itself.
 
 The table below shows how the same stat lines play across both platforms at key positions so you can see the gaps at a glance:
 
 | Position | Stat Line | DraftKings Score | FanDuel Score | Difference |
 |----------|-----------|-----------------|---------------|------------|
-| QB | 280 yds, 2 TD, 1 INT | 22.2 | 18.2 | +4.0 DK |
-| QB | 320 yds, 3 TD, 0 INT | 30.8 | 24.8 | +6.0 DK |
+| QB | 310 yds, 2 TD, 1 INT | 22.4 | 19.4 | +3.0 DK |
+| QB | 320 yds, 3 TD, 0 INT | 27.8 | 24.8 | +3.0 DK |
 | RB | 85 rush yds, 1 TD, 5 rec, 30 rec yds | 22.5 | 20.0 | +2.5 DK |
 | WR | 6 rec, 95 yds, 1 TD | 21.5 | 18.5 | +3.0 DK |
 | TE | 4 rec, 55 yds, 0 TD | 9.5 | 7.5 | +2.0 DK |
@@ -196,7 +197,7 @@ Most platforms let you enter contests for $0.25, so the technical barrier is alm
 
 ### What's the difference between DraftKings and FanDuel for NFL DFS?
 
-The differences sound small but compound fast. DraftKings runs a $50,000 salary cap with full PPR and 6-point passing TDs across a roster that includes QB, RB, RB, WR, WR, WR, TE, FLEX, and DST. FanDuel uses a $60,000 cap with half PPR and 4-point passing TDs across the same 9-slot structure as DraftKings (QB, RB, RB, WR, WR, WR, TE, FLEX, DEF). That 2-point-per-TD swing means QBs on DraftKings have significantly higher ceilings — a 3-TD game is worth 6 more points than on FanDuel. Full PPR vs. half PPR also shifts target-heavy receivers and pass-catching backs up the value board on DraftKings. Both platforms remain the dominant options in 2026, and many serious players build lineups on both.
+The differences sound small but compound fast. DraftKings runs a $50,000 salary cap with full PPR and 3-point yardage bonuses across a roster that includes QB, RB, RB, WR, WR, WR, TE, FLEX, and DST. FanDuel uses a $60,000 cap with half PPR and no bonuses across the same 9-slot structure as DraftKings (QB, RB, RB, WR, WR, WR, TE, FLEX, DEF). The 300-yard passing bonus gives DraftKings quarterbacks a slightly higher ceiling, worth 3 points in a big passing game. Full PPR vs. half PPR also shifts target-heavy receivers and pass-catching backs up the value board on DraftKings. Both platforms remain the dominant options in 2026, and many serious players build lineups on both.
 
 ### Should beginners play cash games or tournaments first?
 
