@@ -1,11 +1,11 @@
 ---
 title: "NFL DFS Week 10 Review: How the Pre-Game Signals Graded"
 description: "Week 10's pre-game board graded against actual DraftKings points: model vs the public average, hits and misses, and what one week can and can't tell you."
-pubDate: "2026-11-16T16:19:49"
-dateModified: "2026-11-16T16:19:49"
+pubDate: "2026-11-16T16:40:20"
+dateModified: "2026-11-16T16:40:20"
 tags: ["NFL DFS","Week 10","Projections","Weekly Review"]
 author: "DFS Engineer Playbook"
-draft: true
+draft: false
 pillar: "NFL DFS Projections"
 contentType: "Spoke"
 hub: "weekly-review"
