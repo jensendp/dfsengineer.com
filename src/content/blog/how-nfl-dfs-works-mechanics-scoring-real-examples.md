@@ -2,6 +2,7 @@
 title: "How NFL DFS Works: Mechanics, Scoring & Real Examples"
 description: "Learn exactly how NFL DFS works — from salary caps and scoring to contest types and lineup math. A plain-spoken guide with real numbers and examples."
 pubDate: '2026-08-25T14:36:17'
+dateModified: '2026-11-16T09:00:00'
 tags: ["NFL DFS basics","DFS scoring explained","DFS contest types","NFL DFS beginner guide"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -67,12 +68,12 @@ This is the core mechanical tension in NFL DFS. You can't roster all the best pl
 
 The scoring system determines what a player's real-game performance is actually worth to your lineup, and DraftKings and FanDuel don't agree on the answer.
 
-DraftKings uses full PPR (point per reception) scoring. Every catch is worth 1 point. Passing yards pay 0.04 points per yard (1 point per 25 yards), passing touchdowns are worth 6 points, and interceptions cost -1 point. Rushing and receiving yards pay 0.1 per yard (1 point per 10 yards), and touchdowns are 6 points for rushing and receiving. FanDuel uses half-PPR: receptions are worth 0.5 points instead of 1. Passing touchdowns are worth 4 points on FanDuel versus 6 on DraftKings. Yardage rates are identical across both platforms.
+DraftKings uses full PPR (point per reception) scoring. Every catch is worth 1 point. Passing yards pay 0.04 points per yard (1 point per 25 yards), passing touchdowns are worth 4 points, and interceptions cost -1 point. Rushing and receiving yards pay 0.1 per yard (1 point per 10 yards), and touchdowns are 6 points for rushing and receiving. FanDuel uses half-PPR: receptions are worth 0.5 points instead of 1. Passing touchdowns are worth 4 points on both platforms, and yardage rates are identical.
 
 | Scoring Category | DraftKings | FanDuel |
 |---|---|---|
 | **Reception** | 1.0 pt | 0.5 pt |
-| **Passing TD** | 6 pts | 4 pts |
+| **Passing TD** | 4 pts | 4 pts |
 | **Rush/Rec TD** | 6 pts | 6 pts |
 | **Passing Yards** | 0.04 pt/yd (1 pt per 25 yds) | 0.04 pt/yd (1 pt per 25 yds) |
 | **Rush/Rec Yards** | 0.1 pt/yd (1 pt per 10 yds) | 0.1 pt/yd (1 pt per 10 yds) |
@@ -213,7 +214,7 @@ Scoring rules, salary caps, contest structures, rake — these aren't background
 
 The break-even math alone makes the point concrete: a 55% win rate in cash games barely covers the platform's cut. That thin margin disappears fast if you're misallocating salary, ignoring scoring differences between platforms, or playing GPP strategy in a double-up. Precision matters because the edges are small.
 
-Knowing that DraftKings' 100-yard bonus changes your player targets, that FanDuel's half-PPR scoring and lower passing TD value deflate certain archetypes, that a 6%-owned QB carries different tournament equity than a 25%-owned one — this is what separates informed decisions from expensive guesses.
+Knowing that DraftKings' 100-yard bonus changes your player targets, that FanDuel's half-PPR scoring and lack of yardage bonuses deflate certain archetypes, that a 6%-owned QB carries different tournament equity than a 25%-owned one — this is what separates informed decisions from expensive guesses.
 
 None of it guarantees you'll win. But it guarantees you'll know what you're doing and why.
 

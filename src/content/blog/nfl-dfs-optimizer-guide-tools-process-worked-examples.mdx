@@ -2,6 +2,7 @@
 title: "NFL DFS Optimizer Guide: Tools, Process & Worked Examples"
 description: "Complete NFL DFS optimizer guide covering projections, exposure settings, correlation rules, and real data workflows. Built for process-driven players."
 pubDate: '2026-08-27T12:05:34'
+dateModified: '2026-11-16T09:00:00'
 tags: ["NFL DFS optimizer","DFS lineup optimization","DFS tools","daily fantasy football strategy"]
 pillar: "NFL DFS Tools & Optimizers"
 contentType: "Pillar"
@@ -66,20 +67,20 @@ Game environment filtering matters here more than people treat it. Sort by impli
 
 DraftKings and FanDuel share the same NFL Classic roster structure — nine slots: QB, RB, RB, WR, WR, WR, TE, FLEX, and a defense (labeled DST on DraftKings, DEF on FanDuel). No kicker on either platform. The differences that matter for optimizer configuration are [scoring rules](https://www.dfsengineer.com/blog/nfl-dfs-scoring-explained-draftkings-fanduel-more) and salary cap.
 
-Scoring is where lineup construction diverges. DraftKings uses full PPR (1 point per reception) and awards 6 points per passing touchdown. FanDuel uses half PPR (0.5 points per reception) and awards 4 points per passing touchdown. That 2-point TD gap and the halved reception value compound across a full slate. On DraftKings, a slot receiver who catches 8 balls for 74 yards and a touchdown scores 21.4 DK points (8 receptions × 1 + 74 yards × 0.1 + 6 TD = 21.4). The same line on FanDuel scores 17.4 (8 × 0.5 + 74 × 0.1 + 6 = 17.4). That 4-point gap makes high-volume pass catchers relatively more valuable on DraftKings, while FanDuel's scoring tilts value toward rushing production, where the per-yard and TD rates are identical across platforms.
+Scoring is where lineup construction diverges. DraftKings uses full PPR (1 point per reception) and adds 3-point bonuses at 300 passing yards and 100 rushing or receiving yards. FanDuel uses half PPR (0.5 points per reception) with no bonuses. Passing touchdowns are worth 4 points on both. The bonuses and the halved reception value compound across a full slate. On DraftKings, a slot receiver who catches 8 balls for 74 yards and a touchdown scores 21.4 DK points (8 receptions × 1 + 74 yards × 0.1 + 6 TD = 21.4). The same line on FanDuel scores 17.4 (8 × 0.5 + 74 × 0.1 + 6 = 17.4). That 4-point gap makes high-volume pass catchers relatively more valuable on DraftKings, while FanDuel's scoring tilts value toward rushing production, where the per-yard and TD rates are identical across platforms.
 
 Here's that same stat line scored on both platforms to make the math explicit:
 
 ```
 Player: Slot WR — 8 receptions, 74 receiving yards, 1 TD
 
-DraftKings (Full PPR, 6-pt passing TD):
+DraftKings (Full PPR, 3-pt yardage bonuses):
   Receptions:  8 × 1.0  =  8.0
   Rec Yards:  74 × 0.1  =  7.4
   Rec TD:      1 × 6    =  6.0
   Total:                   21.4 DK pts
 
-FanDuel (Half PPR, 4-pt passing TD):
+FanDuel (Half PPR, no bonuses):
   Receptions:  8 × 0.5  =  4.0
   Rec Yards:  74 × 0.1  =  7.4
   Rec TD:      1 × 6    =  6.0

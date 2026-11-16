@@ -2,6 +2,7 @@
 title: "What Is NFL DFS? A Complete Beginner's Breakdown (2026)"
 description: "What is NFL DFS? Learn how daily fantasy football works — salary caps, contest types, scoring, and how real lineups get built — with worked examples."
 pubDate: '2026-08-25T14:18:47'
+dateModified: '2026-11-16T09:00:00'
 tags: ["NFL DFS","daily fantasy sports","DFS beginners","NFL DFS explained"]
 author: "DFS Engineer Playbook"
 draft: false
@@ -90,19 +91,19 @@ DraftKings and FanDuel score the same game differently, and those differences ch
 
 DraftKings uses full PPR — one point per reception. FanDuel uses half-PPR, awarding 0.5 points per catch. DraftKings also awards a three-point bonus when a QB hits 300 passing yards. FanDuel has no such bonus. Roster construction is otherwise identical in structure — both platforms use a DEF/DST slot — so the scoring-rate gaps above are what actually drive different roster decisions.
 
-These aren't minor details. Take a QB stat line of 22/28, 275 passing yards, 2 TDs. On DraftKings, that scores 23.0 fantasy points — six points per passing TD, 0.04 points per passing yard (275 × 0.04 = 11.0), no 300-yard bonus triggered. On FanDuel, the same line scores 19.0 — four points per passing TD (2 × 4 = 8.0), plus 11.0 from yardage. Now push that line to 310 yards. DraftKings jumps to 24.4 before you even add the three-point bonus, landing at 27.4. FanDuel moves to just 20.4. That 7.0-point gap on the same stat line makes DraftKings QBs with high-volume passing attacks disproportionately valuable.
+These aren't minor details. Take a QB stat line of 22/28, 275 passing yards, 2 TDs. On DraftKings, that scores 19.0 fantasy points — four points per passing TD (2 × 4 = 8.0), plus 0.04 points per passing yard (275 × 0.04 = 11.0), with no 300-yard bonus triggered. On FanDuel, the same line also scores 19.0. Now push that line to 310 yards. DraftKings jumps to 20.4 before the three-point bonus, landing at 23.4. FanDuel moves to just 20.4. That 3.0-point gap on the same stat line is the 300-yard bonus, and it makes DraftKings QBs with high-volume passing attacks a bit more valuable.
 
 ```
 Worked Example: Same QB Stat Line, Two Platforms
 
 Stat Line: 22/28, 310 passing yards, 2 TDs, 0 INT
 
-DraftKings (Full PPR, 6pt Pass TD, 300yd Bonus):
+DraftKings (Full PPR, 4pt Pass TD, 300yd Bonus):
   Passing Yards:   310 × 0.04        = 12.4
-  Passing TDs:       2 × 6           = 12.0
+  Passing TDs:       2 × 4           =  8.0
   300-Yard Bonus:    1 × 3           =  3.0
   ──────────────────────────────────────────
-  Total:                               27.4 pts
+  Total:                               23.4 pts
 
 FanDuel (Half PPR, 4pt Pass TD, No Bonus):
   Passing Yards:   310 × 0.04        = 12.4
@@ -111,7 +112,7 @@ FanDuel (Half PPR, 4pt Pass TD, No Bonus):
   ──────────────────────────────────────────
   Total:                               20.4 pts
 
-Difference:  7.0 points — from the same real-world performance.
+Difference:  3.0 points — from the same real-world performance.
 ```
 
 Full PPR on DraftKings also inflates the value of pass-catching running backs and high-target slot receivers. A back with six catches for 40 yards and no touchdowns scores 10.0 on DraftKings (6 receptions + 4.0 rushing/receiving yards value) but only 7.0 on FanDuel (3.0 from half-PPR receptions + 4.0 from yards). That 3.0-point swing at a cheap salary reshapes your entire build. Building lineups without accounting for the platform you're on leaves points on the table before kickoff.
