@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-11-17T14:17:48.142664+00:00",
+  "generated_at": "2026-11-25T11:46:18.966375+00:00",
   "scope_note": "Game-level market facts only (matchups, Vegas lines) \u2014 never player-level data. Safe to show for the current/upcoming slate, unlike the retrospective-only content-grounding export.",
   "slate": {
     "season": 2026,
-    "week": 11,
-    "slate_name": "Week 11 Main Slate",
-    "num_games": 10
+    "week": 12,
+    "slate_name": "Week 12 Main Slate",
+    "num_games": 9
   },
   "highlights": {
     "highest_total": {
-      "matchup": "TEN @ DAL",
-      "over_under": 54.5
+      "matchup": "NO @ CIN",
+      "over_under": 50.5
     },
     "biggest_spread": {
-      "matchup": "ARI @ KC",
-      "spread": 16.5
+      "matchup": "TEN @ JAX",
+      "spread": 14.5
     }
   }
 }
